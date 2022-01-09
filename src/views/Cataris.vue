@@ -1,12 +1,7 @@
 <template>
-  <div class="artaria" v-on:click="clickLocation($event)">
-    <h1>Artaria</h1>
-    <div
-      v-for="location in locations"
-      :key="location.area"
-      class="toggle_box"
-      :style="[location.top, location.left]"
-    >
+  <div class="cataris">
+    <h1>Cataris</h1>
+    <div v-for="location in locations" :key="location.area">
       <label :for="location.area">
         <input
           type="checkbox"
@@ -23,8 +18,15 @@
 <script>
 import { mapState } from "vuex";
 export default {
+  data() {
+    return {
+      smallMissiles: 2,
+      bigMissiles: 10,
+      currentState: false,
+    };
+  },
   computed: {
-    ...mapState("arteria", {
+    ...mapState("cataris", {
       locations: (state) => state.locations,
       // locations() {
       //   return this.$store["artaria/locations"];
@@ -34,9 +36,6 @@ export default {
   methods: {
     addAbility(amount, type) {
       this.$store.dispatch("updateAbility", { amount, type });
-    },
-    clickLocation(event) {
-      console.log(event);
     },
     checked(check, type, amount) {
       if (!check) {
@@ -49,15 +48,4 @@ export default {
 };
 </script>
 
-<style>
-.artaria {
-  background-image: url("../assets/ArtariaMap1.jpg");
-  width: 1080px;
-  height: 600px;
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-.toggle_box {
-  position: absolute;
-}
-</style>
+<style></style>
