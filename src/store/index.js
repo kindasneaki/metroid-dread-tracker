@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import arteria from "./modules/artaria";
 
 export default createStore({
   state: {
@@ -17,6 +18,8 @@ export default createStore({
       commit("SET_MISSILE", amount);
     },
   },
-  modules: {},
+  modules: {
+    arteria: arteria,
+  },
   getters: {},
 });
