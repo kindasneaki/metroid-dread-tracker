@@ -56,7 +56,4 @@ export default {
   background-repeat: no-repeat;
   background-size: 75%;
 }
-.toggle_box {
-  position: absolute;
-}
 </style>

@@ -6,7 +6,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:295px",
+        top: "margin-top:155px",
         left: "left:647px",
       },
       {
@@ -14,7 +14,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:409px",
+        top: "margin-top:269px",
         left: "left:573px",
       },
       {
@@ -22,7 +22,7 @@ export default {
         checked: false,
         type: "powerBomb",
         amount: 1,
-        top: "top:356px",
+        top: "margin-top:216px",
         left: "left:667px",
       },
     ],

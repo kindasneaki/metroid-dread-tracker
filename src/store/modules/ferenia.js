@@ -6,7 +6,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:303px",
+        top: "margin-top:163px",
         left: "left:307px",
       },
       {
@@ -14,7 +14,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:356px",
+        top: "margin-top:216px",
         left: "left:363px",
       },
       {
@@ -22,7 +22,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:361px",
+        top: "margin-top:221px",
         left: "left:394px",
       },
       {
@@ -30,7 +30,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:309px",
+        top: "margin-top:169px",
         left: "left:414px",
       },
       {
@@ -38,7 +38,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:295px",
+        top: "margin-top:155px",
         left: "left:737px",
       },
       {
@@ -46,7 +46,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:388px",
+        top: "margin-top:248px",
         left: "left:963px",
       },
       {
@@ -54,7 +54,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 10,
-        top: "top:242px",
+        top: "margin-top:102px",
         left: "left:365px",
       },
       {
@@ -62,7 +62,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 10,
-        top: "top:467px",
+        top: "margin-top:327px",
         left: "left:427px",
       },
       {
@@ -70,7 +70,7 @@ export default {
         checked: false,
         type: "energyPart",
         amount: 1,
-        top: "top:484px",
+        top: "margin-top:344px",
         left: "left:672px",
       },
       {
@@ -78,7 +78,7 @@ export default {
         checked: false,
         type: "energyPart",
         amount: 1,
-        top: "top:319px",
+        top: "margin-top:179px",
         left: "left:688px",
       },
       {
@@ -86,7 +86,7 @@ export default {
         checked: false,
         type: "energyPart",
         amount: 1,
-        top: "top:393px",
+        top: "margin-top:253px",
         left: "left:305px",
       },
       {
@@ -94,7 +94,7 @@ export default {
         checked: false,
         type: "energyPart",
         amount: 1,
-        top: "top:410px",
+        top: "margin-top:270px",
         left: "left:907px",
       },
       {
@@ -102,7 +102,7 @@ export default {
         checked: false,
         type: "powerBomb",
         amount: 1,
-        top: "top:296px",
+        top: "margin-top:156px",
         left: "left:547px",
       },
       {
@@ -110,7 +110,7 @@ export default {
         checked: false,
         type: "powerBomb",
         amount: 1,
-        top: "top:450px",
+        top: "margin-top:310px",
         left: "left:546px",
       },
     ],

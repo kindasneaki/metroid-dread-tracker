@@ -1,9 +1,10 @@
 <template>
   <div class="tracker">
-    {{ msg }}
-    <div>missiles {{ missiles }}</div>
-    <div>energyPart {{ energyPart }} energyFull {{ energyFull }}</div>
-    <div>powerBomb {{ powerBomb }}</div>
+    <div class="tracker-grid">
+      <div>missiles {{ missiles }}</div>
+      <div>energyPart {{ energyPart }} energyFull {{ energyFull }}</div>
+      <div>powerBomb {{ powerBomb }}</div>
+    </div>
 
     <!-- <button v-on:click="addMissiles(smallMissiles)">missile tank 2</button>
     <button v-on:click="addMissiles(bigMissiles)">missiles tank 10</button> -->
@@ -38,5 +39,8 @@ li {
 }
 a {
   color: #42b983;
+}
+.tracker-grid {
+  border: 1px white;
 }
 </style>

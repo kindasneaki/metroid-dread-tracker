@@ -6,7 +6,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:298px",
+        top: "margin-top:158px",
         left: "left:180px",
       },
       {
@@ -14,7 +14,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:514px",
+        top: "margin-top:374px",
         left: "left:226px",
       },
       {
@@ -22,7 +22,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:374px",
+        top: "margin-top:234px",
         left: "left:216px",
       },
       {
@@ -30,7 +30,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:341px",
+        top: "margin-top:201px",
         left: "left:281px",
       },
       {
@@ -38,7 +38,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:438px",
+        top: "margin-top:298px",
         left: "left:304px",
       },
       {
@@ -46,7 +46,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:459px",
+        top: "margin-top:319px",
         left: "left:511px",
       },
       {
@@ -54,7 +54,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:552px",
+        top: "margin-top:412px",
         left: "left:586px",
       },
       {
@@ -62,7 +62,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:344px",
+        top: "margin-top:204px",
         left: "left:673px",
       },
       {
@@ -70,7 +70,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:474px",
+        top: "margin-top:334px",
         left: "left:750px",
       },
       {
@@ -78,7 +78,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:171px",
+        top: "margin-top:31px",
         left: "left:639px",
       },
       {
@@ -86,7 +86,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:584px",
+        top: "margin-top:444px",
         left: "left:791px",
       },
       {
@@ -94,7 +94,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:238px",
+        top: "margin-top:98px",
         left: "left:836px",
       },
       {
@@ -102,7 +102,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:365px",
+        top: "margin-top:225px",
         left: "left:951px",
       },
       {
@@ -110,7 +110,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "top:297px",
+        top: "margin-top:157px",
         left: "left:1026px",
       },
       {
@@ -118,7 +118,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 10,
-        top: "top:403px",
+        top: "margin-top:263px",
         left: "left:110px",
       },
       {
@@ -126,7 +126,7 @@ export default {
         checked: false,
         type: "energyPart",
         amount: 1,
-        top: "top:277px",
+        top: "margin-top:137px",
         left: "left:700px",
       },
       {
@@ -134,7 +134,7 @@ export default {
         checked: false,
         type: "energyPart",
         amount: 1,
-        top: "top:544px",
+        top: "margin-top:404px",
         left: "left:482px",
       },
       {
@@ -142,7 +142,7 @@ export default {
         checked: false,
         type: "energyFull",
         amount: 1,
-        top: "top:262px",
+        top: "margin-top:122px",
         left: "left:730px",
       },
       {
@@ -150,7 +150,7 @@ export default {
         checked: false,
         type: "powerBomb",
         amount: 1,
-        top: "top:238px",
+        top: "margin-top:98px",
         left: "left:914px",
       },
       {
@@ -158,7 +158,7 @@ export default {
         checked: false,
         type: "powerBomb",
         amount: 1,
-        top: "top:369px",
+        top: "margin-top:229px",
         left: "left:409px",
       },
       {
@@ -166,7 +166,7 @@ export default {
         checked: false,
         type: "powerBomb",
         amount: 1,
-        top: "top:564px",
+        top: "margin-top:424px",
         left: "left:263px",
       },
     ],

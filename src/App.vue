@@ -26,7 +26,7 @@ export default { name: "Home", components: { Tracker } };
   color: #2c3e50;
 }
 #nav {
-  padding: 30px;
+  padding: 50px;
 }
 
 #nav a {
