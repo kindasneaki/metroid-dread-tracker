@@ -1,5 +1,5 @@
 <template>
-  <div class="cataris">
+  <div class="hanubia">
     <div
       v-for="location in locations"
       :key="location.area"
@@ -23,7 +23,7 @@
 import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState("cataris", {
+    ...mapState("hanubia", {
       locations: (state) => state.locations,
       // locations() {
       //   return this.$store["artaria/locations"];
@@ -49,10 +49,10 @@ export default {
 </script>
 
 <style>
-.cataris {
-  background-image: url("../assets/CatarisMap1.jpg");
+.hanubia {
+  background-image: url("../assets/HanubiaMap1.jpg");
   width: 1080px;
-  height: 600px;
+  height: 1100px;
   background-repeat: no-repeat;
   background-size: 100%;
 }

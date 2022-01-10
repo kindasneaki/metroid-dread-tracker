@@ -1,6 +1,5 @@
 <template>
-  <div class="artaria" v-on:click="clickLocation($event)">
-    <h1>Artaria</h1>
+  <div class="artaria">
     <div
       v-for="location in locations"
       :key="location.area"
@@ -35,15 +34,15 @@ export default {
     addAbility(amount, type) {
       this.$store.dispatch("updateAbility", { amount, type });
     },
-    clickLocation(event) {
-      console.log(event);
-    },
     checked(check, type, amount) {
       if (!check) {
         this.addAbility(amount, type);
       } else {
         this.addAbility(-amount, type);
       }
+    },
+    clickLocation(event) {
+      console.log(event);
     },
   },
 };

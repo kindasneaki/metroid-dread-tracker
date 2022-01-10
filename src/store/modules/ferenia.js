@@ -1,0 +1,130 @@
+export default {
+  state: {
+    locations: [
+      {
+        area: "1",
+        checked: false,
+        type: "missiles",
+        amount: 2,
+        top: "top:303px",
+        left: "left:307px",
+      },
+      {
+        area: "2",
+        checked: false,
+        type: "missiles",
+        amount: 2,
+        top: "top:356px",
+        left: "left:363px",
+      },
+      {
+        area: "3",
+        checked: false,
+        type: "missiles",
+        amount: 2,
+        top: "top:361px",
+        left: "left:394px",
+      },
+      {
+        area: "4",
+        checked: false,
+        type: "missiles",
+        amount: 2,
+        top: "top:309px",
+        left: "left:414px",
+      },
+      {
+        area: "5",
+        checked: false,
+        type: "missiles",
+        amount: 2,
+        top: "top:295px",
+        left: "left:737px",
+      },
+      {
+        area: "6",
+        checked: false,
+        type: "missiles",
+        amount: 2,
+        top: "top:388px",
+        left: "left:963px",
+      },
+      {
+        area: "1m",
+        checked: false,
+        type: "missiles",
+        amount: 10,
+        top: "top:242px",
+        left: "left:365px",
+      },
+      {
+        area: "2m",
+        checked: false,
+        type: "missiles",
+        amount: 10,
+        top: "top:467px",
+        left: "left:427px",
+      },
+      {
+        area: "1ep",
+        checked: false,
+        type: "energyPart",
+        amount: 1,
+        top: "top:484px",
+        left: "left:672px",
+      },
+      {
+        area: "2ep",
+        checked: false,
+        type: "energyPart",
+        amount: 1,
+        top: "top:319px",
+        left: "left:688px",
+      },
+      {
+        area: "3ep",
+        checked: false,
+        type: "energyPart",
+        amount: 1,
+        top: "top:393px",
+        left: "left:305px",
+      },
+      {
+        area: "4ep",
+        checked: false,
+        type: "energyPart",
+        amount: 1,
+        top: "top:410px",
+        left: "left:907px",
+      },
+      {
+        area: "1pb",
+        checked: false,
+        type: "powerBomb",
+        amount: 1,
+        top: "top:296px",
+        left: "left:547px",
+      },
+      {
+        area: "2pb",
+        checked: false,
+        type: "powerBomb",
+        amount: 1,
+        top: "top:450px",
+        left: "left:546px",
+      },
+    ],
+  },
+  mutations: {
+    UPDATE_AREA(state, location, index) {
+      !this.locations[index].checked;
+    },
+  },
+  actions: {
+    updateArea({ commit }, location, index) {
+      console.log(location, index);
+      commit("UPDATE_AREA", location, index);
+    },
+  },
+  namespaced: true,
+};

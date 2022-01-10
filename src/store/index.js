@@ -1,12 +1,18 @@
 import { createStore } from "vuex";
 import arteria from "./modules/artaria";
 import cataris from "./modules/cataris";
+import dairon from "./modules/dairon";
+import burenia from "./modules/burenia";
+import ferenia from "./modules/ferenia";
+import ghavoran from "./modules/ghavoran";
+import elun from "./modules/elun";
+import hanubia from "./modules/hanubia";
 
 export default createStore({
   state: {
     missiles: 0,
-    energyPart: 2,
-    energyFull: 1,
+    energyPart: 0,
+    energyFull: 0,
     powerBomb: 0,
   },
   mutations: {
@@ -24,8 +30,8 @@ export default createStore({
   actions: {
     updateAbility({ commit }, { amount, type }) {
       if (type === "energyPart") {
-        let result = (this.state.energyPart + amount) % 4;
-        if (result === 0) {
+        let result = (this.state.energyPart + amount) / 4;
+        if (result === 1) {
           type = "energyFull";
           commit("ROTATE_ENERGY");
         } else if (result < 0) {
@@ -38,6 +44,12 @@ export default createStore({
   modules: {
     arteria,
     cataris,
+    dairon,
+    burenia,
+    ferenia,
+    ghavoran,
+    elun,
+    hanubia,
   },
   getters: {},
 });

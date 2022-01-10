@@ -2,7 +2,13 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/artaria">Artaria</router-link> |
-    <router-link to="/cataris">Cataris</router-link>
+    <router-link to="/cataris">Cataris</router-link> |
+    <router-link to="/dairon">Dairon</router-link> |
+    <router-link to="/burenia">Burenia</router-link> |
+    <router-link to="/ferenia">Ferenia</router-link> |
+    <router-link to="/ghavoran">Ghavoran</router-link> |
+    <router-link to="/elun">Elun</router-link> |
+    <router-link to="/hanubia">Hanubia</router-link>
   </div>
   <Tracker />
   <router-view />
@@ -19,7 +25,6 @@ export default { name: "Home", components: { Tracker } };
   text-align: center;
   color: #2c3e50;
 }
-
 #nav {
   padding: 30px;
 }
@@ -47,5 +52,8 @@ padding-left: 15px; */
 }
 input[type="checkbox"] {
   display: none;
+}
+body {
+  background-color: #0b131a;
 }
 </style>
