@@ -10,8 +10,8 @@
     <router-link to="/elun">Elun</router-link> |
     <router-link to="/hanubia">Hanubia</router-link>
   </div>
-  <Tracker />
   <router-view />
+  <Tracker />
 </template>
 <script>
 import Tracker from "@/components/Tracker.vue";
@@ -31,14 +31,14 @@ export default { name: "Home", components: { Tracker } };
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #92a5b8;
 }
 
 #nav a.router-link-exact-active {
   color: #42b983;
 }
 input[type="checkbox"]:checked + .toggle_switch {
-  background: #000000;
+  background: #1deb38;
   color: #fff; /* background-image: url("checked.png"); */
 }
 .toggle_switch {
