@@ -52,7 +52,7 @@ export default {
 .artaria {
   background-image: url("../assets/ArtariaMap1.jpg");
   width: 1080px;
-  height: 600px;
+  height: 395px;
   background-repeat: no-repeat;
   background-size: 100%;
 }

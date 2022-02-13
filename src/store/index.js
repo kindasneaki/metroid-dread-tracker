@@ -7,6 +7,7 @@ import ferenia from "./modules/ferenia";
 import ghavoran from "./modules/ghavoran";
 import elun from "./modules/elun";
 import hanubia from "./modules/hanubia";
+import items from "./modules/items";
 
 export default createStore({
   state: {
@@ -14,27 +15,6 @@ export default createStore({
     energyPart: 0,
     energyFull: 0,
     powerBomb: 0,
-    chargeBeam: 0,
-    morphBall: 0,
-    variaSuit: 0,
-    bomb: 0,
-    gravitySuit: 0,
-    spiderMagnet: 0,
-    grabbleBeam: 0,
-    phantomCloak: 0,
-    diffusionBeam: 0,
-    wideBeam: 0,
-    speedBooster: 0,
-    flashShift: 0,
-    stormMissiles: 0,
-    superMissiles: 0,
-    pulseRadar: 0,
-    iceMissiles: 0,
-    crossBomb: 0,
-    spinBoost: 0,
-    waveBeam: 0,
-    plasmaBeam: 0,
-    spaceJump: 0,
   },
   mutations: {
     SET_ABILITY(state, { amount, type }) {
@@ -71,6 +51,7 @@ export default createStore({
     ghavoran,
     elun,
     hanubia,
+    items,
   },
   getters: {},
 });

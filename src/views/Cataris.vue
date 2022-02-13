@@ -52,7 +52,7 @@ export default {
 .cataris {
   background-image: url("../assets/CatarisMap1.jpg");
   width: 1080px;
-  height: 600px;
+  height: 499px;
   background-repeat: no-repeat;
   background-size: 100%;
 }

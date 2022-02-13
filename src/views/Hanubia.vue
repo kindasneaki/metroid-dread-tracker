@@ -52,7 +52,7 @@ export default {
 .hanubia {
   background-image: url("../assets/HanubiaMap1.jpg");
   width: 1080px;
-  height: 1100px;
+  height: 423px;
   background-repeat: no-repeat;
   background-size: 100%;
 }

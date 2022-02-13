@@ -52,7 +52,7 @@ export default {
 .elun {
   background-image: url("../assets/ElunMap1.jpg");
   width: 1080px;
-  height: 1100px;
+  height: 277px;
   background-repeat: no-repeat;
   background-size: 100%;
 }

@@ -52,7 +52,7 @@ export default {
 .dairon {
   background-image: url("../assets/DaironMap1.jpg");
   width: 1080px;
-  height: 600px;
+  height: 343px;
   background-repeat: no-repeat;
   background-size: 100%;
 }

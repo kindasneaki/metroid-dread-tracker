@@ -52,7 +52,7 @@ export default {
 .burenia {
   background-image: url("../assets/BureniaMap1.jpg");
   width: 1080px;
-  height: 1100px;
+  height: 853px;
   background-repeat: no-repeat;
   background-size: 75%;
 }

@@ -52,7 +52,7 @@ export default {
 .ghavoran {
   background-image: url("../assets/GhavoranMap1.jpg");
   width: 1080px;
-  height: 1100px;
+  height: 458px;
   background-repeat: no-repeat;
   background-size: 100%;
 }

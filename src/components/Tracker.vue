@@ -1,35 +1,28 @@
 <template>
   <div class="tracker">
     <div class="tracker-grid">
-      <div>missiles {{ missiles }}</div>
-      <div>energyPart {{ energyPart }}</div>
-      <div>energyFull {{ energyFull }}</div>
-      <div>powerBomb {{ powerBomb }}</div>
-      <!-- <div><button>Charge Beam</button></div>
-      <div><button>Morph Ball</button></div>
-      <div><button>Varia Suit</button></div>
-      <div><button>Bomb</button></div>
-      <div><button>Gravity Suit</button></div>
-      <div><button>Spider Magnet</button></div>
-      <div><button>Grapple Beam</button></div>
-      <div><button>Phantom Cloak</button></div>
-      <div><button>Diffusion Beam</button></div>
-      <div><button>Wide Beam</button></div>
-      <div><button>Speed Booster</button></div>
-      <div><button>Flash Shift</button></div>
-      <div><button>Storm Missiles</button></div>
-      <div><button>Super Missiles</button></div>
-      <div><button>Pulse Radar</button></div>
-      <div><button>Ice Missiles</button></div>
-      <div><button>Cross Bomb</button></div>
-      <div><button>Spin Boost</button></div>
-      <div><button>Wave Beam</button></div>
-      <div><button>Plasma Beam</button></div>
-      <div><button>Space Jump</button></div> -->
+      <div v-for="item in items" :key="item.type">
+        <label :for="item.type" class="icon"
+          ><input
+            type="checkbox"
+            :id="item.type"
+            v-model="item.checked"
+            v-on:click="checked(item.checked, item.type)"
+          />{{ item.checked }}
+        </label>
+      </div>
+      <!-- <div>
+        <button class="icon" v-on:click="addMissiles(smallMissiles)">
+          missile tank 2
+        </button>
+      </div>
+      <div>
+        <button class="icon" v-on:click="addMissiles(bigMissiles)">
+          missiles tank 10
+        </button>
+      </div>
+      -->
     </div>
-
-    <!-- <button v-on:click="addMissiles(smallMissiles)">missile tank 2</button>
-    <button v-on:click="addMissiles(bigMissiles)">missiles tank 10</button> -->
   </div>
 </template>
 
@@ -41,33 +34,24 @@ export default {
     msg: String,
   },
   computed: {
-    ...mapState([
-      "missiles",
-      "energyPart",
-      "energyFull",
-      "powerBomb",
-      "chargeBeam",
-      "morphBall",
-      "variaSuit",
-      "bomb",
-      "gravitySuit",
-      "spiderMagnet",
-      "grabbleBeam",
-      "phantomCloak",
-      "diffusionBeam",
-      "wideBeam",
-      "speedBooster",
-      "flashShift",
-      "stormMissiles",
-      "superMissiles",
-      "pulseRadar",
-      "iceMissiles",
-      "crossBomb",
-      "spinBoost",
-      "waveBeam",
-      "plasmaBeam",
-      "spaceJump",
-    ]),
+    ...mapState(["missiles", "energyPart", "energyFull", "powerBomb"]),
+    ...mapState("items", {
+      items: (state) => state.items,
+    }),
+  },
+  methods: {
+    addAbility(amount, type) {
+      this.$store.dispatch("updateAbility", {
+        amount,
+        type,
+      });
+    },
+    // toggleAbility(logic) {
+    // this.$store.dispatch("updateAbility", { logic });
+    // },
+    checked(check, type) {
+      console.log(check, type);
+    },
   },
 };
 </script>
@@ -78,27 +62,41 @@ a {
   color: #42b983;
 }
 .tracker {
-  height: 200px;
-  width: 240px;
+  /* height: 1080px;
+  width: 1080px; */
   align-items: center;
-  z-index: -1;
-  margin-top: 1px;
+  z-index: 2;
+  /* bottom: 1px;
+  right: 1px; */
+  position: absolute;
 }
 .tracker-grid {
   position: absolute;
-  height: 100px;
+  height: 400px;
   width: 1080px;
-  /* display: flex;
-  text-align: left; */
+  display: grid;
+  text-align: left;
   z-index: -1;
   color: #92a5b8;
+  grid-template-columns: [first] 4% [line2] 4% [line3] 4% [col4-start] 4% [five] 4% [end];
+  grid-template-rows: [first] 10% [line2] 10% [line3] 10% [col4-start] 10% [end];
 }
 .tracker-grid > div {
-  /* box-sizing: border-box; */
-  /* border: 2px solid #8c8c8c; */
-  width: 100px;
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
+  box-sizing: border-box;
+  border: 1px solid #8c8c8c;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon {
+  background-image: url("../assets/logo.png");
+  height: 25px;
+  width: 25px;
+}
+.test {
+  height: 25px;
+  width: 25px;
 }
 </style>

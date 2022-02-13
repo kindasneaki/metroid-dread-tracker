@@ -52,7 +52,7 @@ export default {
 .ferenia {
   background-image: url("../assets/FereniaMap1.jpg");
   width: 1080px;
-  height: 1100px;
+  height: 476px;
   background-repeat: no-repeat;
   background-size: 100%;
 }
