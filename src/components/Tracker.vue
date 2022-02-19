@@ -7,7 +7,7 @@
             type="checkbox"
             :id="item.type"
             v-model="item.checked"
-            v-on:click="checked(item.checked, item.type)"
+            v-on:click="checked(item.type)"
           />{{ item.checked }}
         </label>
       </div>
@@ -30,9 +30,6 @@
 import { mapState } from "vuex";
 export default {
   name: "Tracker",
-  props: {
-    msg: String,
-  },
   computed: {
     ...mapState(["missiles", "energyPart", "energyFull", "powerBomb"]),
     ...mapState("items", {
@@ -40,17 +37,23 @@ export default {
     }),
   },
   methods: {
-    addAbility(amount, type) {
-      this.$store.dispatch("updateAbility", {
-        amount,
-        type,
+    toggleAbility(index) {
+      this.$store.dispatch("items/updateArea", {
+        index,
       });
     },
     // toggleAbility(logic) {
     // this.$store.dispatch("updateAbility", { logic });
     // },
-    checked(check, type) {
-      console.log(check, type);
+    checked(name) {
+      let item = this.items;
+      item.find((value, index) => {
+        if (value.type === name) {
+          item = { type: name, index: index };
+          return true;
+        }
+      });
+      this.toggleAbility(item.index);
     },
   },
 };
