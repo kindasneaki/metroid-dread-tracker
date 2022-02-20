@@ -2,10 +2,7 @@
   <div class="tracker">
     <div class="tracker-grid">
       <div v-for="item in items" :key="item.type">
-        <label
-          :for="item.type"
-          class="icon"
-          :style="{ backgroundImage: `url(${item.icon})` }"
+        <label :for="item.type" class="icon"
           ><input
             type="checkbox"
             :id="item.type"
