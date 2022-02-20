@@ -31,6 +31,9 @@ export default {
       // },
     }),
   },
+  mounted() {
+    this.$store.dispatch("artaria/checkLogic");
+  },
   methods: {
     addAbility(amount, type) {
       this.$store.dispatch("updateAbility", { amount, type });

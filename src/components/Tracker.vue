@@ -2,7 +2,10 @@
   <div class="tracker">
     <div class="tracker-grid">
       <div v-for="item in items" :key="item.type">
-        <label :for="item.type" class="icon"
+        <label
+          :for="item.type"
+          class="icon"
+          :style="{ backgroundImage: `url(${item.icon})` }"
           ><input
             type="checkbox"
             :id="item.type"
@@ -59,7 +62,7 @@ export default {
         }
       });
       this.toggleAbility(item.index, route);
-      this.toggleLogic(route, item.type);
+      // this.toggleLogic(route, item.type);
     },
   },
 };

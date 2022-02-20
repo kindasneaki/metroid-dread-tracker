@@ -8,6 +8,8 @@ export default {
         amount: 2,
         top: "margin-top:191px",
         left: "left:342px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "2",
@@ -16,6 +18,8 @@ export default {
         amount: 2,
         top: "margin-top:223px",
         left: "left:301px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "3",
@@ -24,6 +28,8 @@ export default {
         amount: 2,
         top: "margin-top:339px",
         left: "left:273px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "4",
@@ -32,6 +38,8 @@ export default {
         amount: 2,
         top: "margin-top:457px",
         left: "left:372px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "5",
@@ -40,6 +48,8 @@ export default {
         amount: 2,
         top: "margin-top:509px",
         left: "left:388px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "6",
@@ -48,6 +58,8 @@ export default {
         amount: 2,
         top: "margin-top:528px",
         left: "left:226px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "7",
@@ -56,6 +68,8 @@ export default {
         amount: 2,
         top: "margin-top:591px",
         left: "left:155px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "8",
@@ -64,6 +78,8 @@ export default {
         amount: 2,
         top: "margin-top:639px",
         left: "left:669px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "1m",
@@ -72,6 +88,8 @@ export default {
         amount: 10,
         top: "margin-top:196px",
         left: "left:108px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "2m",
@@ -80,6 +98,8 @@ export default {
         amount: 10,
         top: "margin-top:669px",
         left: "left:424px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "3m",
@@ -88,6 +108,8 @@ export default {
         amount: 10,
         top: "margin-top:586px",
         left: "left:195px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "4m",
@@ -96,6 +118,8 @@ export default {
         amount: 10,
         top: "margin-top:643px",
         left: "left:514px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "1ep",
@@ -104,6 +128,8 @@ export default {
         amount: 1,
         top: "margin-top:316px",
         left: "left:410px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "2ep",
@@ -112,6 +138,8 @@ export default {
         amount: 1,
         top: "margin-top:575px",
         left: "left:426px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "1ef",
@@ -120,6 +148,8 @@ export default {
         amount: 1,
         top: "margin-top:417px",
         left: "left:272px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "2ef",
@@ -128,6 +158,8 @@ export default {
         amount: 1,
         top: "margin-top:706px",
         left: "left:303px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "1pb",
@@ -136,18 +168,41 @@ export default {
         amount: 1,
         top: "margin-top:778px",
         left: "left:434px",
+        logic: [],
+        inLogic: false,
       },
     ],
   },
   mutations: {
-    UPDATE_AREA(state, location, index) {
-      !this.locations[index].checked;
+    UPDATE_LOGIC(state, payload) {
+      state.locations[payload.index].inLogic = payload.logic;
     },
   },
   actions: {
-    updateArea({ commit }, location, index) {
-      console.log(location, index);
-      commit("UPDATE_AREA", location, index);
+    checkLogic({ commit, state, rootGetters }) {
+      let data = rootGetters["items/inLogic"];
+      for (let i = 0; i < state.locations.length; i++) {
+        let counter = 0;
+        let logicLength = state.locations[i].logic.length;
+        let inLogic = false;
+        state.locations[i].logic.forEach((element) => {
+          data.find((value) => {
+            if (value.type === element) {
+              if (value.logic) {
+                counter++;
+                if (logicLength === counter) {
+                  return true;
+                }
+              }
+            }
+          });
+        });
+        if (logicLength <= counter) {
+          inLogic = true;
+        }
+        const payload = { index: i, logic: inLogic };
+        commit("UPDATE_LOGIC", payload);
+      }
     },
   },
   namespaced: true,

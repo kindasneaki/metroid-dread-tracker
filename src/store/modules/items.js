@@ -1,7 +1,12 @@
 export default {
   state: {
     items: [
-      { type: "chargeBeam", checked: false, logic: false },
+      {
+        type: "chargeBeam",
+        checked: false,
+        logic: false,
+        icon: "../assets/logo.png",
+      },
       { type: "morphBall", checked: false, logic: false },
       { type: "variaSuit", checked: false, logic: false },
       { type: "bomb", checked: false, logic: false },
@@ -30,10 +35,14 @@ export default {
     },
   },
   actions: {
-    updateArea({ commit }, { index, route }) {
+    updateArea({ commit, dispatch }, { index, route }) {
       commit("UPDATE_AREA", index);
-      console.log(route);
-      // dispatch("artaria/updateArea", { index }, { root: true });
+      dispatch(route + "/checkLogic", index, { root: true });
+    },
+  },
+  getters: {
+    inLogic(state) {
+      return state.items;
     },
   },
   namespaced: true,

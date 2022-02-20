@@ -9,7 +9,7 @@ export default {
         top: "margin-top:246px",
         left: "left:28px",
         logic: ["chargeBeam", "morphBall"],
-        inLogic: true,
+        inLogic: false,
       },
       {
         area: "2",
@@ -18,7 +18,8 @@ export default {
         amount: 2,
         top: "margin-top:246px",
         left: "left:139px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "3",
@@ -27,7 +28,8 @@ export default {
         amount: 2,
         top: "margin-top:290px",
         left: "left:132px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "4",
@@ -36,7 +38,8 @@ export default {
         amount: 2,
         top: "margin-top:270px",
         left: "left:187px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "5",
@@ -45,7 +48,8 @@ export default {
         amount: 2,
         top: "margin-top:220px",
         left: "left:242px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "6",
@@ -54,7 +58,8 @@ export default {
         amount: 2,
         top: "margin-top:147px",
         left: "left:298px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "7",
@@ -63,7 +68,8 @@ export default {
         amount: 2,
         top: "margin-top:354px",
         left: "left:378px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "8",
@@ -72,7 +78,8 @@ export default {
         amount: 2,
         top: "margin-top:320px",
         left: "left:407px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "9",
@@ -81,7 +88,8 @@ export default {
         amount: 2,
         top: "margin-top:197px",
         left: "left:395px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "10",
@@ -90,7 +98,8 @@ export default {
         amount: 2,
         top: "margin-top:252px",
         left: "left:511px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "11",
@@ -99,7 +108,8 @@ export default {
         amount: 2,
         top: "margin-top:163px",
         left: "left:518px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "12",
@@ -108,7 +118,8 @@ export default {
         amount: 2,
         top: "margin-top:224px",
         left: "left:604px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "13",
@@ -117,7 +128,8 @@ export default {
         amount: 2,
         top: "margin-top:159px",
         left: "left:648px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "14",
@@ -126,7 +138,8 @@ export default {
         amount: 2,
         top: "margin-top:269px",
         left: "left:682px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "15",
@@ -135,7 +148,8 @@ export default {
         amount: 2,
         top: "margin-top:172px",
         left: "left:726px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "16",
@@ -144,7 +158,8 @@ export default {
         amount: 2,
         top: "margin-top:245px",
         left: "left:728px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "17",
@@ -153,7 +168,8 @@ export default {
         amount: 2,
         top: "margin-top:181px",
         left: "left:748px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "18",
@@ -162,7 +178,8 @@ export default {
         amount: 2,
         top: "margin-top:240px",
         left: "left:769px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "19",
@@ -171,7 +188,8 @@ export default {
         amount: 2,
         top: "margin-top:191px",
         left: "left:810px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "20",
@@ -180,7 +198,8 @@ export default {
         amount: 2,
         top: "margin-top:172px",
         left: "left:828px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "21",
@@ -189,7 +208,8 @@ export default {
         amount: 2,
         top: "margin-top:155px",
         left: "left:966px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "22",
@@ -198,7 +218,8 @@ export default {
         amount: 2,
         top: "margin-top:209px",
         left: "left:319px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "1m",
@@ -207,7 +228,8 @@ export default {
         amount: 10,
         top: "margin-top:323px",
         left: "left:324px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "2m",
@@ -216,7 +238,8 @@ export default {
         amount: 10,
         top: "margin-top:95px",
         left: "left:365px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "1ep",
@@ -225,7 +248,8 @@ export default {
         amount: 1,
         top: "margin-top:326px",
         left: "left:266px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "2ep",
@@ -234,7 +258,8 @@ export default {
         amount: 1,
         top: "margin-top:195px",
         left: "left:230px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "1ef",
@@ -243,7 +268,8 @@ export default {
         amount: 1,
         top: "margin-top:367px",
         left: "left:624px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "2ef",
@@ -252,7 +278,8 @@ export default {
         amount: 1,
         top: "margin-top:69px",
         left: "left:215px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
       {
         area: "1pb",
@@ -261,22 +288,40 @@ export default {
         amount: 1,
         top: "margin-top:193px",
         left: "left:436px",
-        inLogic: true,
+        logic: [],
+        inLogic: false,
       },
     ],
   },
   mutations: {
-    UPDATE_AREA(state, index) {
-      // !this.locations[index].checked;
-      console.log(state, index);
+    UPDATE_LOGIC(state, payload) {
+      state.locations[payload.index].inLogic = payload.logic;
     },
   },
   actions: {
-    updateArea({ commit, state }, type) {
-      console.log(type);
-      commit("UPDATE_AREA", type);
+    checkLogic({ commit, state, rootGetters }) {
+      let data = rootGetters["items/inLogic"];
       for (let i = 0; i < state.locations.length; i++) {
-        console.log(state.locations[i].logic);
+        let counter = 0;
+        let logicLength = state.locations[i].logic.length;
+        let inLogic = false;
+        state.locations[i].logic.forEach((element) => {
+          data.find((value) => {
+            if (value.type === element) {
+              if (value.logic) {
+                counter++;
+                if (logicLength === counter) {
+                  return true;
+                }
+              }
+            }
+          });
+        });
+        if (logicLength <= counter) {
+          inLogic = true;
+        }
+        const payload = { index: i, logic: inLogic };
+        commit("UPDATE_LOGIC", payload);
       }
     },
   },

@@ -6,7 +6,7 @@
       class="toggle_box"
       :style="[location.top, location.left]"
     >
-      <label :for="location.area">
+      <label :for="location.area" v-if="location.inLogic">
         <input
           type="checkbox"
           :id="location.area"
@@ -29,6 +29,9 @@ export default {
       //   return this.$store["artaria/locations"];
       // },
     }),
+  },
+  mounted() {
+    this.$store.dispatch("cataris/checkLogic");
   },
   methods: {
     addAbility(amount, type) {

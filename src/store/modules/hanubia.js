@@ -8,6 +8,8 @@ export default {
         amount: 2,
         top: "margin-top:155px",
         left: "left:647px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "2",
@@ -16,6 +18,8 @@ export default {
         amount: 2,
         top: "margin-top:269px",
         left: "left:573px",
+        logic: [],
+        inLogic: false,
       },
       {
         area: "1pb",
@@ -24,18 +28,41 @@ export default {
         amount: 1,
         top: "margin-top:216px",
         left: "left:667px",
+        logic: [],
+        inLogic: false,
       },
     ],
   },
   mutations: {
-    UPDATE_AREA(state, location, index) {
-      !this.locations[index].checked;
+    UPDATE_LOGIC(state, payload) {
+      state.locations[payload.index].inLogic = payload.logic;
     },
   },
   actions: {
-    updateArea({ commit }, location, index) {
-      console.log(location, index);
-      commit("UPDATE_AREA", location, index);
+    checkLogic({ commit, state, rootGetters }) {
+      let data = rootGetters["items/inLogic"];
+      for (let i = 0; i < state.locations.length; i++) {
+        let counter = 0;
+        let logicLength = state.locations[i].logic.length;
+        let inLogic = false;
+        state.locations[i].logic.forEach((element) => {
+          data.find((value) => {
+            if (value.type === element) {
+              if (value.logic) {
+                counter++;
+                if (logicLength === counter) {
+                  return true;
+                }
+              }
+            }
+          });
+        });
+        if (logicLength <= counter) {
+          inLogic = true;
+        }
+        const payload = { index: i, logic: inLogic };
+        commit("UPDATE_LOGIC", payload);
+      }
     },
   },
   namespaced: true,
