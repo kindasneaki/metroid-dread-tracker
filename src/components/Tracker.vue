@@ -37,15 +37,20 @@ export default {
     }),
   },
   methods: {
-    toggleAbility(index) {
+    toggleAbility(index, route) {
       this.$store.dispatch("items/updateArea", {
         index,
+        route,
       });
+    },
+    toggleLogic(route, type) {
+      this.$store.dispatch(route + "/updateArea", type);
     },
     // toggleAbility(logic) {
     // this.$store.dispatch("updateAbility", { logic });
     // },
     checked(name) {
+      const route = this.$router.currentRoute.value.name;
       let item = this.items;
       item.find((value, index) => {
         if (value.type === name) {
@@ -53,7 +58,8 @@ export default {
           return true;
         }
       });
-      this.toggleAbility(item.index);
+      this.toggleAbility(item.index, route);
+      this.toggleLogic(route, item.type);
     },
   },
 };

@@ -6,7 +6,7 @@
       class="toggle_box"
       :style="[location.top, location.left]"
     >
-      <label :for="location.area">
+      <label :for="location.area" v-if="location.inLogic">
         <input
           type="checkbox"
           :id="location.area"
@@ -15,6 +15,7 @@
         />
         <span class="toggle_switch"></span>
       </label>
+      <!-- <span v-else>{{ clickLocation() }}</span> -->
     </div>
   </div>
 </template>
@@ -23,7 +24,7 @@
 import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState("arteria", {
+    ...mapState("artaria", {
       locations: (state) => state.locations,
       // locations() {
       //   return this.$store["artaria/locations"];
@@ -41,8 +42,8 @@ export default {
         this.addAbility(-amount, type);
       }
     },
-    clickLocation(event) {
-      console.log(event);
+    clickLocation() {
+      console.log("test");
     },
   },
 };

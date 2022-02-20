@@ -9,7 +9,7 @@ const routes = [
   },
   {
     path: "/artaria",
-    name: "Artaria",
+    name: "artaria",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -18,7 +18,7 @@ const routes = [
   },
   {
     path: "/cataris",
-    name: "Cataris",
+    name: "cataris",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -27,7 +27,7 @@ const routes = [
   },
   {
     path: "/dairon",
-    name: "Dairon",
+    name: "dairon",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -36,7 +36,7 @@ const routes = [
   },
   {
     path: "/burenia",
-    name: "Burenia",
+    name: "burenia",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -45,7 +45,7 @@ const routes = [
   },
   {
     path: "/ferenia",
-    name: "Ferenia",
+    name: "ferenia",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -54,7 +54,7 @@ const routes = [
   },
   {
     path: "/ghavoran",
-    name: "Ghavoran",
+    name: "ghavoran",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -63,7 +63,7 @@ const routes = [
   },
   {
     path: "/elun",
-    name: "Elun",
+    name: "elun",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -72,7 +72,7 @@ const routes = [
   },
   {
     path: "/hanubia",
-    name: "Hanubia",
+    name: "hanubia",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

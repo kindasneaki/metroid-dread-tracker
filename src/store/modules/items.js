@@ -30,8 +30,10 @@ export default {
     },
   },
   actions: {
-    updateArea({ commit }, { index }) {
+    updateArea({ commit }, { index, route }) {
       commit("UPDATE_AREA", index);
+      console.log(route);
+      // dispatch("artaria/updateArea", { index }, { root: true });
     },
   },
   namespaced: true,

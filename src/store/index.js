@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import arteria from "./modules/artaria";
+import artaria from "./modules/artaria";
 import cataris from "./modules/cataris";
 import dairon from "./modules/dairon";
 import burenia from "./modules/burenia";
@@ -43,7 +43,7 @@ export default createStore({
     },
   },
   modules: {
-    arteria,
+    artaria,
     cataris,
     dairon,
     burenia,
