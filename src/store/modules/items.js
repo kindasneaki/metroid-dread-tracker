@@ -29,6 +29,7 @@ export default {
       { type: "spaceJump", checked: false, logic: false },
       { type: "screwAttack", checked: false, logic: false },
       { type: "slide", checked: false, logic: false },
+      { type: "powerBomb", checked: false, logic: false },
     ],
   },
   mutations: {

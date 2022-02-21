@@ -13,13 +13,14 @@
           v-model="location.checked"
           v-on:click="checked(location.checked, location.type, location.amount)"
         />
-        <span class="toggle_switch"></span>
+        <span class="toggle_switch" v-if="!location.softlock"></span>
+        <span class="toggle_switch_softlock" v-else></span>
       </label>
       <!-- <span v-else>{{ clickLocation() }}</span> -->
     </div>
   </div>
 </template>
-
+//TODO lava ice runs
 <script>
 import { mapState } from "vuex";
 export default {

@@ -50,6 +50,14 @@ input[type="checkbox"]:checked + .toggle_switch {
   width: 10px; /* background: url("unchecked.png") no-repeat left center; */ /*
 padding-left: 15px; */
 }
+.toggle_switch_softlock {
+  border: 1px solid #000;
+  display: inline-block;
+  padding: 3px;
+  background: yellow;
+  height: 10px;
+  width: 10px;
+}
 input[type="checkbox"] {
   display: none;
 }
