@@ -12,7 +12,7 @@ export default {
       { type: "bomb", checked: false, logic: false },
       { type: "gravitySuit", checked: false, logic: false },
       { type: "spiderMagnet", checked: false, logic: false },
-      { type: "grabbleBeam", checked: false, logic: false },
+      { type: "grappleBeam", checked: false, logic: false },
       { type: "phantomCloak", checked: false, logic: false },
       { type: "diffusionBeam", checked: false, logic: false },
       { type: "wideBeam:", checked: false, logic: false },
@@ -27,6 +27,8 @@ export default {
       { type: "waveBeam", checked: false, logic: false },
       { type: "plasmaBeam", checked: false, logic: false },
       { type: "spaceJump", checked: false, logic: false },
+      { type: "screwAttack", checked: false, logic: false },
+      { type: "slide", checked: false, logic: false },
     ],
   },
   mutations: {

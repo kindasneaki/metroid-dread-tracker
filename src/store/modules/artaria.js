@@ -8,7 +8,16 @@ export default {
         amount: 2,
         top: "margin-top:246px",
         left: "left:28px",
-        logic: ["chargeBeam", "morphBall"],
+        logic: [
+          {
+            type: ["chargeBeam", "morphBall"],
+            counter: 0,
+          },
+          {
+            type: ["spinBoost", "screwAttack"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -68,7 +77,12 @@ export default {
         amount: 2,
         top: "margin-top:354px",
         left: "left:378px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -78,7 +92,24 @@ export default {
         amount: 2,
         top: "margin-top:320px",
         left: "left:407px",
-        logic: [],
+        logic: [
+          {
+            type: ["grappleBeam"],
+            counter: 0,
+          },
+          {
+            type: ["spiderMagnet"],
+            counter: 0,
+          },
+          {
+            type: ["spaceJump"],
+            counter: 0,
+          },
+          {
+            type: ["spinBoost"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -228,7 +259,16 @@ export default {
         amount: 10,
         top: "margin-top:323px",
         left: "left:324px",
-        logic: [],
+        logic: [
+          {
+            type: ["speedBoost", "morphBall"],
+            counter: 0,
+          },
+          {
+            type: ["speedBoost", "slide"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -248,7 +288,16 @@ export default {
         amount: 1,
         top: "margin-top:326px",
         left: "left:266px",
-        logic: [],
+        logic: [
+          {
+            type: ["slide"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -268,7 +317,16 @@ export default {
         amount: 1,
         top: "margin-top:367px",
         left: "left:624px",
-        logic: [],
+        logic: [
+          {
+            type: ["slide"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -291,6 +349,46 @@ export default {
         logic: [],
         inLogic: false,
       },
+      {
+        area: "charge",
+        checked: false,
+        type: "chargeBeam",
+        amount: 1,
+        top: "margin-top: 373px",
+        left: "left: 341px",
+        logic: [],
+        inLogic: false,
+      },
+      {
+        area: "whiteEMMI",
+        checked: false,
+        type: "whiteEMMI",
+        amount: 1,
+        top: "margin-top: 293px",
+        left: "left: 643px",
+        logic: [],
+        inLogic: false,
+      },
+      {
+        area: "corpius",
+        checked: false,
+        type: "phantomCloak",
+        amount: 1,
+        top: "margin-top: 225px",
+        left: "left: 817px",
+        logic: [],
+        inLogic: false,
+      },
+      {
+        area: "majorScrewAttack",
+        checked: false,
+        type: "majorScrewAttack",
+        amount: 1,
+        top: "margin-top: 272px",
+        left: "left: 140px",
+        logic: [],
+        inLogic: false,
+      },
     ],
   },
   mutations: {
@@ -302,26 +400,39 @@ export default {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
       for (let i = 0; i < state.locations.length; i++) {
-        let counter = 0;
-        let logicLength = state.locations[i].logic.length;
+        // for (let k = 0; k < state.locations[i].logic.length; k++) {
+        let originalLength = state.locations[i].logic.length;
         let inLogic = false;
         state.locations[i].logic.forEach((element) => {
-          data.find((value) => {
-            if (value.type === element) {
-              if (value.logic) {
-                counter++;
-                if (logicLength === counter) {
-                  return true;
+          let logicLength = element.type.length;
+          for (let k = 0; k < element.type.length; k++) {
+            data.find((value) => {
+              console.log(element.counter);
+
+              if (value.type === element.type[k]) {
+                console.log(value.type, element.type[k]);
+                console.log("true");
+                if (value.logic) {
+                  element.counter++;
+                  if (logicLength === element.counter) {
+                    inLogic = true;
+                    return true;
+                  }
                 }
               }
-            }
-          });
+            });
+          }
+          for (let k = 0; k < element.type.length; k++) {
+            element.counter = 0;
+          }
         });
-        if (logicLength <= counter) {
+
+        if (originalLength === 0) {
           inLogic = true;
         }
         const payload = { index: i, logic: inLogic };
         commit("UPDATE_LOGIC", payload);
+        // }
       }
     },
   },

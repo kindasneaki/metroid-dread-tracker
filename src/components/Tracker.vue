@@ -8,7 +8,7 @@
             :id="item.type"
             v-model="item.checked"
             v-on:click="checked(item.type)"
-          />{{ item.checked }}
+          />{{ item.type }}<br />{{ item.checked }}
         </label>
       </div>
       <!-- <div>
@@ -78,6 +78,7 @@ a {
   /* bottom: 1px;
   right: 1px; */
   position: absolute;
+  font-size: 6px;
 }
 .tracker-grid {
   position: absolute;
