@@ -78,7 +78,7 @@ a {
   /* bottom: 1px;
   right: 1px; */
   position: absolute;
-  font-size: 6px;
+  font-size: 11px;
 }
 .tracker-grid {
   position: absolute;
@@ -88,17 +88,16 @@ a {
   text-align: left;
   z-index: -1;
   color: #92a5b8;
-  grid-template-columns: [first] 4% [line2] 4% [line3] 4% [col4-start] 4% [five] 4% [end];
-  grid-template-rows: [first] 10% [line2] 10% [line3] 10% [col4-start] 10% [end];
+  grid-template-columns: [first] 8% [line2] 8% [line3] 8% [col4-start] 8% [five] 8% [end];
+  grid-template-rows: [first] 11% [line2] 11% [line3] 11% [col4-start] 11% [end];
 }
 .tracker-grid > div {
   box-sizing: border-box;
   border: 1px solid #8c8c8c;
-  width: 35px;
-  height: 35px;
+  width: 87px;
+  height: 46px;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .icon {
   /* background-image: url("../assets/logo.png"); */
