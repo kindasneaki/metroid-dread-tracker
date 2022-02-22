@@ -15,7 +15,7 @@ export default {
       { type: "grappleBeam", checked: false, logic: false },
       { type: "phantomCloak", checked: false, logic: false },
       { type: "diffusionBeam", checked: false, logic: false },
-      { type: "wideBeam:", checked: false, logic: false },
+      { type: "wideBeam", checked: false, logic: false },
       { type: "speedBooster", checked: false, logic: false },
       { type: "flashShift", checked: false, logic: false },
       { type: "stormMissiles", checked: false, logic: false },

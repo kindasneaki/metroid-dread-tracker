@@ -8,7 +8,16 @@ export default {
         amount: 2,
         top: "margin-top:158px",
         left: "left:180px",
-        logic: [],
+        logic: [
+          {
+            type: [">100damage"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -16,9 +25,22 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "margin-top:374px",
+        top: "margin-top:382px",
         left: "left:226px",
-        logic: [],
+        logic: [
+          {
+            type: ["gravitySuit", "bomb", "morphBall"],
+            counter: 0,
+          },
+          {
+            type: ["gravitySuit", "crossBomb", "morphBall"],
+            counter: 0,
+          },
+          {
+            type: ["gravitySuit", "powerBomb", "morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -28,7 +50,12 @@ export default {
         amount: 2,
         top: "margin-top:234px",
         left: "left:216px",
-        logic: [],
+        logic: [
+          {
+            type: ["gravitySuit", "speedBooster"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -36,9 +63,14 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "margin-top:201px",
+        top: "margin-top:210px",
         left: "left:281px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -48,7 +80,20 @@ export default {
         amount: 2,
         top: "margin-top:298px",
         left: "left:304px",
-        logic: [],
+        logic: [
+          {
+            type: ["variaSuit", "diffusionBeam", "morphBall"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "waveBeam", "morphBall"],
+            counter: 0,
+          },
+          {
+            type: ["gravitySuit", "morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -58,7 +103,24 @@ export default {
         amount: 2,
         top: "margin-top:319px",
         left: "left:511px",
-        logic: [],
+        logic: [
+          {
+            type: ["variaSuit", "morphBall", "bomb"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "crossBomb"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "powerBomb"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "diffusionBeam"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -68,7 +130,12 @@ export default {
         amount: 2,
         top: "margin-top:412px",
         left: "left:586px",
-        logic: [],
+        logic: [
+          {
+            type: ["screwAttack"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -76,9 +143,26 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "margin-top:204px",
+        top: "margin-top:210px",
         left: "left:673px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "spinBoost"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spaceJump"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spiderMagnet"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "grappleBeam"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -88,7 +172,12 @@ export default {
         amount: 2,
         top: "margin-top:334px",
         left: "left:750px",
-        logic: [],
+        logic: [
+          {
+            type: ["variaSuit"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -98,7 +187,12 @@ export default {
         amount: 2,
         top: "margin-top:31px",
         left: "left:639px",
-        logic: [],
+        logic: [
+          {
+            type: ["phantomCloak", "spiderMagnet", "speedBooster"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -108,7 +202,12 @@ export default {
         amount: 2,
         top: "margin-top:444px",
         left: "left:791px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -118,7 +217,38 @@ export default {
         amount: 2,
         top: "margin-top:98px",
         left: "left:836px",
-        logic: [],
+        logic: [
+          {
+            type: [
+              "grappleBeam",
+              "spiderMagnet",
+              "morphBall",
+              "bomb",
+              "variaSuit",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "grappleBeam",
+              "spiderMagnet",
+              "morphBall",
+              "crossBomb",
+              "variaSuit",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "grappleBeam",
+              "spiderMagnet",
+              "morphBall",
+              "powerBomb",
+              "variaSuit",
+            ],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -128,7 +258,16 @@ export default {
         amount: 2,
         top: "margin-top:225px",
         left: "left:951px",
-        logic: [],
+        logic: [
+          {
+            type: ["variaSuit", "morphBall", "chargeBeam"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "phantomCloak", "chargeBeam"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -138,7 +277,32 @@ export default {
         amount: 2,
         top: "margin-top:157px",
         left: "left:1026px",
-        logic: [],
+        logic: [
+          {
+            type: ["variaSuit", "morphBall", "bomb", "spinBoost"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "crossBomb", "spinBoost"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "powerBomb", "spinBoost"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "bomb", "spaceJump"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "crossBomb", "spaceJump"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "powerBomb", "spaceJump"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -148,7 +312,12 @@ export default {
         amount: 10,
         top: "margin-top:263px",
         left: "left:110px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -158,7 +327,12 @@ export default {
         amount: 1,
         top: "margin-top:137px",
         left: "left:700px",
-        logic: [],
+        logic: [
+          {
+            type: ["phantomCloak"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -178,7 +352,12 @@ export default {
         amount: 1,
         top: "margin-top:122px",
         left: "left:730px",
-        logic: [],
+        logic: [
+          {
+            type: ["phantomCloak", "spiderMagnet"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -211,6 +390,41 @@ export default {
         logic: [],
         inLogic: false,
       },
+      {
+        area: "diffusion",
+        checked: false,
+        type: "diffusionBeam",
+        amount: 1,
+        top: "margin-top: 418px",
+        left: "left: 236px",
+        softlock: true,
+        logic: [
+          {
+            type: ["variaSuit", "morphBall"],
+            counter: 0,
+          },
+        ],
+        inLogic: false,
+      },
+      {
+        area: "greenEMMI",
+        checked: false,
+        type: "flashShift",
+        amount: 1,
+        top: "margin-top:139px",
+        left: "left:322px",
+        logic: [
+          {
+            type: ["chargeBeam", "wideBeam", "diffusionBeam"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "waveBeam"],
+            counter: 0,
+          },
+        ],
+        inLogic: false,
+      },
     ],
   },
   mutations: {
@@ -221,27 +435,38 @@ export default {
   actions: {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
+
       for (let i = 0; i < state.locations.length; i++) {
-        let counter = 0;
-        let logicLength = state.locations[i].logic.length;
+        // for (let k = 0; k < state.locations[i].logic.length; k++) {
+        let originalLength = state.locations[i].logic.length;
         let inLogic = false;
         state.locations[i].logic.forEach((element) => {
-          data.find((value) => {
-            if (value.type === element) {
-              if (value.logic) {
-                counter++;
-                if (logicLength === counter) {
-                  return true;
+          let logicLength = element.type.length;
+          for (let k = 0; k < element.type.length; k++) {
+            data.find((value) => {
+              if (value.type === element.type[k]) {
+                if (value.logic) {
+                  element.counter++;
+                  if (logicLength === element.counter) {
+                    inLogic = true;
+                    return true;
+                  }
                 }
               }
-            }
-          });
+            });
+          }
+          for (let k = 0; k < element.type.length; k++) {
+            element.counter = 0;
+          }
         });
-        if (logicLength <= counter) {
+
+        if (originalLength === 0) {
           inLogic = true;
         }
+        // inLogic = true;
         const payload = { index: i, logic: inLogic };
         commit("UPDATE_LOGIC", payload);
+        // }
       }
     },
   },

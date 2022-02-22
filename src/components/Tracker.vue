@@ -101,7 +101,7 @@ a {
   justify-content: center;
 }
 .icon {
-  background-image: url("../assets/logo.png");
+  /* background-image: url("../assets/logo.png"); */
   height: 25px;
   width: 25px;
 }

@@ -28,7 +28,20 @@ export default {
         amount: 2,
         top: "margin-top:339px",
         left: "left:273px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "bomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "crossBomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "powerBomb"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -148,7 +161,20 @@ export default {
         amount: 1,
         top: "margin-top:417px",
         left: "left:272px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "spinBoost"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "flashShift"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spaceJump"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -181,27 +207,38 @@ export default {
   actions: {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
+
       for (let i = 0; i < state.locations.length; i++) {
-        let counter = 0;
-        let logicLength = state.locations[i].logic.length;
+        // for (let k = 0; k < state.locations[i].logic.length; k++) {
+        let originalLength = state.locations[i].logic.length;
         let inLogic = false;
         state.locations[i].logic.forEach((element) => {
-          data.find((value) => {
-            if (value.type === element) {
-              if (value.logic) {
-                counter++;
-                if (logicLength === counter) {
-                  return true;
+          let logicLength = element.type.length;
+          for (let k = 0; k < element.type.length; k++) {
+            data.find((value) => {
+              if (value.type === element.type[k]) {
+                if (value.logic) {
+                  element.counter++;
+                  if (logicLength === element.counter) {
+                    inLogic = true;
+                    return true;
+                  }
                 }
               }
-            }
-          });
+            });
+          }
+          for (let k = 0; k < element.type.length; k++) {
+            element.counter = 0;
+          }
         });
-        if (logicLength <= counter) {
+
+        if (originalLength === 0) {
           inLogic = true;
         }
+        // inLogic = true;
         const payload = { index: i, logic: inLogic };
         commit("UPDATE_LOGIC", payload);
+        // }
       }
     },
   },
