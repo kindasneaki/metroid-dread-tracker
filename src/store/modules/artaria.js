@@ -124,7 +124,15 @@ export default {
         left: "left:378px",
         logic: [
           {
-            type: ["morphBall", "speedBooster"],
+            type: ["morphBall", "speedBooster", "bomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "speedBooster", "crossBomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "speedBooster", "powerBomb"],
             counter: 0,
           },
         ],
@@ -885,7 +893,8 @@ export default {
         state.locations[27].softlock = true;
         // state.locations[23].softlock = true;
       }
-      if (data[5].logic) {
+      //spiderMagnet or spaceJump
+      if (data[5].logic || data[20].logic) {
         state.locations[30].softlock = false;
       } else {
         state.locations[30].softlock = true;
