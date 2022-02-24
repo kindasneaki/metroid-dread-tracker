@@ -88,8 +88,8 @@ a {
   text-align: left;
   z-index: -1;
   color: #92a5b8;
-  grid-template-columns: [first] 8% [line2] 8% [line3] 8% [col4-start] 8% [five] 8% [end];
-  grid-template-rows: [first] 11% [line2] 11% [line3] 11% [col4-start] 11% [end];
+  grid-template-columns: [first] 8% [line2] 8% [line3] 8% [col4-start] 8% [end];
+  grid-template-rows: [first] 11% [line2] 11% [line3] 11% [line4] 11% [line5] 11% [end];
 }
 .tracker-grid > div {
   box-sizing: border-box;

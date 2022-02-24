@@ -78,7 +78,12 @@ export default {
         amount: 2,
         top: "margin-top:155px",
         left: "left:371px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "speedBooster"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -168,7 +173,12 @@ export default {
         amount: 2,
         top: "margin-top:192px",
         left: "left:736px",
-        logic: [],
+        logic: [
+          {
+            type: ["wideBeam", "gravitySuit", "speedBooster", "morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {

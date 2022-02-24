@@ -1,5 +1,5 @@
 <template>
-  <div class="burenia" v-on:click="clickLocation($event)">
+  <div class="burenia">
     <div
       v-for="location in locations"
       :key="location.area"

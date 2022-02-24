@@ -30,15 +30,19 @@ export default {
         left: "left:273px",
         logic: [
           {
-            type: ["morphBall", "bomb"],
+            type: ["morphBall", "spinBoost"],
             counter: 0,
           },
           {
-            type: ["morphBall", "crossBomb"],
+            type: ["morphBall", "spiderMagnet"],
             counter: 0,
           },
           {
-            type: ["morphBall", "powerBomb"],
+            type: ["morphBall", "spaceJump"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "grappleBeam"],
             counter: 0,
           },
         ],
@@ -71,7 +75,12 @@ export default {
         amount: 2,
         top: "margin-top:528px",
         left: "left:226px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "gravitySuit", "speedBooster"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -81,7 +90,48 @@ export default {
         amount: 2,
         top: "margin-top:591px",
         left: "left:155px",
-        logic: [],
+        logic: [
+          {
+            type: [
+              "morphBall",
+              "gravitySuit",
+              "spinBoost",
+              "plasmaBeam",
+              "spiderMagnet",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "morphBall",
+              "gravitySuit",
+              "spaceJump",
+              "plasmaBeam",
+              "spiderMagnet",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "morphBall",
+              "gravitySuit",
+              "spinBoost",
+              "waveBeam",
+              "spiderMagnet",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "morphBall",
+              "gravitySuit",
+              "spaceJump",
+              "waveBeam",
+              "spiderMagnet",
+            ],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -91,7 +141,12 @@ export default {
         amount: 2,
         top: "margin-top:639px",
         left: "left:669px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "screwAttack"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -121,7 +176,12 @@ export default {
         amount: 10,
         top: "margin-top:586px",
         left: "left:195px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "grappleBeam"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -131,7 +191,12 @@ export default {
         amount: 10,
         top: "margin-top:643px",
         left: "left:514px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "gravitySuit", "screwAttack"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -141,7 +206,12 @@ export default {
         amount: 1,
         top: "margin-top:316px",
         left: "left:410px",
-        logic: [],
+        logic: [
+          {
+            type: ["speedBooster"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -174,6 +244,10 @@ export default {
             type: ["morphBall", "spaceJump"],
             counter: 0,
           },
+          {
+            type: ["morphBall", "spiderMagnet", "grappleBeam"],
+            counter: 0,
+          },
         ],
         inLogic: false,
       },
@@ -184,7 +258,12 @@ export default {
         amount: 1,
         top: "margin-top:706px",
         left: "left:303px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "gravitySuit", "stormMissiles", "grappleBeam"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -194,7 +273,44 @@ export default {
         amount: 1,
         top: "margin-top:778px",
         left: "left:434px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "gravitySuit", "speedBooster", "grappleBeam"],
+            counter: 0,
+          },
+        ],
+        inLogic: false,
+      },
+      {
+        area: "flash",
+        checked: false,
+        type: "flashShift",
+        amount: 2,
+        top: "margin-top:476px",
+        left: "left:326px",
+        softlock: true,
+        logic: [
+          {
+            type: ["morphBall"],
+            counter: 0,
+          },
+        ],
+        inLogic: false,
+      },
+      {
+        area: "flash",
+        checked: false,
+        type: "flashShift",
+        amount: 2,
+        top: "margin-top:476px",
+        left: "left:326px",
+        softlock: true,
+        logic: [
+          {
+            type: ["morphBall", "gravitySuit", "grappleBeam"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
     ],

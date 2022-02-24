@@ -190,7 +190,7 @@ export default {
         left: "left:750px",
         logic: [
           {
-            type: ["variaSuit"],
+            type: ["variaSuit", "chargeBeam"],
             counter: 0,
           },
         ],
