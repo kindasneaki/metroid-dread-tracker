@@ -145,7 +145,20 @@ export default {
         amount: 2,
         top: "margin-top:91px",
         left: "left:728px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "grappleBeam"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spinBoost"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spaceJump"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -375,7 +388,7 @@ export default {
         if (originalLength === 0) {
           inLogic = true;
         }
-        // inLogic = true;
+        inLogic = true;
         const payload = { index: i, logic: inLogic };
         commit("UPDATE_LOGIC", payload);
         // }

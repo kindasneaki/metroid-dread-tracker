@@ -105,19 +105,35 @@ export default {
         left: "left:511px",
         logic: [
           {
-            type: ["variaSuit", "morphBall", "bomb"],
+            type: ["morphBall", "bomb", "spinBoost", "variaSuit"],
             counter: 0,
           },
           {
-            type: ["variaSuit", "morphBall", "crossBomb"],
+            type: ["morphBall", "crossBomb", "spinBoost", "variaSuit"],
             counter: 0,
           },
           {
-            type: ["variaSuit", "morphBall", "powerBomb"],
+            type: ["morphBall", "powerBomb", "spinBoost", "variaSuit"],
             counter: 0,
           },
           {
-            type: ["variaSuit", "morphBall", "diffusionBeam"],
+            type: ["morphBall", "bomb", "spaceJump", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "crossBomb", "spaceJump", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "powerBomb", "spaceJump", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "waveBeam", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "diffusionBeam", "variaSuit"],
             counter: 0,
           },
         ],
@@ -219,33 +235,39 @@ export default {
         left: "left:836px",
         logic: [
           {
-            type: [
-              "grappleBeam",
-              "spiderMagnet",
-              "morphBall",
-              "bomb",
-              "variaSuit",
-            ],
+            type: ["wideBeam", "morphBall", "bomb", "variaSuit"],
             counter: 0,
           },
           {
-            type: [
-              "grappleBeam",
-              "spiderMagnet",
-              "morphBall",
-              "crossBomb",
-              "variaSuit",
-            ],
+            type: ["wideBeam", "morphBall", "crossBomb", "variaSuit"],
             counter: 0,
           },
           {
-            type: [
-              "grappleBeam",
-              "spiderMagnet",
-              "morphBall",
-              "powerBomb",
-              "variaSuit",
-            ],
+            type: ["wideBeam", "morphBall", "powerBomb", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["plasmaBeam", "morphBall", "bomb", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["plasmaBeam", "morphBall", "crossBomb", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["plasmaBeam", "morphBall", "powerBomb", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["waveBeam", "morphBall", "bomb", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["waveBeam", "morphBall", "crossBomb", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["waveBeam", "morphBall", "powerBomb", "variaSuit"],
             counter: 0,
           },
         ],
@@ -265,6 +287,14 @@ export default {
           },
           {
             type: ["morphBall", "phantomCloak", "chargeBeam"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "slide", "chargeBeam"],
+            counter: 0,
+          },
+          {
+            type: ["slide", "phantomCloak", "chargeBeam"],
             counter: 0,
           },
         ],
@@ -342,7 +372,38 @@ export default {
         amount: 1,
         top: "margin-top:404px",
         left: "left:482px",
-        logic: [],
+        logic: [
+          {
+            type: [
+              "gravitySuit",
+              "morphBall",
+              "bomb",
+              "speedBooster",
+              "waveBeam",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "gravitySuit",
+              "morphBall",
+              "crossBomb",
+              "speedBooster",
+              "waveBeam",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "gravitySuit",
+              "morphBall",
+              "powerBomb",
+              "speedBooster",
+              "waveBeam",
+            ],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -357,6 +418,14 @@ export default {
             type: ["phantomCloak", "spiderMagnet"],
             counter: 0,
           },
+          {
+            type: ["variaSuit", "spinBoost", "slide"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "spinBoost", "morphBall"],
+            counter: 0,
+          },
         ],
         inLogic: false,
       },
@@ -367,7 +436,20 @@ export default {
         amount: 1,
         top: "margin-top:98px",
         left: "left:914px",
-        logic: [],
+        logic: [
+          {
+            type: ["grappleBeam", "morphBall", "bomb"],
+            counter: 0,
+          },
+          {
+            type: ["grappleBeam", "morphBall", "crossBomb"],
+            counter: 0,
+          },
+          {
+            type: ["grappleBeam", "morphBall", "powerBomb"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -377,7 +459,12 @@ export default {
         amount: 1,
         top: "margin-top:229px",
         left: "left:409px",
-        logic: [],
+        logic: [
+          {
+            type: ["speedBooster", "morphBall", "powerBomb"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -387,7 +474,20 @@ export default {
         amount: 1,
         top: "margin-top:424px",
         left: "left:263px",
-        logic: [],
+        logic: [
+          {
+            type: ["gravitySuit", "morphBall", "bomb"],
+            counter: 0,
+          },
+          {
+            type: ["gravitySuit", "morphBall", "crossBomb"],
+            counter: 0,
+          },
+          {
+            type: ["gravitySuit", "morphBall", "powerBomb"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -415,7 +515,11 @@ export default {
         left: "left:322px",
         logic: [
           {
-            type: ["chargeBeam", "wideBeam", "diffusionBeam"],
+            type: ["chargeBeam", "wideBeam"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "plasmaBeam"],
             counter: 0,
           },
           {
@@ -435,7 +539,11 @@ export default {
   actions: {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
-
+      if (data[8].logic) {
+        state.locations[21].softlock = false;
+      } else {
+        state.locations[21].softlock = true;
+      }
       for (let i = 0; i < state.locations.length; i++) {
         // for (let k = 0; k < state.locations[i].logic.length; k++) {
         let originalLength = state.locations[i].logic.length;

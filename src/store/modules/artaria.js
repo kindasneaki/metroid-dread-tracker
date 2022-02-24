@@ -8,7 +8,18 @@ export default {
         amount: 2,
         top: "margin-top:246px",
         left: "left:28px",
-        logic: [],
+        logic: [
+          {
+            type: [
+              "morphBall",
+              "gravitySuit",
+              "grappleBeam",
+              "waveBeam",
+              "screwAttack",
+            ],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -18,7 +29,28 @@ export default {
         amount: 2,
         top: "margin-top:246px",
         left: "left:139px",
-        logic: [],
+        logic: [
+          {
+            type: [
+              "morphBall",
+              "gravitySuit",
+              "grappleBeam",
+              "waveBeam",
+              "spaceJump",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "morphBall",
+              "gravitySuit",
+              "grappleBeam",
+              "waveBeam",
+              "spinBoost",
+            ],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -132,7 +164,7 @@ export default {
             counter: 0,
           },
           {
-            type: ["morphBall", "speedBooster", "powerBomb"],
+            type: ["morphBall", "powerBomb"],
             counter: 0,
           },
         ],
@@ -482,35 +514,67 @@ export default {
         left: "left:966px",
         logic: [
           {
-            type: ["chargeBeam", "morphBall", "spinBoost"],
+            type: ["chargeBeam", "morphBall", "spinBoost", "damage>100"],
             counter: 0,
           },
           {
-            type: ["chargeBeam", "slide", "spinBoost"],
+            type: ["chargeBeam", "slide", "spinBoost", "damage>100"],
             counter: 0,
           },
           {
-            type: ["chargeBeam", "morphBall", "spaceJump"],
+            type: ["chargeBeam", "morphBall", "spaceJump", "damage>100"],
             counter: 0,
           },
           {
-            type: ["chargeBeam", "slide", "spaceJump"],
+            type: ["chargeBeam", "slide", "spaceJump", "damage>100"],
             counter: 0,
           },
           {
-            type: ["chargeBeam", "morphBall", "flashShift"],
+            type: ["chargeBeam", "morphBall", "flashShift", "damage>100"],
             counter: 0,
           },
           {
-            type: ["chargeBeam", "slide", "flashShift"],
+            type: ["chargeBeam", "slide", "flashShift", "damage>100"],
             counter: 0,
           },
           {
-            type: ["chargeBeam", "morphBall", "spiderMagnet"],
+            type: ["chargeBeam", "morphBall", "spiderMagnet", "damage>100"],
             counter: 0,
           },
           {
-            type: ["chargeBeam", "slide", "spiderMagnet"],
+            type: ["chargeBeam", "slide", "spiderMagnet", "damage>100"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "morphBall", "spinBoost", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "slide", "spinBoost", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "morphBall", "spaceJump", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "slide", "spaceJump", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "morphBall", "flashShift", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "slide", "flashShift", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "morphBall", "spiderMagnet", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "slide", "spiderMagnet", "variaSuit"],
             counter: 0,
           },
         ],
@@ -559,7 +623,11 @@ export default {
         left: "left:365px",
         logic: [
           {
-            type: ["morphBall", "variaSuit", "chargeBeam"],
+            type: ["morphBall", "variaSuit", "chargeBeam", "damage>100"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "gravitySuit", "chargeBeam"],
             counter: 0,
           },
         ],
@@ -659,7 +727,7 @@ export default {
             counter: 0,
           },
           {
-            type: ["morphBall", "spiderMagnet"],
+            type: ["morphBall", "spiderMagnet", "spinBoost"],
             counter: 0,
           },
           {
@@ -879,10 +947,17 @@ export default {
       } else {
         state.locations[31].softlock = true;
       }
-      if (data[0].logic) {
+      //chargeBeam or morphBall
+      if (data[0].logic || data[1].logic) {
         state.locations[29].softlock = false;
       } else {
         state.locations[29].softlock = true;
+      }
+      //grappleBeam
+      if (data[6].logic) {
+        state.locations[33].softlock = false;
+      } else {
+        state.locations[33].softlock = true;
       }
       if (data[2].logic) {
         state.locations[34].softlock = false;

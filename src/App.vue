@@ -41,6 +41,10 @@ input[type="checkbox"]:checked + .toggle_switch {
   background: #1deb38;
   color: #fff; /* background-image: url("checked.png"); */
 }
+input[type="checkbox"]:checked + .toggle_switch_softlock {
+  background: #1deb38;
+  color: #fff; /* background-image: url("checked.png"); */
+}
 .toggle_switch {
   border: 1px solid #000;
   display: inline-block;

@@ -13,7 +13,8 @@
           v-model="location.checked"
           v-on:click="checked(location.checked, location.type, location.amount)"
         />
-        <span class="toggle_switch"></span>
+        <span class="toggle_switch" v-if="!location.softlock"></span>
+        <span class="toggle_switch_softlock" v-else></span>
       </label>
     </div>
   </div>
