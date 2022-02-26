@@ -14,7 +14,11 @@ export default {
             counter: 0,
           },
           {
-            type: ["variaSuit"],
+            type: ["variaSuit", "spiderMagnet"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "spaceJump"],
             counter: 0,
           },
         ],
@@ -206,6 +210,18 @@ export default {
         logic: [
           {
             type: ["phantomCloak", "spiderMagnet", "speedBooster"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "speedBooster", "bomb"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "speedBooster", "crossBomb"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "speedBooster", "powerBomb"],
             counter: 0,
           },
         ],
@@ -438,15 +454,15 @@ export default {
         left: "left:914px",
         logic: [
           {
-            type: ["grappleBeam", "morphBall", "bomb"],
+            type: ["grappleBeam", "morphBall", "bomb", "variaSuit"],
             counter: 0,
           },
           {
-            type: ["grappleBeam", "morphBall", "crossBomb"],
+            type: ["grappleBeam", "morphBall", "crossBomb", "variaSuit"],
             counter: 0,
           },
           {
-            type: ["grappleBeam", "morphBall", "powerBomb"],
+            type: ["grappleBeam", "morphBall", "powerBomb", "variaSuit"],
             counter: 0,
           },
         ],

@@ -18,7 +18,20 @@ export default {
         amount: 2,
         top: "margin-top:29px",
         left: "left:521px",
-        logic: [],
+        logic: [
+          {
+            type: ["bomb", "morphBall"],
+            counter: 0,
+          },
+          {
+            type: ["crossBomb", "morphBall"],
+            counter: 0,
+          },
+          {
+            type: ["powerBomb", "morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -28,7 +41,20 @@ export default {
         amount: 2,
         top: "margin-top:89px",
         left: "left:551px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "speedBooster", "bomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "crossBomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "speedBooster", "powerBomb"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -38,7 +64,16 @@ export default {
         amount: 2,
         top: "margin-top:134px",
         left: "left:589px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "crossBomb", "gravitySuit"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "crossBomb", "spaceJump"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -78,7 +113,12 @@ export default {
         amount: 2,
         top: "margin-top:350px",
         left: "left:211px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "gravitySuit", "spinBoost"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -98,7 +138,12 @@ export default {
         amount: 2,
         top: "margin-top:339px",
         left: "left:439px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "bomb", "grappleBeam"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -118,7 +163,20 @@ export default {
         amount: 1,
         top: "margin-top:12px",
         left: "left:560px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "speedBooster", "bomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "speedBooster", "crossBomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "speedBooster", "powerBomb"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -128,7 +186,7 @@ export default {
         amount: 1,
         top: "margin-top:173px",
         left: "left:403px",
-        logic: ["morphBall"],
+        logic: [],
         inLogic: false,
       },
       {
@@ -138,7 +196,16 @@ export default {
         amount: 1,
         top: "margin-top:78px",
         left: "left:453px",
-        logic: [],
+        logic: [
+          {
+            type: ["powerBomb", "morphBall"],
+            counter: 0,
+          },
+          {
+            type: ["iceMissiles"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -148,7 +215,96 @@ export default {
         amount: 1,
         top: "margin-top:12px",
         left: "left:432px",
-        logic: [],
+        logic: [
+          {
+            type: ["spinBoost", "flashShift"],
+            counter: 0,
+          },
+          {
+            type: ["spaceJump"],
+            counter: 0,
+          },
+        ],
+        inLogic: false,
+      },
+      {
+        area: "blueEMMI",
+        checked: false,
+        type: "iceMissiles",
+        amount: 1,
+        top: "margin-top:100px",
+        left: "left:200px",
+        softlock: true,
+        logic: [
+          {
+            type: ["spinBoost", "morphBall"],
+            counter: 0,
+          },
+        ],
+        inLogic: false,
+      },
+      {
+        area: "pulse",
+        checked: false,
+        type: "pulseRadar",
+        amount: 1,
+        top: "margin-top:74px",
+        left: "left:495px",
+        softlock: true,
+        logic: [
+          {
+            type: ["morphBall"],
+            counter: 0,
+          },
+        ],
+        inLogic: false,
+      },
+      {
+        area: "super",
+        checked: false,
+        type: "superMissiles",
+        amount: 1,
+        top: "margin-top:74px",
+        left: "left:495px",
+        softlock: true,
+        logic: [
+          {
+            type: ["morphBall"],
+            counter: 0,
+          },
+        ],
+        inLogic: false,
+      },
+      {
+        area: "space",
+        checked: false,
+        type: "spaceJump",
+        amount: 1,
+        top: "margin-top:188px",
+        left: "left:481px",
+        softlock: true,
+        logic: [
+          {
+            type: ["morphBall"],
+            counter: 0,
+          },
+        ],
+        inLogic: false,
+      },
+      {
+        area: "cross",
+        checked: false,
+        type: "crossBomb",
+        amount: 1,
+        top: "margin-top:78px",
+        left: "left:644px",
+        softlock: true,
+        logic: [
+          {
+            type: ["morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
     ],

@@ -726,15 +726,15 @@ export default {
         softlock: true,
         logic: [
           {
-            type: ["morphBall", "speedBooster", "bomb"],
+            type: ["morphBall", "speedBooster", "bomb", "chargeBeam"],
             counter: 0,
           },
           {
-            type: ["morphBall", "speedBooster", "crossBomb"],
+            type: ["morphBall", "speedBooster", "crossBomb", "chargeBeam"],
             counter: 0,
           },
           {
-            type: ["morphBall", "speedBooster", "powerBomb"],
+            type: ["morphBall", "speedBooster", "powerBomb", "chargeBeam"],
             counter: 0,
           },
         ],
@@ -749,19 +749,19 @@ export default {
         left: "left:436px",
         logic: [
           {
-            type: ["morphBall", "spaceJump"],
+            type: ["morphBall", "spaceJump", "chargeBeam"],
             counter: 0,
           },
           {
-            type: ["morphBall", "grappleBeam"],
+            type: ["morphBall", "grappleBeam", "chargeBeam"],
             counter: 0,
           },
           {
-            type: ["morphBall", "spiderMagnet", "spinBoost"],
+            type: ["morphBall", "spiderMagnet", "spinBoost", "chargeBeam"],
             counter: 0,
           },
           {
-            type: ["morphBall", "speedBooster"],
+            type: ["morphBall", "speedBooster", "chargeBeam"],
             counter: 0,
           },
         ],

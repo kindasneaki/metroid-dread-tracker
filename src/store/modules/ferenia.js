@@ -78,7 +78,12 @@ export default {
         amount: 10,
         top: "margin-top:327px",
         left: "left:427px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "speedBooster"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -88,7 +93,32 @@ export default {
         amount: 1,
         top: "margin-top:344px",
         left: "left:672px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "bomb", "spinBoost"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "crossBomb", "spinBoost"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "powerBomb", "spinBoost"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "bomb", "spaceJump"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "crossBomb", "spaceJump"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "powerBomb", "spaceJump"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {

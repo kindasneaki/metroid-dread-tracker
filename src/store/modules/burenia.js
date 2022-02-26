@@ -55,7 +55,12 @@ export default {
         amount: 2,
         top: "margin-top:457px",
         left: "left:372px",
-        logic: [],
+        logic: [
+          {
+            type: ["grappleBeam", "morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -166,7 +171,16 @@ export default {
         amount: 10,
         top: "margin-top:669px",
         left: "left:424px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "powerBomb", "speedBooster"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "iceMissiles", "speedBooster"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -209,6 +223,7 @@ export default {
         logic: [
           {
             type: ["speedBooster"],
+            trick: ["crossBomb"],
             counter: 0,
           },
         ],
@@ -221,7 +236,16 @@ export default {
         amount: 1,
         top: "margin-top:575px",
         left: "left:426px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "powerBomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "iceMissiles"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {

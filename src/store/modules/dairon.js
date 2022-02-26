@@ -203,7 +203,12 @@ export default {
         amount: 10,
         top: "margin-top:210px",
         left: "left:379px",
-        logic: [],
+        logic: [
+          {
+            type: ["wideBeam", "morphBall", "speedBooster"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -228,7 +233,12 @@ export default {
         amount: 1,
         top: "margin-top:254px",
         left: "left:303px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "speedBooster", "wideBeam"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -311,7 +321,12 @@ export default {
         amount: 1,
         top: "margin-top:210px",
         left: "left:460px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "stormMissiles", "bomb"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -357,7 +372,13 @@ export default {
         amount: 1,
         top: "margin-top:245px",
         left: "left:329px",
-        logic: [],
+        softlock: true,
+        logic: [
+          {
+            type: ["wideBeam", "morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
     ],
@@ -398,7 +419,7 @@ export default {
         if (originalLength === 0) {
           inLogic = true;
         }
-        inLogic = true;
+        // inLogic = true;
         const payload = { index: i, logic: inLogic };
         commit("UPDATE_LOGIC", payload);
         // }
