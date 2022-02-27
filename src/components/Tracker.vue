@@ -1,14 +1,19 @@
 <template>
   <div class="tracker">
     <div class="tracker-grid">
-      <div v-for="item in items" :key="item.type">
-        <label :for="item.type" class="icon"
+      <div
+        v-for="item in items"
+        :key="item.type"
+        :class="item.checked ? 'active' : 'notActive'"
+      >
+        <!-- <span :class="{ active: item.checked }" /> -->
+        <label :for="item.type" :class="[item.type, 'icon']"
           ><input
             type="checkbox"
             :id="item.type"
             v-model="item.checked"
             v-on:click="checked(item.type)"
-          />{{ item.type }}<br />{{ item.checked }}
+          />
         </label>
       </div>
       <!-- <div>
@@ -37,11 +42,14 @@ export default {
     }),
   },
   methods: {
-    toggleAbility(index, route) {
+    toggleAbility(item, route) {
+      const index = item.index;
+      const type = item.type;
       this.$store.dispatch("items/updateArea", {
         index,
         route,
       });
+      this.$store.dispatch("items/checkProgressive", type);
     },
     toggleLogic(route, type) {
       this.$store.dispatch(route + "/updateArea", type);
@@ -58,7 +66,7 @@ export default {
           return true;
         }
       });
-      this.toggleAbility(item.index, route);
+      this.toggleAbility(item, route);
       // this.toggleLogic(route, item.type);
     },
   },
@@ -88,24 +96,106 @@ a {
   text-align: left;
   z-index: -1;
   color: #92a5b8;
-  grid-template-columns: [first] 8% [line2] 8% [line3] 8% [col4-start] 8% [five] 8% [end];
-  grid-template-rows: [first] 11% [line2] 11% [line3] 11% [col4-start] 11% [end];
+  grid-template-columns: [first] 4.6% [line2] 4.55% [line3] 4.6% [col4-start] 4.55% [five] 4.6% [end];
+  grid-template-rows: [first] 12.4% [line2] 12.4% [line3] 12.3% [col4-start] 12.4% [end];
 }
 .tracker-grid > div {
   box-sizing: border-box;
-  border: 1px solid #8c8c8c;
-  width: 87px;
-  height: 46px;
+  border: 1px solid #92a5b8;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
 }
 .icon {
   /* background-image: url("../assets/logo.png"); */
-  height: 25px;
-  width: 25px;
+  height: 50px;
+  width: 50px;
+  background-size: 100%;
 }
-.test {
-  height: 25px;
-  width: 25px;
+.active {
+  /* border: 1px solid blue; */
+  height: 100%;
+  width: 100%;
+  opacity: 100%;
+}
+.notActive {
+  /* border: 1px solid red; */
+  height: 100%;
+  width: 100%;
+  opacity: 40%;
+}
+.chargeBeam {
+  background-image: url("../assets/chargeBeam.png");
+}
+
+.variaSuit {
+  background-image: url("../assets/variaSuit.png");
+}
+.morphBall {
+  background-image: url("../assets/morphBall.png");
+}
+.bomb {
+  background-image: url("../assets/bomb.png");
+}
+.gravitySuit {
+  background-image: url("../assets/gravitySuit.png");
+}
+.spiderMagnet {
+  background-image: url("../assets/spiderMagnet.png");
+}
+.grappleBeam {
+  background-image: url("../assets/grappleBeam.png");
+}
+.phantomCloak {
+  background-image: url("../assets/phantomCloak.png");
+}
+.diffusionBeam {
+  background-image: url("../assets/diffusionBeam.png");
+}
+.wideBeam {
+  background-image: url("../assets/wideBeam.png");
+}
+.speedBooster {
+  background-image: url("../assets/speedBooster.png");
+}
+.flashShift {
+  background-image: url("../assets/flashShift.png");
+}
+.stormMissiles {
+  background-image: url("../assets/stormMissiles.png");
+}
+.superMissiles {
+  background-image: url("../assets/superMissiles.png");
+}
+.pulseRadar {
+  background-image: url("../assets/pulseRadar.png");
+}
+.iceMissiles {
+  background-image: url("../assets/iceMissiles.png");
+}
+.crossBomb {
+  background-image: url("../assets/crossBomb.png");
+}
+.spinBoost {
+  background-image: url("../assets/spinBoost.png");
+}
+.waveBeam {
+  background-image: url("../assets/waveBeam.png");
+}
+.plasmaBeam {
+  background-image: url("../assets/plasmaBeam.png");
+}
+.spaceJump {
+  background-image: url("../assets/spaceJump.png");
+}
+.screwAttack {
+  background-image: url("../assets/screwAttack.png");
+}
+.slide {
+  background-image: url("../assets/slide.png");
+}
+.powerBomb {
+  background-image: url("../assets/powerBomb.png");
 }
 </style>
