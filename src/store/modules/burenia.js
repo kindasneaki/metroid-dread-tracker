@@ -8,7 +8,20 @@ export default {
         amount: 2,
         top: "margin-top:191px",
         left: "left:342px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "waveBeam", "grappleBeam"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "grappleBeam", "chargeBeam", "spiderMagnet"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "grappleBeam", "chargeBeam", "spaceJump"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -18,7 +31,12 @@ export default {
         amount: 2,
         top: "margin-top:223px",
         left: "left:301px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "speedBooster"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -60,6 +78,10 @@ export default {
             type: ["grappleBeam", "morphBall"],
             counter: 0,
           },
+          {
+            type: ["morphBall", "gravitySuit"],
+            counter: 0,
+          },
         ],
         inLogic: false,
       },
@@ -70,7 +92,12 @@ export default {
         amount: 2,
         top: "margin-top:509px",
         left: "left:388px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "spaceJump", "screwAttack"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -161,7 +188,16 @@ export default {
         amount: 10,
         top: "margin-top:196px",
         left: "left:108px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "spiderMagnet", "flashShift"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spaceJump"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -193,6 +229,10 @@ export default {
         logic: [
           {
             type: ["morphBall", "grappleBeam"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "flashShift"],
             counter: 0,
           },
         ],
@@ -322,12 +362,12 @@ export default {
         inLogic: false,
       },
       {
-        area: "flash",
+        area: "gravity",
         checked: false,
-        type: "flashShift",
+        type: "gravitySuit",
         amount: 2,
-        top: "margin-top:476px",
-        left: "left:326px",
+        top: "margin-top:745px",
+        left: "left:415px",
         softlock: true,
         logic: [
           {

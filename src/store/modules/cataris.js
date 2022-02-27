@@ -393,29 +393,9 @@ export default {
             type: [
               "gravitySuit",
               "morphBall",
-              "bomb",
               "speedBooster",
               "waveBeam",
-            ],
-            counter: 0,
-          },
-          {
-            type: [
-              "gravitySuit",
-              "morphBall",
-              "crossBomb",
-              "speedBooster",
-              "waveBeam",
-            ],
-            counter: 0,
-          },
-          {
-            type: [
-              "gravitySuit",
-              "morphBall",
-              "powerBomb",
-              "speedBooster",
-              "waveBeam",
+              "grappleBeam",
             ],
             counter: 0,
           },

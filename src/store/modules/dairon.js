@@ -8,7 +8,16 @@ export default {
         amount: 2,
         top: "margin-top:73px",
         left: "left:304px",
-        logic: [],
+        logic: [
+          {
+            type: ["gravitySuit", "waveBeam", "morphBall"],
+            counter: 0,
+          },
+          {
+            type: ["gravitySuit", "powerBomb", "morphBall"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -18,7 +27,12 @@ export default {
         amount: 2,
         top: "margin-top:122px",
         left: "left:312px",
-        logic: [],
+        logic: [
+          {
+            type: ["gravitySuit", "speedBooster", "morphBall", "screwAttack"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -248,7 +262,20 @@ export default {
         amount: 1,
         top: "margin-top:74px",
         left: "left:572px",
-        logic: [],
+        logic: [
+          {
+            type: ["morphBall", "bomb", "speedBooster"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "crossBomb", "speedBooster"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "powerBomb", "speedBooster"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -258,7 +285,12 @@ export default {
         amount: 1,
         top: "margin-top:44px",
         left: "left:286px",
-        logic: [],
+        logic: [
+          {
+            type: ["gravitySuit", "speedBooster"],
+            counter: 0,
+          },
+        ],
         inLogic: false,
       },
       {
@@ -323,7 +355,7 @@ export default {
         left: "left:460px",
         logic: [
           {
-            type: ["morphBall", "stormMissiles", "bomb"],
+            type: ["morphBall", "stormMissiles", "crossBomb", "grappleBeam"],
             counter: 0,
           },
         ],

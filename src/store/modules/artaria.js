@@ -987,24 +987,26 @@ export default {
   actions: {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
-      if (data[7].logic) {
+      //phantomCloak
+      if (data[11].logic) {
         state.locations[31].softlock = false;
       } else {
         state.locations[31].softlock = true;
       }
       //chargeBeam or morphBall
-      if (data[0].logic || data[1].logic) {
+      if (data[0].logic || data[5].logic) {
         state.locations[29].softlock = false;
       } else {
         state.locations[29].softlock = true;
       }
       //grappleBeam
-      if (data[6].logic) {
+      if (data[10].logic) {
         state.locations[33].softlock = false;
       } else {
         state.locations[33].softlock = true;
       }
-      if (data[2].logic) {
+      //variaSuit
+      if (data[7].logic) {
         state.locations[34].softlock = false;
         state.locations[27].softlock = false;
         // state.locations[23].softlock = false;
@@ -1014,11 +1016,12 @@ export default {
         // state.locations[23].softlock = true;
       }
       //spiderMagnet or spaceJump
-      if (data[5].logic || data[20].logic) {
+      if (data[9].logic || data[22].logic) {
         state.locations[30].softlock = false;
       } else {
         state.locations[30].softlock = true;
       }
+      //screwAttack
 
       for (let i = 0; i < state.locations.length; i++) {
         // for (let k = 0; k < state.locations[i].logic.length; k++) {
