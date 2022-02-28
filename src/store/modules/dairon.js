@@ -166,15 +166,23 @@ export default {
         left: "left:728px",
         logic: [
           {
-            type: ["morphBall", "grappleBeam"],
+            type: ["morphBall", "grappleBeam", "diffusionBeam", "chargeBeam"],
             counter: 0,
           },
           {
-            type: ["morphBall", "spinBoost"],
+            type: ["morphBall", "spinBoost", "flashShift"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spinBoost", "diffusionBeam", "chargeBeam"],
             counter: 0,
           },
           {
             type: ["morphBall", "spaceJump"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "wideBeam", "chargeBeam", "grappleBeam"],
             counter: 0,
           },
         ],

@@ -14,8 +14,19 @@ export default {
               "morphBall",
               "gravitySuit",
               "grappleBeam",
-              "waveBeam",
               "screwAttack",
+              "chargeBeam",
+              "diffusionBeam",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "morphBall",
+              "gravitySuit",
+              "grappleBeam",
+              "screwAttack",
+              "waveBeam",
             ],
             counter: 0,
           },
@@ -46,6 +57,28 @@ export default {
               "gravitySuit",
               "grappleBeam",
               "waveBeam",
+              "spinBoost",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "morphBall",
+              "gravitySuit",
+              "grappleBeam",
+              "chargeBeam",
+              "diffusionBeam",
+              "spaceJump",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "morphBall",
+              "gravitySuit",
+              "grappleBeam",
+              "chargeBeam",
+              "diffusionBeam",
               "spinBoost",
             ],
             counter: 0,
@@ -171,7 +204,15 @@ export default {
         left: "left:298px",
         logic: [
           {
-            type: ["morphBall", "chargeBeam", "superMissiles"],
+            type: ["morphBall", "chargeBeam", "superMissiles", "bomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "chargeBeam", "superMissiles", "crossBomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "superMissiles", "powerBomb"],
             counter: 0,
           },
         ],
@@ -379,11 +420,11 @@ export default {
             counter: 0,
           },
           {
-            type: ["morphBall", "bomb"],
+            type: ["morphBall", "bomb", "chargeBeam"],
             counter: 0,
           },
           {
-            type: ["morphBall", "crossBomb"],
+            type: ["morphBall", "crossBomb", "chargeBeam"],
             counter: 0,
           },
           {
@@ -726,15 +767,33 @@ export default {
         softlock: true,
         logic: [
           {
-            type: ["morphBall", "speedBooster", "bomb", "chargeBeam"],
+            type: [
+              "morphBall",
+              "speedBooster",
+              "bomb",
+              "chargeBeam",
+              "grappeBeam",
+            ],
             counter: 0,
           },
           {
-            type: ["morphBall", "speedBooster", "crossBomb", "chargeBeam"],
+            type: [
+              "morphBall",
+              "speedBooster",
+              "crossBomb",
+              "chargeBeam",
+              "grappeBeam",
+            ],
             counter: 0,
           },
           {
-            type: ["morphBall", "speedBooster", "powerBomb", "chargeBeam"],
+            type: [
+              "morphBall",
+              "speedBooster",
+              "powerBomb",
+              "chargeBeam",
+              "grappeBeam",
+            ],
             counter: 0,
           },
         ],
@@ -749,19 +808,23 @@ export default {
         left: "left:436px",
         logic: [
           {
-            type: ["morphBall", "spaceJump", "chargeBeam"],
+            type: ["morphBall", "spaceJump"],
             counter: 0,
           },
           {
-            type: ["morphBall", "grappleBeam", "chargeBeam"],
+            type: ["morphBall", "grappleBeam"],
             counter: 0,
           },
           {
-            type: ["morphBall", "spiderMagnet", "spinBoost", "chargeBeam"],
+            type: ["morphBall", "spiderMagnet", "spinBoost"],
             counter: 0,
           },
           {
-            type: ["morphBall", "speedBooster", "chargeBeam"],
+            type: ["morphBall", "speedBooster"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "flashShift", "spiderMagnet", "grappleBeam"],
             counter: 0,
           },
         ],

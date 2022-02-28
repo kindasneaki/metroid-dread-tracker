@@ -339,7 +339,13 @@ export default {
         left: "left:434px",
         logic: [
           {
-            type: ["morphBall", "gravitySuit", "speedBooster", "grappleBeam"],
+            type: [
+              "morphBall",
+              "gravitySuit",
+              "speedBooster",
+              "grappleBeam",
+              "powerBomb",
+            ],
             counter: 0,
           },
         ],

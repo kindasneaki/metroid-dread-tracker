@@ -140,6 +140,10 @@ export default {
             type: ["morphBall", "diffusionBeam", "variaSuit"],
             counter: 0,
           },
+          {
+            type: ["morphBall", "crossBomb", "variaSuit"],
+            counter: 0,
+          },
         ],
         inLogic: false,
       },
@@ -236,7 +240,7 @@ export default {
         left: "left:791px",
         logic: [
           {
-            type: ["morphBall"],
+            type: ["morphBall", "chargeBeam"],
             counter: 0,
           },
         ],
@@ -470,6 +474,7 @@ export default {
         amount: 1,
         top: "margin-top:424px",
         left: "left:263px",
+        softlock: true,
         logic: [
           {
             type: ["gravitySuit", "morphBall", "bomb"],
@@ -535,10 +540,12 @@ export default {
   actions: {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
-      if (data[8].logic) {
+      if (data[6].logic) {
         state.locations[21].softlock = false;
+        state.locations[20].softlock = false;
       } else {
         state.locations[21].softlock = true;
+        state.locations[20].softlock = true;
       }
       for (let i = 0; i < state.locations.length; i++) {
         // for (let k = 0; k < state.locations[i].logic.length; k++) {

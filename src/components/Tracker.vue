@@ -117,13 +117,13 @@ a {
   /* border: 1px solid blue; */
   height: 100%;
   width: 100%;
-  opacity: 100%;
+  opacity: 1;
 }
 .notActive {
   /* border: 1px solid red; */
   height: 100%;
   width: 100%;
-  opacity: 40%;
+  opacity: 0.4;
 }
 .chargeBeam {
   background-image: url("../assets/chargeBeam.png");

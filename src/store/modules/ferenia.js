@@ -340,6 +340,30 @@ export default {
         inLogic: false,
       },
       {
+        area: "storm",
+        checked: false,
+        type: "stormMissiles",
+        amount: 2,
+        top: "margin-top:303px",
+        left: "left:907px",
+        softlock: true,
+        logic: [
+          {
+            type: ["morphBall", "bomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "crossBomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "powerBomb"],
+            counter: 0,
+          },
+        ],
+        inLogic: false,
+      },
+      {
         area: "wave",
         checked: false,
         type: "waveBeam",

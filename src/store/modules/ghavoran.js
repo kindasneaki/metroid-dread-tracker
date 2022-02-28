@@ -270,7 +270,7 @@ export default {
             counter: 0,
           },
           {
-            type: ["morphBall", "iceMissiles", "spaceJump", "grappleBeam"],
+            type: ["morphBall", "spaceJump", "grappleBeam"],
             counter: 0,
           },
         ],
@@ -309,6 +309,14 @@ export default {
           },
           {
             type: ["spaceJump", "iceMissiles"],
+            counter: 0,
+          },
+          {
+            type: ["spinBoost", "flashShift", "powerBomb"],
+            counter: 0,
+          },
+          {
+            type: ["spaceJump", "powerBomb"],
             counter: 0,
           },
         ],
