@@ -441,6 +441,7 @@ export default {
         amount: 2,
         top: "margin-top:172px",
         left: "left:726px",
+        softlock: true,
         logic: [
           {
             type: ["chargeBeam", "morphBall"],
@@ -448,6 +449,14 @@ export default {
           },
           {
             type: ["chargeBeam", "slide"],
+            counter: 0,
+          },
+          {
+            type: ["phantomCloak", "morphBall"],
+            counter: 0,
+          },
+          {
+            type: ["phantomCloak", "slide"],
             counter: 0,
           },
         ],
@@ -566,11 +575,19 @@ export default {
         left: "left:828px",
         logic: [
           {
-            type: ["chargeBeam", "morphBall", "variaSuit"],
+            type: ["chargeBeam", "morphBall", "variaSuit", "spiderMagnet"],
             counter: 0,
           },
           {
-            type: ["chargeBeam", "slide", "variaSuit"],
+            type: ["chargeBeam", "slide", "variaSuit", "spiderMagnet"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "morphBall", "variaSuit", "spaceJump"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "slide", "variaSuit", "spaceJump"],
             counter: 0,
           },
         ],
@@ -812,7 +829,7 @@ export default {
             counter: 0,
           },
           {
-            type: ["morphBall", "grappleBeam"],
+            type: ["morphBall", "grappleBeam", "flashShift"],
             counter: 0,
           },
           {
@@ -824,7 +841,7 @@ export default {
             counter: 0,
           },
           {
-            type: ["morphBall", "flashShift", "spiderMagnet", "grappleBeam"],
+            type: ["morphBall", "flashShift", "grappleBeam"],
             counter: 0,
           },
         ],
@@ -884,27 +901,11 @@ export default {
         softlock: true,
         logic: [
           {
-            type: ["morphBall", "chargeBeam"],
+            type: ["morphBall"],
             counter: 0,
           },
           {
-            type: ["slide", "chargeBeam"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "phantomCloak"],
-            counter: 0,
-          },
-          {
-            type: ["slide", "phantomCloak"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "waveBeam"],
-            counter: 0,
-          },
-          {
-            type: ["slide", "waveBeam"],
+            type: ["slide"],
             counter: 0,
           },
         ],
@@ -1059,8 +1060,16 @@ export default {
       //chargeBeam or morphBall
       if (data[0].logic || data[5].logic) {
         state.locations[29].softlock = false;
+        state.locations[14].softlock = false;
       } else {
         state.locations[29].softlock = true;
+        state.locations[14].softlock = true;
+      }
+      //David Jaffe Room
+      if (data[5].logic) {
+        state.locations[14].softlock = false;
+      } else {
+        state.locations[14].softlock = true;
       }
       //grappleBeam
       if (data[10].logic) {

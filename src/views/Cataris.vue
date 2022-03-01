@@ -21,6 +21,9 @@
 </template>
 
 <script>
+//Need to enter
+//Morph Ball
+//Charge Beam
 import { mapState } from "vuex";
 export default {
   computed: {

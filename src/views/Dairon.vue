@@ -20,6 +20,11 @@
 </template>
 
 <script>
+//Needed to enter
+//Charge Beam
+//SpeedBoost + grapple, space, spider, or spinboost probably
+//Needed to exit
+//Wide Beam + Charge Beam
 import { mapState } from "vuex";
 export default {
   computed: {

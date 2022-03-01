@@ -20,6 +20,9 @@
 </template>
 
 <script>
+//Needed to enter
+//Orange teleporter Chargebeam + varia + morph + bomb
+//Dairon Wide Beam
 import { mapState } from "vuex";
 export default {
   computed: {
