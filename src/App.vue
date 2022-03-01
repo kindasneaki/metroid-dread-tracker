@@ -10,12 +10,14 @@
     <router-link to="/elun">Elun</router-link> |
     <router-link to="/hanubia">Hanubia</router-link>
   </div>
+  <Display />
   <router-view />
   <Tracker />
 </template>
 <script>
 import Tracker from "@/components/Tracker.vue";
-export default { name: "Home", components: { Tracker } };
+import Display from "@/components/Display.vue";
+export default { name: "Home", components: { Tracker, Display } };
 </script>
 <style>
 #app {

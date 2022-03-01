@@ -1,8 +1,41 @@
 export default {
   state: {
+    minorItems: [
+      {
+        type: "smallMissiles",
+        amount: 2,
+        total: 15,
+        startAmount: 15,
+      },
+      {
+        type: "bigMissiles",
+        amount: 10,
+        startAmount: 15,
+      },
+      {
+        type: "energyPart",
+        total: 0,
+        amount: 1,
+        startAmount: 0,
+      },
+      {
+        type: "energyFull",
+        total: 0,
+        amount: 1,
+        startAmount: 0,
+      },
+    ],
     items: [
-      { type: "morphBall", checked: false, logic: false },
-      { type: "slide", checked: false, logic: false },
+      {
+        type: "morphBall",
+        checked: false,
+        logic: false,
+      },
+      {
+        type: "slide",
+        checked: false,
+        logic: false,
+      },
 
       {
         type: "bomb",
@@ -23,7 +56,6 @@ export default {
         type: "chargeBeam",
         checked: false,
         logic: false,
-        icon: "../assets/logo.png",
       },
       {
         type: "diffusionBeam",
@@ -40,11 +72,31 @@ export default {
         checked: false,
         logic: false,
       },
-      { type: "spiderMagnet", checked: false, logic: false },
-      { type: "grappleBeam", checked: false, logic: false },
-      { type: "phantomCloak", checked: false, logic: false },
-      { type: "flashShift", checked: false, logic: false },
-      { type: "pulseRadar", checked: false, logic: false },
+      {
+        type: "spiderMagnet",
+        checked: false,
+        logic: false,
+      },
+      {
+        type: "grappleBeam",
+        checked: false,
+        logic: false,
+      },
+      {
+        type: "phantomCloak",
+        checked: false,
+        logic: false,
+      },
+      {
+        type: "flashShift",
+        checked: false,
+        logic: false,
+      },
+      {
+        type: "pulseRadar",
+        checked: false,
+        logic: false,
+      },
       {
         type: "wideBeam",
         checked: false,
@@ -60,12 +112,28 @@ export default {
         checked: false,
         logic: false,
       },
-      { type: "speedBooster", checked: false, logic: false },
+      {
+        type: "speedBooster",
+        checked: false,
+        logic: false,
+      },
 
-      { type: "superMissiles", checked: false, logic: false },
+      {
+        type: "superMissiles",
+        checked: false,
+        logic: false,
+      },
 
-      { type: "iceMissiles", checked: false, logic: false },
-      { type: "stormMissiles", checked: false, logic: false },
+      {
+        type: "iceMissiles",
+        checked: false,
+        logic: false,
+      },
+      {
+        type: "stormMissiles",
+        checked: false,
+        logic: false,
+      },
 
       {
         type: "spinBoost",
@@ -78,7 +146,11 @@ export default {
         checked: false,
         logic: false,
       },
-      { type: "screwAttack", checked: false, logic: false },
+      {
+        type: "screwAttack",
+        checked: false,
+        logic: false,
+      },
     ],
     progressiveLogic: [
       {
@@ -121,6 +193,23 @@ export default {
         state.progressiveLogic[index] = true;
       }
     },
+    SET_MISSILES(state, { amount }) {
+      state.minorItems[0].total += amount;
+    },
+    SET_ABILITY(state, { index, amount }) {
+      state.minorItems[index].total += amount;
+    },
+    ROTATE_ENERGY(state) {
+      state.minorItems[2].total = 0;
+    },
+    FIX_ENERGY(state) {
+      console.log("adf");
+      state.minorItems[2].total += 3;
+      // state.minorItems[3].total -= 1;
+    },
+    PREVENT_NEGATIVE(state, index) {
+      state.minorItems[index].total = state.minorItems[index].startAmount;
+    },
   },
   actions: {
     updateArea({ commit, dispatch }, { index, route }) {
@@ -133,6 +222,41 @@ export default {
         index = 0;
       }
       commit("UPDATE_PROGRESSIVE", index);
+    },
+    updateMinor({ commit, state }, { index, amount }) {
+      if (
+        state.minorItems[index].type === "smallMissiles" ||
+        state.minorItems[index].type === "bigMissiles"
+      ) {
+        let total = state.minorItems[0].total + amount;
+        if (state.minorItems[0].startAmount >= total) {
+          commit("PREVENT_NEGATIVE", 0);
+          amount = 0;
+        }
+        commit("SET_MISSILES", { amount });
+      } else {
+        if (state.minorItems[index].type === "energyPart") {
+          let result = state.minorItems[2].total + amount;
+          if (result === 4) {
+            index = 3;
+            commit("ROTATE_ENERGY");
+          } else if (result === -1) {
+            if (state.minorItems[3].total > 0) {
+              commit("FIX_ENERGY");
+              index = 3;
+            }
+          }
+        }
+        if (
+          state.minorItems[index].total <=
+            state.minorItems[index].startAmount &&
+          amount < 0
+        ) {
+          commit("PREVENT_NEGATIVE", 0);
+          amount = 0;
+        }
+        commit("SET_ABILITY", { index, amount });
+      }
     },
   },
   getters: {

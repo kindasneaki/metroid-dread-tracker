@@ -16,6 +16,18 @@
           />
         </label>
       </div>
+      <div v-for="item in minorItems" :key="item.type" class="active">
+        <!-- <span :class="{ active: item.checked }" /> -->
+        <label :for="item.type" :class="[item.type, 'icon']"
+          ><input
+            type="button"
+            :id="item.type"
+            class="button"
+            @contextmenu="rightClick($event, item)"
+            v-on:click="minorChecked(item.type, item.amount)"
+          />
+        </label>
+      </div>
       <!-- <div>
         <button class="icon" v-on:click="addMissiles(smallMissiles)">
           missile tank 2
@@ -39,9 +51,15 @@ export default {
     ...mapState(["missiles", "energyPart", "energyFull", "powerBomb"]),
     ...mapState("items", {
       items: (state) => state.items,
+      minorItems: (state) => state.minorItems,
     }),
   },
   methods: {
+    rightClick(event, item) {
+      event.preventDefault();
+      let amount = item.amount * -1;
+      this.minorChecked(item.type, amount);
+    },
     toggleAbility(item, route) {
       const index = item.index;
       const type = item.type;
@@ -68,6 +86,20 @@ export default {
       });
       this.toggleAbility(item, route);
       // this.toggleLogic(route, item.type);
+    },
+    minorChecked(type, amount) {
+      let item = this.minorItems;
+      let i = 0;
+      item.find((value, index) => {
+        if (value.type === type) {
+          i = index;
+          return true;
+        }
+      });
+      this.toggleMinor(i, amount);
+    },
+    toggleMinor(index, amount) {
+      this.$store.dispatch("items/updateMinor", { index, amount });
     },
   },
 };
@@ -97,7 +129,7 @@ a {
   z-index: -1;
   color: #92a5b8;
   grid-template-columns: [first] 4.6% [line2] 4.55% [line3] 4.6% [col4-start] 4.55% [five] 4.6% [end];
-  grid-template-rows: [first] 12.4% [line2] 12.4% [line3] 12.3% [col4-start] 12.4% [end];
+  grid-template-rows: [first] 12.4% [line2] 12.4% [line3] 12.3% [col4-start] 12.4% [line5] 12.4% [end];
 }
 .tracker-grid > div {
   box-sizing: border-box;
@@ -124,6 +156,28 @@ a {
   height: 100%;
   width: 100%;
   opacity: 0.4;
+}
+.button {
+  background-color: #0b131a00;
+  color: white;
+  width: 100%;
+  height: 100;
+  height: 100%;
+  border: 0px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+.smallMissiles {
+  background-image: url("../assets/missiles.png");
+}
+.bigMissiles {
+  background-image: url("../assets/bigMissiles.png");
+}
+.energyPart {
+  background-image: url("../assets/energyPart.png");
+}
+.energyFull {
+  background-image: url("../assets/energyFull.png");
 }
 .chargeBeam {
   background-image: url("../assets/chargeBeam.png");
