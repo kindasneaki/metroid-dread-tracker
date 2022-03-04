@@ -24,6 +24,12 @@ export default {
         amount: 1,
         startAmount: 0,
       },
+      {
+        type: "smallPowerBomb",
+        total: 0,
+        amount: 1,
+        startAmount: 0,
+      },
     ],
     items: [
       {
@@ -208,6 +214,7 @@ export default {
       // state.minorItems[3].total -= 1;
     },
     PREVENT_NEGATIVE(state, index) {
+      console.log(index);
       state.minorItems[index].total = state.minorItems[index].startAmount;
     },
   },
@@ -252,7 +259,7 @@ export default {
             state.minorItems[index].startAmount &&
           amount < 0
         ) {
-          commit("PREVENT_NEGATIVE", 0);
+          commit("PREVENT_NEGATIVE", index);
           amount = 0;
         }
         commit("SET_ABILITY", { index, amount });

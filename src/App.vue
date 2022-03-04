@@ -1,4 +1,5 @@
 <template>
+  <Display />
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/artaria">Artaria</router-link> |
@@ -10,7 +11,6 @@
     <router-link to="/elun">Elun</router-link> |
     <router-link to="/hanubia">Hanubia</router-link>
   </div>
-  <Display />
   <router-view />
   <Tracker />
 </template>
@@ -24,11 +24,12 @@ export default { name: "Home", components: { Tracker, Display } };
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 #nav {
   padding: 50px;
+  text-align: center;
+  position: relative;
 }
 
 #nav a {

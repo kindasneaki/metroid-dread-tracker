@@ -1,6 +1,18 @@
 <template>
   <div class="tracker">
     <div class="tracker-grid">
+      <div v-for="item in minorItems" :key="item.type" class="active">
+        <!-- <span :class="{ active: item.checked }" /> -->
+        <label :for="item.type" :class="[item.type, 'icon']"
+          ><input
+            type="button"
+            :id="item.type"
+            class="button"
+            @contextmenu="rightClick($event, item)"
+            v-on:click="minorChecked(item.type, item.amount)"
+          />
+        </label>
+      </div>
       <div
         v-for="item in items"
         :key="item.type"
@@ -16,18 +28,7 @@
           />
         </label>
       </div>
-      <div v-for="item in minorItems" :key="item.type" class="active">
-        <!-- <span :class="{ active: item.checked }" /> -->
-        <label :for="item.type" :class="[item.type, 'icon']"
-          ><input
-            type="button"
-            :id="item.type"
-            class="button"
-            @contextmenu="rightClick($event, item)"
-            v-on:click="minorChecked(item.type, item.amount)"
-          />
-        </label>
-      </div>
+
       <!-- <div>
         <button class="icon" v-on:click="addMissiles(smallMissiles)">
           missile tank 2
@@ -76,6 +77,13 @@ export default {
     // this.$store.dispatch("updateAbility", { logic });
     // },
     checked(name) {
+      if (name === "powerBomb") {
+        if (!this.items[4].checked) {
+          this.toggleMinor(4, 2);
+        } else {
+          this.toggleMinor(4, -2);
+        }
+      }
       const route = this.$router.currentRoute.value.name;
       let item = this.items;
       item.find((value, index) => {
@@ -178,6 +186,9 @@ a {
 }
 .energyFull {
   background-image: url("../assets/energyFull.png");
+}
+.smallPowerBomb {
+  background-image: url("../assets/smallPowerBomb.png");
 }
 .chargeBeam {
   background-image: url("../assets/chargeBeam.png");
