@@ -8,9 +8,19 @@ export default {
         amount: 2,
         top: "margin-top:69px",
         left: "left:737px",
+        //crossBomb needed
+        softlock: true,
         logic: [
           {
-            type: ["morphBall", "speedBooster", "crossBomb"],
+            type: ["morphBall", "speedBooster", "powerBomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "speedBooster", "bomb", "iceMissiles"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "speedBooster", "crossBomb", "iceMissiles"],
             counter: 0,
           },
         ],
@@ -166,6 +176,10 @@ export default {
             type: ["morphBall", "spinBoost", "grappleBeam"],
             counter: 0,
           },
+          {
+            type: ["morphBall", "speedBooster", "grappleBeam"],
+            counter: 0,
+          },
         ],
         inLogic: false,
       },
@@ -231,6 +245,10 @@ export default {
             type: ["morphBall", "spaceJump"],
             counter: 0,
           },
+          {
+            type: ["morphBall", "speedBooster"],
+            counter: 0,
+          },
         ],
         inLogic: false,
       },
@@ -243,15 +261,19 @@ export default {
         left: "left:560px",
         logic: [
           {
-            type: ["morphBall", "speedBooster", "bomb"],
+            type: ["morphBall", "speedBooster", "bomb", "iceMissiles"],
             counter: 0,
           },
           {
-            type: ["morphBall", "speedBooster", "crossBomb"],
+            type: ["morphBall", "speedBooster", "crossBomb", "iceMissiles"],
             counter: 0,
           },
           {
             type: ["morphBall", "speedBooster", "powerBomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "speedBooster", "screwAttack", "grappleBeam"],
             counter: 0,
           },
         ],
@@ -441,6 +463,26 @@ export default {
           },
           {
             type: ["morphBall", "speedBooster", "powerBomb"],
+            counter: 0,
+          },
+          {
+            type: [
+              "morphBall",
+              "screwAttack",
+              "grappleBeam",
+              "spaceJump",
+              "powerBomb",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "morphBall",
+              "screwAttack",
+              "grappleBeam",
+              "spaceJump",
+              "iceMissiles",
+            ],
             counter: 0,
           },
         ],

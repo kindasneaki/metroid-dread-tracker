@@ -33,7 +33,7 @@ export default {
         left: "left:301px",
         logic: [
           {
-            type: ["morphBall", "speedBooster"],
+            type: ["morphBall"],
             counter: 0,
           },
         ],
@@ -226,13 +226,19 @@ export default {
         amount: 10,
         top: "margin-top:586px",
         left: "left:195px",
+        //flashshift or gravitysuit
+        softlock: true,
         logic: [
           {
-            type: ["morphBall", "grappleBeam"],
+            type: ["morphBall", "grappleBeam", "gravitySuit", "spinBoost"],
             counter: 0,
           },
           {
-            type: ["morphBall", "flashShift"],
+            type: ["morphBall", "gravitySuit", "spaceJump"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spiderMagnet"],
             counter: 0,
           },
         ],
