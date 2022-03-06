@@ -156,7 +156,11 @@ export default {
         left: "left:586px",
         logic: [
           {
-            type: ["screwAttack"],
+            type: ["screwAttack", "variaSuit"],
+            counter: 0,
+          },
+          {
+            type: ["screwAttack", "chargeBeam"],
             counter: 0,
           },
         ],
@@ -184,6 +188,22 @@ export default {
           },
           {
             type: ["morphBall", "grappleBeam", "chargeBeam"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spinBoost", "wideBeam"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spaceJump", "wideBeam"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spiderMagnet", "wideBeam"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "grappleBeam", "wideBeam"],
             counter: 0,
           },
           {
@@ -271,39 +291,81 @@ export default {
         left: "left:836px",
         logic: [
           {
-            type: ["wideBeam", "morphBall", "bomb", "variaSuit"],
+            type: ["wideBeam", "morphBall", "bomb", "variaSuit", "chargeBeam"],
             counter: 0,
           },
           {
-            type: ["wideBeam", "morphBall", "crossBomb", "variaSuit"],
+            type: [
+              "wideBeam",
+              "morphBall",
+              "crossBomb",
+              "variaSuit",
+              "chargeBeam",
+            ],
             counter: 0,
           },
           {
-            type: ["wideBeam", "morphBall", "powerBomb", "variaSuit"],
+            type: [
+              "wideBeam",
+              "morphBall",
+              "powerBomb",
+              "variaSuit",
+              "chargeBeam",
+            ],
             counter: 0,
           },
           {
-            type: ["plasmaBeam", "morphBall", "bomb", "variaSuit"],
+            type: [
+              "plasmaBeam",
+              "morphBall",
+              "bomb",
+              "variaSuit",
+              "chargeBeam",
+            ],
             counter: 0,
           },
           {
-            type: ["plasmaBeam", "morphBall", "crossBomb", "variaSuit"],
+            type: [
+              "plasmaBeam",
+              "morphBall",
+              "crossBomb",
+              "variaSuit",
+              "chargeBeam",
+            ],
             counter: 0,
           },
           {
-            type: ["plasmaBeam", "morphBall", "powerBomb", "variaSuit"],
+            type: [
+              "plasmaBeam",
+              "morphBall",
+              "powerBomb",
+              "variaSuit",
+              "chargeBeam",
+            ],
             counter: 0,
           },
           {
-            type: ["waveBeam", "morphBall", "bomb", "variaSuit"],
+            type: ["waveBeam", "morphBall", "bomb", "variaSuit", "chargeBeam"],
             counter: 0,
           },
           {
-            type: ["waveBeam", "morphBall", "crossBomb", "variaSuit"],
+            type: [
+              "waveBeam",
+              "morphBall",
+              "crossBomb",
+              "variaSuit",
+              "chargeBeam",
+            ],
             counter: 0,
           },
           {
-            type: ["waveBeam", "morphBall", "powerBomb", "variaSuit"],
+            type: [
+              "waveBeam",
+              "morphBall",
+              "powerBomb",
+              "variaSuit",
+              "chargeBeam",
+            ],
             counter: 0,
           },
         ],
@@ -333,6 +395,10 @@ export default {
             type: ["slide", "phantomCloak", "chargeBeam"],
             counter: 0,
           },
+          {
+            type: ["morphBall", "phantomCloak", "wideBeam"],
+            counter: 0,
+          },
         ],
         inLogic: false,
       },
@@ -345,27 +411,99 @@ export default {
         left: "left:1026px",
         logic: [
           {
-            type: ["variaSuit", "morphBall", "bomb", "spinBoost"],
+            type: ["variaSuit", "morphBall", "bomb", "spinBoost", "wideBeam"],
             counter: 0,
           },
           {
-            type: ["variaSuit", "morphBall", "crossBomb", "spinBoost"],
+            type: [
+              "variaSuit",
+              "morphBall",
+              "crossBomb",
+              "spinBoost",
+              "wideBeam",
+            ],
             counter: 0,
           },
           {
-            type: ["variaSuit", "morphBall", "powerBomb", "spinBoost"],
+            type: [
+              "variaSuit",
+              "morphBall",
+              "powerBomb",
+              "spinBoost",
+              "wideBeam",
+            ],
             counter: 0,
           },
           {
-            type: ["variaSuit", "morphBall", "bomb", "spaceJump"],
+            type: ["variaSuit", "morphBall", "bomb", "spaceJump", "wideBeam"],
             counter: 0,
           },
           {
-            type: ["variaSuit", "morphBall", "crossBomb", "spaceJump"],
+            type: [
+              "variaSuit",
+              "morphBall",
+              "crossBomb",
+              "spaceJump",
+              "wideBeam",
+            ],
             counter: 0,
           },
           {
-            type: ["variaSuit", "morphBall", "powerBomb", "spaceJump"],
+            type: [
+              "variaSuit",
+              "morphBall",
+              "powerBomb",
+              "spaceJump",
+              "wideBeam",
+            ],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "bomb", "spinBoost", "chargeBeam"],
+            counter: 0,
+          },
+          {
+            type: [
+              "variaSuit",
+              "morphBall",
+              "crossBomb",
+              "spinBoost",
+              "chargeBeam",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "variaSuit",
+              "morphBall",
+              "powerBomb",
+              "spinBoost",
+              "chargeBeam",
+            ],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "bomb", "spaceJump", "chargeBeam"],
+            counter: 0,
+          },
+          {
+            type: [
+              "variaSuit",
+              "morphBall",
+              "crossBomb",
+              "spaceJump",
+              "chargeBeam",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "variaSuit",
+              "morphBall",
+              "powerBomb",
+              "spaceJump",
+              "chargeBeam",
+            ],
             counter: 0,
           },
         ],
@@ -442,6 +580,18 @@ export default {
             type: ["variaSuit", "morphBall", "chargeBeam"],
             counter: 0,
           },
+          {
+            type: ["phantomCloak", "spiderMagnet", "wideBeam"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "slide", "wideBeam"],
+            counter: 0,
+          },
+          {
+            type: ["variaSuit", "morphBall", "wideBeam"],
+            counter: 0,
+          },
         ],
         inLogic: false,
       },
@@ -506,6 +656,64 @@ export default {
               "bomb",
               "variaSuit",
               "chargeBeam",
+              "phantomCloak",
+              "spiderMagnet",
+            ],
+            counter: 0,
+          },
+          {
+            //IBJ
+            type: [
+              "grappleBeam",
+              "morphBall",
+              "bomb",
+              "variaSuit",
+              "wideBeam",
+              "spiderMagnet",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "grappleBeam",
+              "morphBall",
+              "crossBomb",
+              "variaSuit",
+              "wideBeam",
+              "spiderMagnet",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "grappleBeam",
+              "morphBall",
+              "powerBomb",
+              "variaSuit",
+              "wideBeam",
+              "spiderMagnet",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "grappleBeam",
+              "morphBall",
+              "bomb",
+              "variaSuit",
+              "wideBeam",
+              "spaceJump",
+              "spiderMagnet",
+            ],
+            counter: 0,
+          },
+          {
+            type: [
+              "grappleBeam",
+              "morphBall",
+              "bomb",
+              "variaSuit",
+              "wideBeam",
               "phantomCloak",
               "spiderMagnet",
             ],
@@ -576,17 +784,18 @@ export default {
         amount: 1,
         top: "margin-top:139px",
         left: "left:322px",
+        softlock: true,
         logic: [
           {
-            type: ["chargeBeam", "wideBeam"],
+            type: ["wideBeam"],
             counter: 0,
           },
           {
-            type: ["chargeBeam", "plasmaBeam"],
+            type: ["plasmaBeam"],
             counter: 0,
           },
           {
-            type: ["chargeBeam", "waveBeam"],
+            type: ["waveBeam"],
             counter: 0,
           },
         ],
@@ -602,12 +811,19 @@ export default {
   actions: {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
-      if (data[6].logic) {
+      //diffusion beam area
+      if (data[6].logic || data[16].logic) {
         state.locations[21].softlock = false;
         state.locations[20].softlock = false;
       } else {
         state.locations[21].softlock = true;
         state.locations[20].softlock = true;
+      }
+      //greenEMMI
+      if (data[0].logic) {
+        state.locations[22].softlock = false;
+      } else {
+        state.locations[22].softlock = true;
       }
       for (let i = 0; i < state.locations.length; i++) {
         // for (let k = 0; k < state.locations[i].logic.length; k++) {

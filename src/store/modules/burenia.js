@@ -10,15 +10,27 @@ export default {
         left: "left:342px",
         logic: [
           {
-            type: ["morphBall", "waveBeam", "grappleBeam"],
+            type: ["morphBall", "waveBeam", "grappleBeam", "gravitySuit"],
             counter: 0,
           },
           {
-            type: ["morphBall", "grappleBeam", "chargeBeam", "spiderMagnet"],
+            type: [
+              "morphBall",
+              "grappleBeam",
+              "chargeBeam",
+              "spiderMagnet",
+              "gravitySuit",
+            ],
             counter: 0,
           },
           {
-            type: ["morphBall", "grappleBeam", "chargeBeam", "spaceJump"],
+            type: [
+              "morphBall",
+              "grappleBeam",
+              "chargeBeam",
+              "spaceJump",
+              "gravitySuit",
+            ],
             counter: 0,
           },
         ],
@@ -29,8 +41,8 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "margin-top:223px",
-        left: "left:301px",
+        top: "margin-top:240px",
+        left: "left:298px",
         logic: [
           {
             type: ["morphBall"],
@@ -83,6 +95,7 @@ export default {
             counter: 0,
           },
         ],
+        trick: [{ type: ["movefastbeforewater"] }],
         inLogic: false,
       },
       {
@@ -190,7 +203,7 @@ export default {
         left: "left:108px",
         logic: [
           {
-            type: ["morphBall", "spiderMagnet", "flashShift"],
+            type: ["morphBall", "flashShift"],
             counter: 0,
           },
           {
@@ -230,11 +243,7 @@ export default {
         softlock: true,
         logic: [
           {
-            type: ["morphBall", "grappleBeam", "gravitySuit", "spinBoost"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "gravitySuit", "spaceJump"],
+            type: ["morphBall", "grappleBeam"],
             counter: 0,
           },
           {

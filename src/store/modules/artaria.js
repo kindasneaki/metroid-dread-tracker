@@ -21,13 +21,7 @@ export default {
             counter: 0,
           },
           {
-            type: [
-              "morphBall",
-              "gravitySuit",
-              "grappleBeam",
-              "screwAttack",
-              "waveBeam",
-            ],
+            type: ["morphBall", "gravitySuit", "screwAttack", "waveBeam"],
             counter: 0,
           },
         ],
@@ -42,23 +36,11 @@ export default {
         left: "left:139px",
         logic: [
           {
-            type: [
-              "morphBall",
-              "gravitySuit",
-              "grappleBeam",
-              "waveBeam",
-              "spaceJump",
-            ],
+            type: ["morphBall", "gravitySuit", "waveBeam", "spaceJump"],
             counter: 0,
           },
           {
-            type: [
-              "morphBall",
-              "gravitySuit",
-              "grappleBeam",
-              "waveBeam",
-              "spinBoost",
-            ],
+            type: ["morphBall", "gravitySuit", "waveBeam", "spinBoost"],
             counter: 0,
           },
           {
@@ -112,6 +94,14 @@ export default {
               "waveBeam",
               "crossBomb",
             ],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "gravitySuit", "screwAttack", "waveBeam"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "gravitySuit", "screwAttack", "waveBeam"],
             counter: 0,
           },
           {
@@ -789,7 +779,7 @@ export default {
               "speedBooster",
               "bomb",
               "chargeBeam",
-              "grappeBeam",
+              "grappleBeam",
             ],
             counter: 0,
           },
@@ -799,7 +789,7 @@ export default {
               "speedBooster",
               "crossBomb",
               "chargeBeam",
-              "grappeBeam",
+              "grappleBeam",
             ],
             counter: 0,
           },
@@ -809,7 +799,7 @@ export default {
               "speedBooster",
               "powerBomb",
               "chargeBeam",
-              "grappeBeam",
+              "grappleBeam",
             ],
             counter: 0,
           },
@@ -927,6 +917,7 @@ export default {
               "grappleBeam",
               "spinBoost",
               "bomb",
+              "chargeBeam",
               "diffusionBeam",
             ],
             counter: 0,
@@ -938,6 +929,7 @@ export default {
               "grappleBeam",
               "spinBoost",
               "crossBomb",
+              "chargeBeam",
               "diffusionBeam",
             ],
             counter: 0,
@@ -949,6 +941,7 @@ export default {
               "grappleBeam",
               "spinBoost",
               "powerBomb",
+              "chargeBeam",
               "diffusionBeam",
             ],
             counter: 0,
@@ -958,7 +951,7 @@ export default {
               "morphBall",
               "gravitySuit",
               "grappleBeam",
-              "spaceJump",
+              "spinBoost",
               "bomb",
               "waveBeam",
             ],
@@ -969,7 +962,7 @@ export default {
               "morphBall",
               "gravitySuit",
               "grappleBeam",
-              "spaceJump",
+              "spinBoost",
               "crossBomb",
               "waveBeam",
             ],
@@ -980,18 +973,14 @@ export default {
               "morphBall",
               "gravitySuit",
               "grappleBeam",
-              "spaceJump",
+              "spinBoost",
               "powerBomb",
               "waveBeam",
             ],
             counter: 0,
           },
           {
-            type: ["morphBall", "gravitySuit", "grappleBeam", "spaceJump"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "gravitySuit", "grappleBeam", "spinBoost"],
+            type: ["morphBall", "gravitySuit", "screwAttack", "waveBeam"],
             counter: 0,
           },
         ],
@@ -1094,6 +1083,14 @@ export default {
         state.locations[30].softlock = true;
       }
       //screwAttack
+      if (
+        (data[23].logic && data[21].logic) ||
+        (data[23].logic && data[22].logic)
+      ) {
+        state.locations[32].softlock = false;
+      } else {
+        state.locations[32].softlock = true;
+      }
 
       for (let i = 0; i < state.locations.length; i++) {
         // for (let k = 0; k < state.locations[i].logic.length; k++) {

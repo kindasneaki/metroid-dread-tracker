@@ -81,25 +81,6 @@ export default {
         left: "left:589px",
         logic: [
           {
-            type: ["morphBall", "stormMissiles", "spinBoost", "bomb"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "stormMissiles", "spaceJump", "bomb"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
-      },
-      {
-        area: "5",
-        checked: false,
-        type: "missiles",
-        amount: 2,
-        top: "margin-top:153px",
-        left: "left:599px",
-        logic: [
-          {
             type: ["morphBall", "crossBomb", "gravitySuit"],
             counter: 0,
           },
@@ -109,6 +90,34 @@ export default {
           },
           {
             type: ["morphBall", "crossBomb", "spaceJump"],
+            counter: 0,
+          },
+        ],
+        inLogic: false,
+      },
+      {
+        //TODO
+        area: "5",
+        checked: false,
+        type: "missiles",
+        amount: 2,
+        top: "margin-top:153px",
+        left: "left:599px",
+        logic: [
+          {
+            type: ["morphBall", "stormMissiles", "spinBoost", "bomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "stormMissiles", "spaceJump", "bomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "stormMissiles", "spinBoost", "crossBomb"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "stormMissiles", "spaceJump", "crossBomb"],
             counter: 0,
           },
         ],

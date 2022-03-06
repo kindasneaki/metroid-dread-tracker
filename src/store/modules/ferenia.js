@@ -114,7 +114,7 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "margin-top:155px",
+        top: "margin-top:164px",
         left: "left:737px",
         logic: [
           {
@@ -184,6 +184,7 @@ export default {
         amount: 1,
         top: "margin-top:344px",
         left: "left:672px",
+        trick: "walljump with flashshift",
         logic: [
           {
             type: ["morphBall", "bomb", "spinBoost"],

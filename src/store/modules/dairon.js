@@ -52,19 +52,11 @@ export default {
             counter: 0,
           },
           {
-            type: ["morphBall", "powerBomb", "speedBooster"],
-            counter: 0,
-          },
-          {
             type: ["morphBall", "bomb", "wideBeam"],
             counter: 0,
           },
           {
             type: ["morphBall", "crossBomb", "wideBeam"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "powerBomb", "wideBeam"],
             counter: 0,
           },
         ],
@@ -341,7 +333,7 @@ export default {
         left: "left:303px",
         logic: [
           {
-            type: ["morphBall", "speedBooster", "wideBeam"],
+            type: ["morphBall", "speedBooster"],
             counter: 0,
           },
         ],
@@ -409,15 +401,15 @@ export default {
         left: "left:755px",
         logic: [
           {
-            type: ["grappleBeam", "morphBall", "speedBooster"],
+            type: ["grappleBeam", "morphBall", "speedBooster", "variaSuit"],
             counter: 0,
           },
           {
-            type: ["spinBoost", "morphBall", "speedBooster"],
+            type: ["spinBoost", "morphBall", "speedBooster", "variaSuit"],
             counter: 0,
           },
           {
-            type: ["spaceJump", "morphBall", "speedBooster"],
+            type: ["spaceJump", "morphBall", "speedBooster", "variaSuit"],
             counter: 0,
           },
           {
@@ -577,8 +569,8 @@ export default {
           {
             type: [
               "morphBall",
-              "chargeBeam",
-              "diffusionBeam",
+              // "chargeBeam",
+              // "diffusionBeam",
               "flashShift",
               "speedBooster",
             ],
@@ -591,8 +583,8 @@ export default {
           {
             type: [
               "morphBall",
-              "chargeBeam",
-              "diffusionBeam",
+              // "chargeBeam",
+              // "diffusionBeam",
               "flashShift",
               "wideBeam",
             ],
