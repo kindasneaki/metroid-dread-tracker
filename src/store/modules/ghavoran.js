@@ -376,7 +376,6 @@ export default {
         amount: 1,
         top: "margin-top:74px",
         left: "left:495px",
-        softlock: true,
         logic: [
           {
             type: ["morphBall", "grappleBeam", "iceMissiles"],
@@ -416,7 +415,6 @@ export default {
         amount: 1,
         top: "margin-top:357px",
         left: "left:297px",
-        softlock: true,
         logic: [
           {
             type: ["morphBall", "bomb"],
@@ -507,6 +505,23 @@ export default {
   actions: {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
+      //spinBoost
+      if (data[21].logic || data[22].logic) {
+        state.locations[18].softlock = false;
+      } else {
+        state.locations[18].softlock = true;
+      }
+      //crossBomb area
+      if (data[3].logic) {
+        let x = rootGetters["items/xDefeated"];
+        if (x) {
+          state.locations[0].softlock = false;
+          state.locations[19].softlock = false;
+        }
+      } else {
+        state.locations[0].softlock = true;
+        state.locations[19].softlock = true;
+      }
       for (let i = 0; i < state.locations.length; i++) {
         // for (let k = 0; k < state.locations[i].logic.length; k++) {
         let originalLength = state.locations[i].logic.length;

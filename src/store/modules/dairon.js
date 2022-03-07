@@ -232,6 +232,7 @@ export default {
         amount: 2,
         top: "margin-top:91px",
         left: "left:728px",
+        softlock: true,
         logic: [
           {
             type: ["morphBall", "grappleBeam", "diffusionBeam", "chargeBeam"],
@@ -282,6 +283,7 @@ export default {
         amount: 2,
         top: "margin-top:32px",
         left: "left:839px",
+        softlock: true,
         logic: [
           {
             type: ["speedBooster"],
@@ -607,7 +609,28 @@ export default {
   actions: {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
-
+      //speedBooster
+      if (data[17].logic) {
+        state.locations[22].softlock = false;
+      } else {
+        state.locations[22].softlock = true;
+      }
+      //bomb
+      if (data[2].logic || data[3].logic) {
+        state.locations[21].softlock = false;
+      } else {
+        state.locations[21].softlock = true;
+      }
+      //dairon softlock without wide
+      if (data[14].logic || data[15].logic || data[16].logic) {
+        state.locations[20].softlock = false;
+        state.locations[8].softlock = false;
+        state.locations[10].softlock = false;
+      } else {
+        state.locations[20].softlock = true;
+        state.locations[8].softlock = true;
+        state.locations[10].softlock = true;
+      }
       for (let i = 0; i < state.locations.length; i++) {
         // for (let k = 0; k < state.locations[i].logic.length; k++) {
         let originalLength = state.locations[i].logic.length;

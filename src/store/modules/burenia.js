@@ -373,6 +373,7 @@ export default {
         amount: 2,
         top: "margin-top:476px",
         left: "left:326px",
+        //flashshift or bombtrick
         softlock: true,
         logic: [
           {
@@ -389,10 +390,11 @@ export default {
         amount: 2,
         top: "margin-top:745px",
         left: "left:415px",
+        //gravitySuit
         softlock: true,
         logic: [
           {
-            type: ["morphBall", "gravitySuit", "grappleBeam"],
+            type: ["morphBall", "grappleBeam"],
             counter: 0,
           },
         ],
@@ -408,7 +410,24 @@ export default {
   actions: {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
-
+      //3m location
+      if (data[8].logic || (data[12].logic && data[9].logic)) {
+        state.locations[10].softlock = false;
+      } else {
+        state.locations[10].softlock = true;
+      }
+      //flashshift
+      if (data[12].logic) {
+        state.locations[17].softlock = false;
+      } else {
+        state.locations[17].softlock = true;
+      }
+      //gravity
+      if (data[8].logic) {
+        state.locations[18].softlock = false;
+      } else {
+        state.locations[18].softlock = true;
+      }
       for (let i = 0; i < state.locations.length; i++) {
         // for (let k = 0; k < state.locations[i].logic.length; k++) {
         let originalLength = state.locations[i].logic.length;

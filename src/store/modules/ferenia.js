@@ -131,6 +131,7 @@ export default {
         amount: 2,
         top: "margin-top:248px",
         left: "left:963px",
+        softlock: true,
         logic: [
           {
             type: ["morphBall"],
@@ -262,6 +263,7 @@ export default {
         amount: 1,
         top: "margin-top:280px",
         left: "left:907px",
+        softlock: true,
         logic: [
           {
             type: ["morphBall", "bomb"],
@@ -432,6 +434,28 @@ export default {
   actions: {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
+      //spaceJump
+      if (data[22].logic || (data[21].logic && data[8].logic)) {
+        state.locations[14].softlock = false;
+      } else {
+        state.locations[14].softlock = true;
+      }
+      //wave
+      if (data[16].logic) {
+        state.locations[16].softlock = false;
+      } else {
+        state.locations[16].softlock = true;
+      }
+      //storm + 2 others
+      if (data[20].logic) {
+        state.locations[5].softlock = false;
+        state.locations[11].softlock = false;
+        state.locations[15].softlock = false;
+      } else {
+        state.locations[5].softlock = true;
+        state.locations[11].softlock = true;
+        state.locations[15].softlock = true;
+      }
       for (let i = 0; i < state.locations.length; i++) {
         // for (let k = 0; k < state.locations[i].logic.length; k++) {
         let originalLength = state.locations[i].logic.length;

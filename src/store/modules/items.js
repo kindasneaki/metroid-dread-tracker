@@ -1,5 +1,6 @@
 export default {
   state: {
+    xDefeated: false,
     minorItems: [
       {
         type: "smallMissiles",
@@ -269,6 +270,9 @@ export default {
   getters: {
     inLogic(state) {
       return state.items;
+    },
+    xDefeated(state) {
+      return state.xDefeated;
     },
   },
   namespaced: true,

@@ -157,6 +157,12 @@ export default {
   actions: {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
+      //plasmaBeam
+      if (data[15].logic || data[16].logic) {
+        state.locations[4].softlock = false;
+      } else {
+        state.locations[4].softlock = true;
+      }
       for (let i = 0; i < state.locations.length; i++) {
         // for (let k = 0; k < state.locations[i].logic.length; k++) {
         let originalLength = state.locations[i].logic.length;
