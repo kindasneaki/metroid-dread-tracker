@@ -940,15 +940,27 @@ export default {
     },
   },
   actions: {
+    softLock({ state, rootGetters }, index) {
+      let data = rootGetters["items/inLogic"];
+      switch (index) {
+        case 7:
+          console.log(index, data[index].logic);
+          state.locations[31].softlock = data[index].logic;
+
+          break;
+      }
+    },
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
-      if (data[7].logic) {
-        state.locations[31].softlock = false;
-      } else {
-        state.locations[31].softlock = true;
-      }
+      // if (data[7].logic) {
+      //   state.locations[31].softlock = false;
+      // } else {
+      //   state.locations[31].softlock = true;
+      // }
       //chargeBeam or morphBall
+      console.log(data[0]);
       if (data[0].logic || data[1].logic) {
+        console.log("entered");
         state.locations[29].softlock = false;
       } else {
         state.locations[29].softlock = true;

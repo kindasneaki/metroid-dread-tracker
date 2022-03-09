@@ -126,6 +126,7 @@ export default {
     updateArea({ commit, dispatch }, { index, route }) {
       commit("UPDATE_AREA", index);
       dispatch(route + "/checkLogic", index, { root: true });
+      dispatch(route + "/softLock", index, { root: true });
     },
     checkProgressive({ commit, state }) {
       let index = null;
@@ -138,6 +139,10 @@ export default {
   getters: {
     inLogic(state) {
       return state.items;
+    },
+    softLock(state, index) {
+      console.log(index);
+      return state.items[index].logic;
     },
   },
   namespaced: true,
