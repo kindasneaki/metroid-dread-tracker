@@ -127,6 +127,7 @@ a {
   right: 1px; */
   position: absolute;
   font-size: 11px;
+  display: inline-block;
 }
 .tracker-grid {
   position: absolute;

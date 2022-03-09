@@ -170,6 +170,7 @@ export default {
         amount: 10,
         top: "margin-top:327px",
         left: "left:427px",
+        softlock: true,
         logic: [
           {
             type: ["morphBall", "speedBooster"],
@@ -302,6 +303,7 @@ export default {
         amount: 1,
         top: "margin-top:310px",
         left: "left:546px",
+        softlock: true,
         logic: [
           {
             type: ["morphBall", "powerBomb", "flashShift", "spinBoost"],
@@ -445,6 +447,14 @@ export default {
         state.locations[16].softlock = false;
       } else {
         state.locations[16].softlock = true;
+      }
+      //exit Ferenia
+      if (data[5].logic && data[14].logic) {
+        state.locations[7].softlock = false;
+        state.locations[13].softlock = false;
+      } else {
+        state.locations[7].softlock = true;
+        state.locations[13].softlock = true;
       }
       //storm + 2 others
       if (data[20].logic) {

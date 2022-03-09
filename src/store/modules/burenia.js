@@ -348,7 +348,7 @@ export default {
       {
         area: "1pb",
         checked: false,
-        type: "powerBomb",
+        type: "powerbomb",
         amount: 1,
         top: "margin-top:778px",
         left: "left:434px",

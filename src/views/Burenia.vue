@@ -55,9 +55,10 @@ export default {
 <style>
 .burenia {
   background-image: url("../assets/BureniaMap1.jpg");
-  width: 1080px;
+  width: 809px;
   height: 853px;
   background-repeat: no-repeat;
-  background-size: 75%;
+  background-size: 100%;
+  display: inline-block;
 }
 </style>

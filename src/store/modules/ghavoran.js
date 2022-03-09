@@ -58,11 +58,15 @@ export default {
         left: "left:551px",
         logic: [
           {
-            type: ["morphBall", "speedBooster", "bomb"],
+            type: ["morphBall", "speedBooster", "bomb", "iceMissiles"],
             counter: 0,
           },
           {
-            type: ["morphBall", "crossBomb"],
+            type: ["morphBall", "crossBomb", "iceMissiles"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "crossBomb", "variaSuit", "chargeBeam"],
             counter: 0,
           },
           {
@@ -145,9 +149,18 @@ export default {
         amount: 2,
         top: "margin-top:321px",
         left: "left:115px",
+        trick: "IBJ + flashShift",
         logic: [
           {
             type: ["morphBall", "grappleBeam", "plasmaBeam"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spaceJump", "plasmaBeam"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "spinBoost", "plasmaBeam", "flashShift"],
             counter: 0,
           },
           {

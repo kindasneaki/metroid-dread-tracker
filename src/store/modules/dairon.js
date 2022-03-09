@@ -44,19 +44,11 @@ export default {
         left: "left:266px",
         logic: [
           {
-            type: ["morphBall", "bomb", "speedBooster"],
+            type: ["morphBall", "bomb"],
             counter: 0,
           },
           {
-            type: ["morphBall", "crossBomb", "speedBooster"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "bomb", "wideBeam"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "crossBomb", "wideBeam"],
+            type: ["morphBall", "crossBomb"],
             counter: 0,
           },
         ],
@@ -71,35 +63,19 @@ export default {
         left: "left:295px",
         logic: [
           {
-            type: ["morphBall", "bomb", "speedBooster"],
+            type: ["morphBall", "bomb"],
             counter: 0,
           },
           {
-            type: ["morphBall", "crossBomb", "speedBooster"],
+            type: ["morphBall", "crossBomb"],
             counter: 0,
           },
           {
-            type: ["morphBall", "powerBomb", "speedBooster"],
+            type: ["morphBall", "powerBomb"],
             counter: 0,
           },
           {
-            type: ["morphBall", "grappleBeam", "speedBooster"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "bomb", "wideBeam"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "crossBomb", "wideBeam"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "powerBomb", "wideBeam"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "grappleBeam", "wideBeam"],
+            type: ["morphBall", "grappleBeam"],
             counter: 0,
           },
         ],
@@ -127,29 +103,18 @@ export default {
         amount: 2,
         top: "margin-top:64px",
         left: "left:461px",
+        softlock: true,
         logic: [
           {
-            type: ["morphBall", "bomb", "speedBooster"],
+            type: ["morphBall", "bomb"],
             counter: 0,
           },
           {
-            type: ["morphBall", "crossBomb", "speedBooster"],
+            type: ["morphBall", "crossBomb"],
             counter: 0,
           },
           {
-            type: ["morphBall", "powerBomb", "speedBooster"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "bomb", "wideBeam"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "crossBomb", "wideBeam"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "powerBomb", "wideBeam"],
+            type: ["morphBall", "powerBomb"],
             counter: 0,
           },
         ],
@@ -335,7 +300,11 @@ export default {
         left: "left:303px",
         logic: [
           {
-            type: ["morphBall", "speedBooster"],
+            type: ["morphBall", "speedBooster", "chargeBeam", "diffusionBeam"],
+            counter: 0,
+          },
+          {
+            type: ["morphBall", "speedBooster", "waveBeam"],
             counter: 0,
           },
         ],
@@ -548,11 +517,7 @@ export default {
         softlock: true,
         logic: [
           {
-            type: ["morphBall", "speedBooster"],
-            counter: 0,
-          },
-          {
-            type: ["morphBall", "wideBeam"],
+            type: ["morphBall"],
             counter: 0,
           },
         ],
@@ -571,8 +536,8 @@ export default {
           {
             type: [
               "morphBall",
-              // "chargeBeam",
-              // "diffusionBeam",
+              "chargeBeam",
+              "diffusionBeam",
               "flashShift",
               "speedBooster",
             ],
@@ -585,8 +550,8 @@ export default {
           {
             type: [
               "morphBall",
-              // "chargeBeam",
-              // "diffusionBeam",
+              "chargeBeam",
+              "diffusionBeam",
               "flashShift",
               "wideBeam",
             ],
@@ -618,8 +583,10 @@ export default {
       //bomb
       if (data[2].logic || data[3].logic) {
         state.locations[21].softlock = false;
+        state.locations[5].softlock = false;
       } else {
         state.locations[21].softlock = true;
+        state.locations[5].softlock = true;
       }
       //dairon softlock without wide
       if (data[14].logic || data[15].logic || data[16].logic) {
