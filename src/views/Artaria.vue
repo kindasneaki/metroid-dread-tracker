@@ -6,7 +6,11 @@
       class="toggle_box"
       :style="[location.top, location.left]"
     >
-      <label :for="location.area" v-if="location.inLogic">
+      <label
+        :for="location.area"
+        :key="location.inLogic"
+        v-if="location.inLogic"
+      >
         <input
           type="checkbox"
           :id="location.area"

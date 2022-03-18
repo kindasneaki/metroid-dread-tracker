@@ -28,6 +28,17 @@
           />
         </label>
       </div>
+      <div>
+        <label :for="xDefeated.type" class="xDefeated icon"
+          ><input
+            type="checkbox"
+            :id="xDefeated.type"
+            v-model="xDefeated.checked"
+            v-on:click="checkX()"
+          />
+          X
+        </label>
+      </div>
 
       <!-- <div>
         <button class="icon" v-on:click="addMissiles(smallMissiles)">
@@ -53,6 +64,7 @@ export default {
     ...mapState("items", {
       items: (state) => state.items,
       minorItems: (state) => state.minorItems,
+      xDefeated: (state) => state.xDefeated,
     }),
   },
   methods: {
@@ -105,6 +117,10 @@ export default {
         }
       });
       this.toggleMinor(i, amount);
+    },
+    checkX() {
+      this.$store.dispatch("items/updateX");
+      this.$store.dispatch("ghavoran/checkLogic");
     },
     toggleMinor(index, amount) {
       this.$store.dispatch("items/updateMinor", { index, amount });
@@ -263,5 +279,9 @@ a {
 }
 .powerBomb {
   background-image: url("../assets/powerBomb.png");
+}
+.xDefeated {
+  font-size: 20px;
+  text-align: center;
 }
 </style>

@@ -8,25 +8,18 @@ export default {
         amount: 2,
         top: "margin-top:155px",
         left: "left:647px",
+        requiredLogic: [
+          {
+            type: ["morphBall", "powerBomb", "grappleBeam", "waveBeam"],
+          },
+        ],
         logic: [
           {
-            type: [
-              "morphBall",
-              "powerBomb",
-              "speedBooster",
-              "grappleBeam",
-              "waveBeam",
-            ],
+            type: ["speedBooster"],
             counter: 0,
           },
           {
-            type: [
-              "morphBall",
-              "powerBomb",
-              "spaceJump",
-              "grappleBeam",
-              "waveBeam",
-            ],
+            type: ["spaceJump"],
             counter: 0,
           },
         ],
@@ -39,17 +32,22 @@ export default {
         amount: 2,
         top: "margin-top:269px",
         left: "left:573px",
+        requiredLogic: [
+          {
+            type: ["morphBall", "grappleBeam", "screwAttack"],
+          },
+        ],
         logic: [
           {
-            type: ["morphBall", "bomb", "grappleBeam", "screwAttack"],
+            type: ["bomb"],
             counter: 0,
           },
           {
-            type: ["morphBall", "crossBomb", "grappleBeam", "screwAttack"],
+            type: ["crossBomb"],
             counter: 0,
           },
           {
-            type: ["morphBall", "powerBomb", "grappleBeam", "screwAttack"],
+            type: ["powerBomb"],
             counter: 0,
           },
         ],
@@ -62,25 +60,18 @@ export default {
         amount: 1,
         top: "margin-top:216px",
         left: "left:667px",
+        requiredLogic: [
+          {
+            type: ["morphBall", "speedBooster", "screwAttack", "waveBeam"],
+          },
+        ],
         logic: [
           {
-            type: [
-              "morphBall",
-              "bomb",
-              "speedBooster",
-              "screwAttack",
-              "waveBeam",
-            ],
+            type: ["bomb"],
             counter: 0,
           },
           {
-            type: [
-              "morphBall",
-              "crossBomb",
-              "speedBooster",
-              "screwAttack",
-              "waveBeam",
-            ],
+            type: ["crossBomb"],
             counter: 0,
           },
         ],
@@ -94,17 +85,22 @@ export default {
         top: "margin-top:282px",
         left: "left:829px",
         softlock: true,
+        requiredLogic: [
+          {
+            type: ["morphBall", "speedBooster", "screwAttack"],
+          },
+        ],
         logic: [
           {
-            type: ["morphBall", "speedBooster", "bomb", "screwAttack"],
+            type: ["bomb"],
             counter: 0,
           },
           {
-            type: ["morphBall", "speedBooster", "crossBomb", "screwAttack"],
+            type: ["crossBomb"],
             counter: 0,
           },
           {
-            type: ["morphBall", "speedBooster", "powerBomb", "screwAttack"],
+            type: ["powerBomb"],
             counter: 0,
           },
         ],
@@ -124,14 +120,40 @@ export default {
         // for (let k = 0; k < state.locations[i].logic.length; k++) {
         let originalLength = state.locations[i].logic.length;
         let inLogic = false;
+        let requiredLogic = false;
+        if (state.locations[i].requiredLogic) {
+          state.locations[i].requiredLogic.forEach((element) => {
+            let counter = 0;
+            let logicLength = element.type.length;
+            for (let k = 0; k < element.type.length; k++) {
+              data.find((value) => {
+                if (value.type === element.type[k]) {
+                  if (value.logic) {
+                    counter++;
+                    if (logicLength === counter) {
+                      requiredLogic = true;
+                      return true;
+                    }
+                  }
+                }
+              });
+            }
+            for (let k = 0; k < element.type.length; k++) {
+              element.counter = 0;
+            }
+          });
+        } else {
+          requiredLogic = true;
+        }
         state.locations[i].logic.forEach((element) => {
+          let counter = 0;
           let logicLength = element.type.length;
           for (let k = 0; k < element.type.length; k++) {
             data.find((value) => {
               if (value.type === element.type[k]) {
                 if (value.logic) {
-                  element.counter++;
-                  if (logicLength === element.counter) {
+                  counter++;
+                  if (logicLength === counter && requiredLogic) {
                     inLogic = true;
                     return true;
                   }

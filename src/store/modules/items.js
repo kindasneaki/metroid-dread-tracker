@@ -1,6 +1,5 @@
 export default {
   state: {
-    xDefeated: false,
     minorItems: [
       {
         type: "smallMissiles",
@@ -159,6 +158,12 @@ export default {
         logic: false,
       },
     ],
+    xDefeated: {
+      type: "theX",
+      checked: false,
+      logic: false,
+    },
+
     progressiveLogic: [
       {
         type: "progressiveBomb",
@@ -206,6 +211,9 @@ export default {
     SET_ABILITY(state, { index, amount }) {
       state.minorItems[index].total += amount;
     },
+    SET_X(state) {
+      state.xDefeated.logic = !state.xDefeated.logic;
+    },
     ROTATE_ENERGY(state) {
       state.minorItems[2].total = 0;
     },
@@ -220,6 +228,9 @@ export default {
     },
   },
   actions: {
+    updateX({ commit }) {
+      commit("SET_X");
+    },
     updateArea({ commit, dispatch }, { index, route }) {
       commit("UPDATE_AREA", index);
       dispatch(route + "/checkLogic", index, { root: true });
@@ -271,8 +282,8 @@ export default {
     inLogic(state) {
       return state.items;
     },
-    xDefeated(state) {
-      return state.xDefeated;
+    checkX(state) {
+      return state.xDefeated.logic;
     },
   },
   namespaced: true,

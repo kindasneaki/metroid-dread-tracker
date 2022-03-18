@@ -8,29 +8,22 @@ export default {
         amount: 2,
         top: "margin-top:191px",
         left: "left:342px",
+        requiredLogic: [
+          {
+            type: ["morphBall", "grappleBeam", "gravitySuit"],
+          },
+        ],
         logic: [
           {
-            type: ["morphBall", "waveBeam", "grappleBeam", "gravitySuit"],
+            type: ["waveBeam"],
             counter: 0,
           },
           {
-            type: [
-              "morphBall",
-              "grappleBeam",
-              "chargeBeam",
-              "spiderMagnet",
-              "gravitySuit",
-            ],
+            type: ["chargeBeam", "spiderMagnet"],
             counter: 0,
           },
           {
-            type: [
-              "morphBall",
-              "grappleBeam",
-              "chargeBeam",
-              "spaceJump",
-              "gravitySuit",
-            ],
+            type: ["chargeBeam", "spaceJump"],
             counter: 0,
           },
         ],
@@ -58,21 +51,26 @@ export default {
         amount: 2,
         top: "margin-top:339px",
         left: "left:273px",
+        requiredLogic: [
+          {
+            type: ["morphBall"],
+          },
+        ],
         logic: [
           {
-            type: ["morphBall", "spinBoost"],
+            type: ["spinBoost"],
             counter: 0,
           },
           {
-            type: ["morphBall", "spiderMagnet"],
+            type: ["spiderMagnet"],
             counter: 0,
           },
           {
-            type: ["morphBall", "spaceJump"],
+            type: ["spaceJump"],
             counter: 0,
           },
           {
-            type: ["morphBall", "grappleBeam"],
+            type: ["grappleBeam"],
             counter: 0,
           },
         ],
@@ -85,13 +83,18 @@ export default {
         amount: 2,
         top: "margin-top:457px",
         left: "left:372px",
+        requiredLogic: [
+          {
+            type: ["morphBall"],
+          },
+        ],
         logic: [
           {
-            type: ["grappleBeam", "morphBall"],
+            type: ["grappleBeam"],
             counter: 0,
           },
           {
-            type: ["morphBall", "gravitySuit"],
+            type: ["gravitySuit"],
             counter: 0,
           },
         ],
@@ -135,45 +138,30 @@ export default {
         amount: 2,
         top: "margin-top:591px",
         left: "left:155px",
+        requiredLogic: [
+          {
+            type: ["morphBall", "gravitySuit"],
+          },
+        ],
         logic: [
           {
-            type: [
-              "morphBall",
-              "gravitySuit",
-              "spinBoost",
-              "plasmaBeam",
-              "spiderMagnet",
-            ],
+            type: ["spinBoost", "plasmaBeam", "spiderMagnet"],
             counter: 0,
           },
           {
-            type: [
-              "morphBall",
-              "gravitySuit",
-              "spaceJump",
-              "plasmaBeam",
-              "spiderMagnet",
-            ],
+            type: ["spaceJump", "plasmaBeam", "spiderMagnet"],
             counter: 0,
           },
           {
-            type: [
-              "morphBall",
-              "gravitySuit",
-              "spinBoost",
-              "waveBeam",
-              "spiderMagnet",
-            ],
+            type: ["spinBoost", "waveBeam", "spiderMagnet"],
             counter: 0,
           },
           {
-            type: [
-              "morphBall",
-              "gravitySuit",
-              "spaceJump",
-              "waveBeam",
-              "spiderMagnet",
-            ],
+            type: ["spaceJump", "waveBeam", "spiderMagnet"],
+            counter: 0,
+          },
+          {
+            type: ["spaceJump", "speedBooster", "phantomCloak", "screwAttack"],
             counter: 0,
           },
         ],
@@ -201,13 +189,18 @@ export default {
         amount: 10,
         top: "margin-top:196px",
         left: "left:108px",
+        requiredLogic: [
+          {
+            type: ["morphBall"],
+          },
+        ],
         logic: [
           {
-            type: ["morphBall", "flashShift"],
+            type: ["flashShift"],
             counter: 0,
           },
           {
-            type: ["morphBall", "spaceJump"],
+            type: ["spaceJump"],
             counter: 0,
           },
         ],
@@ -220,13 +213,18 @@ export default {
         amount: 10,
         top: "margin-top:669px",
         left: "left:424px",
+        requiredLogic: [
+          {
+            type: ["morphBall", "speedBooster"],
+          },
+        ],
         logic: [
           {
-            type: ["morphBall", "powerBomb", "speedBooster"],
+            type: ["powerBomb"],
             counter: 0,
           },
           {
-            type: ["morphBall", "iceMissiles", "speedBooster"],
+            type: ["iceMissiles"],
             counter: 0,
           },
         ],
@@ -241,13 +239,18 @@ export default {
         left: "left:195px",
         //flashshift or gravitysuit
         softlock: true,
+        requiredLogic: [
+          {
+            type: ["morphBall"],
+          },
+        ],
         logic: [
           {
-            type: ["morphBall", "grappleBeam"],
+            type: ["grappleBeam"],
             counter: 0,
           },
           {
-            type: ["morphBall", "spiderMagnet"],
+            type: ["spiderMagnet"],
             counter: 0,
           },
         ],
@@ -291,13 +294,18 @@ export default {
         amount: 1,
         top: "margin-top:575px",
         left: "left:426px",
+        requiredLogic: [
+          {
+            type: ["morphBall"],
+          },
+        ],
         logic: [
           {
-            type: ["morphBall", "powerBomb"],
+            type: ["powerBomb"],
             counter: 0,
           },
           {
-            type: ["morphBall", "iceMissiles"],
+            type: ["iceMissiles"],
             counter: 0,
           },
         ],
@@ -310,21 +318,26 @@ export default {
         amount: 1,
         top: "margin-top:417px",
         left: "left:272px",
+        requiredLogic: [
+          {
+            type: ["morphBall"],
+          },
+        ],
         logic: [
           {
-            type: ["morphBall", "spinBoost"],
+            type: ["spinBoost"],
             counter: 0,
           },
           {
-            type: ["morphBall", "flashShift"],
+            type: ["flashShift"],
             counter: 0,
           },
           {
-            type: ["morphBall", "spaceJump"],
+            type: ["spaceJump"],
             counter: 0,
           },
           {
-            type: ["morphBall", "spiderMagnet", "grappleBeam"],
+            type: ["spiderMagnet", "grappleBeam"],
             counter: 0,
           },
         ],
@@ -432,14 +445,40 @@ export default {
         // for (let k = 0; k < state.locations[i].logic.length; k++) {
         let originalLength = state.locations[i].logic.length;
         let inLogic = false;
+        let requiredLogic = false;
+        if (state.locations[i].requiredLogic) {
+          state.locations[i].requiredLogic.forEach((element) => {
+            let counter = 0;
+            let logicLength = element.type.length;
+            for (let k = 0; k < element.type.length; k++) {
+              data.find((value) => {
+                if (value.type === element.type[k]) {
+                  if (value.logic) {
+                    counter++;
+                    if (logicLength === counter) {
+                      requiredLogic = true;
+                      return true;
+                    }
+                  }
+                }
+              });
+            }
+            for (let k = 0; k < element.type.length; k++) {
+              element.counter = 0;
+            }
+          });
+        } else {
+          requiredLogic = true;
+        }
         state.locations[i].logic.forEach((element) => {
+          let counter = 0;
           let logicLength = element.type.length;
           for (let k = 0; k < element.type.length; k++) {
             data.find((value) => {
               if (value.type === element.type[k]) {
                 if (value.logic) {
-                  element.counter++;
-                  if (logicLength === element.counter) {
+                  counter++;
+                  if (logicLength === counter && requiredLogic) {
                     inLogic = true;
                     return true;
                   }
