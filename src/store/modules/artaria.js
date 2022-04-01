@@ -518,16 +518,7 @@ export default {
             type: ["spinBoost", "damage>100"],
           },
           {
-            type: ["spinBoost", "damage>100"],
-          },
-          {
             type: ["spaceJump", "damage>100"],
-          },
-          {
-            type: ["spaceJump", "damage>100"],
-          },
-          {
-            type: ["flashShift", "damage>100"],
           },
           {
             type: ["flashShift", "damage>100"],
@@ -536,31 +527,23 @@ export default {
             type: ["spiderMagnet", "damage>100"],
           },
           {
+            type: ["spinBoost", "variaSuit"],
+          },
+
+          {
+            type: ["spaceJump", "variaSuit"],
+          },
+          {
+            type: ["flashShift", "variaSuit"],
+          },
+          {
+            type: ["spiderMagnet", "variaSuit"],
+          },
+          {
+            type: ["speedBoost", "variaSuit"],
+          },
+          {
             type: ["spiderMagnet", "damage>100"],
-          },
-          {
-            type: ["spinBoost", "variaSuit"],
-          },
-          {
-            type: ["spinBoost", "variaSuit"],
-          },
-          {
-            type: ["spaceJump", "variaSuit"],
-          },
-          {
-            type: ["spaceJump", "variaSuit"],
-          },
-          {
-            type: ["flashShift", "variaSuit"],
-          },
-          {
-            type: ["flashShift", "variaSuit"],
-          },
-          {
-            type: ["spiderMagnet", "variaSuit"],
-          },
-          {
-            type: ["spiderMagnet", "variaSuit"],
           },
         ],
         inLogic: false,

@@ -245,10 +245,6 @@ export default {
             type: ["crossBomb"],
             counter: 0,
           },
-          {
-            type: ["powerBomb"],
-            counter: 0,
-          },
         ],
         inLogic: false,
       },
@@ -377,6 +373,14 @@ export default {
           },
           {
             type: ["gravitySuit", "waveBeam"],
+            counter: 0,
+          },
+          {
+            type: ["crossBomb", "spinBoost"],
+            counter: 0,
+          },
+          {
+            type: ["crossBomb", "spaceJump"],
             counter: 0,
           },
         ],

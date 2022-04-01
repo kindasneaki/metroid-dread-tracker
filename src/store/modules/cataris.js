@@ -399,6 +399,9 @@ export default {
           {
             type: ["phantomCloak"],
           },
+          {
+            type: ["gravitySuit"],
+          },
         ],
         inLogic: false,
       },
@@ -507,7 +510,7 @@ export default {
         left: "left:409px",
         logic: [
           {
-            type: ["speedBooster", "morphBall", "powerBomb"],
+            type: ["speedBooster", "morphBall", "powerBomb", "wideBeam"],
           },
         ],
         inLogic: false,

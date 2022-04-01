@@ -286,15 +286,15 @@ export default {
         left: "left:303px",
         requiredLogic: [
           {
-            type: ["morphBall"],
+            type: ["morphBall", "speedBooster"],
           },
         ],
         logic: [
           {
-            type: ["speedBooster", "chargeBeam", "diffusionBeam"],
+            type: ["chargeBeam", "diffusionBeam", "flashShift"],
           },
           {
-            type: ["speedBooster", "waveBeam"],
+            type: ["waveBeam"],
           },
         ],
         inLogic: false,
@@ -481,16 +481,16 @@ export default {
         ],
         logic: [
           {
-            type: ["chargeBeam", "diffusionBeam", "flashShift", "speedBooster"],
-          },
-          {
-            type: ["waveBeam", "flashShift", "speedBooster"],
-          },
-          {
-            type: ["chargeBeam", "diffusionBeam", "flashShift", "wideBeam"],
+            type: ["chargeBeam", "diffusionBeam", "flashShift"],
           },
           {
             type: ["waveBeam", "flashShift"],
+          },
+          {
+            type: ["chargeBeam", "diffusionBeam", "wideBeam"],
+          },
+          {
+            type: ["waveBeam"],
           },
         ],
         inLogic: false,
