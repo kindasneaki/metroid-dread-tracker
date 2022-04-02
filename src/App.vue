@@ -48,6 +48,10 @@ input[type="checkbox"]:checked + .toggle_switch_softlock {
   background: #1deb38;
   color: #fff; /* background-image: url("checked.png"); */
 }
+input[type="checkbox"]:checked + .toggle_switch_noLogic {
+  background: #1deb38;
+  color: #fff; /* background-image: url("checked.png"); */
+}
 .toggle_switch {
   border: 1px solid #000;
   display: inline-block;
@@ -62,6 +66,14 @@ padding-left: 15px; */
   display: inline-block;
   padding: 3px;
   background: yellow;
+  height: 10px;
+  width: 10px;
+}
+.toggle_switch_noLogic {
+  border: 1px solid #000;
+  display: inline-block;
+  padding: 3px;
+  background: #4a7491;
   height: 10px;
   width: 10px;
 }

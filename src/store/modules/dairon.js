@@ -20,6 +20,9 @@ export default {
           {
             type: ["powerBomb"],
           },
+          {
+            type: ["speedBooster"],
+          },
         ],
         inLogic: false,
       },
@@ -202,6 +205,9 @@ export default {
           },
           {
             type: ["spaceJump"],
+          },
+          {
+            type: ["grappleBeam", "speedBooster"],
           },
           {
             type: ["wideBeam", "chargeBeam", "grappleBeam"],

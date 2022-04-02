@@ -15,6 +15,15 @@
         />
         <span class="toggle_switch"></span>
       </label>
+      <label :for="location.area" :key="location.inLogic" v-else>
+        <input
+          type="checkbox"
+          :id="location.area"
+          v-model="location.checked"
+          v-on:click="checked(location.checked, location.type, location.amount)"
+        />
+        <span class="toggle_switch_noLogic"></span>
+      </label>
     </div>
   </div>
 </template>
