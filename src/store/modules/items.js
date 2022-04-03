@@ -39,8 +39,8 @@ export default {
       },
       {
         type: "slide",
-        checked: false,
-        logic: false,
+        checked: true,
+        logic: true,
       },
 
       {

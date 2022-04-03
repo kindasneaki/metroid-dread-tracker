@@ -405,9 +405,18 @@ export default {
         left: "left:415px",
         //gravitySuit
         softlock: true,
-        logic: [
+        requiredLogic: [
           {
             type: ["morphBall", "grappleBeam"],
+          },
+        ],
+        logic: [
+          {
+            type: ["waveBeam"],
+            counter: 0,
+          },
+          {
+            type: ["chargeBeam", "diffusionBeam"],
             counter: 0,
           },
         ],

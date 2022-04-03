@@ -109,10 +109,6 @@ export default {
             counter: 0,
           },
           {
-            type: ["spinBoost"],
-            counter: 0,
-          },
-          {
             type: ["spaceJump"],
             counter: 0,
           },
@@ -134,15 +130,7 @@ export default {
         ],
         logic: [
           {
-            type: ["spinBoost", "bomb"],
-            counter: 0,
-          },
-          {
             type: ["spaceJump", "bomb"],
-            counter: 0,
-          },
-          {
-            type: ["spinBoost", "crossBomb"],
             counter: 0,
           },
           {
