@@ -433,7 +433,11 @@ export default {
     checkLogic({ commit, state, rootGetters }) {
       let data = rootGetters["items/inLogic"];
       //3m location
-      if (data[8].logic || (data[12].logic && data[9].logic)) {
+      if (
+        data[8].logic ||
+        (data[12].logic && data[9].logic) ||
+        (data[12].logic && data[10].logic)
+      ) {
         state.locations[10].softlock = false;
       } else {
         state.locations[10].softlock = true;
