@@ -10,7 +10,7 @@ export default {
         left: "left:307px",
         requiredLogic: [
           {
-            type: ["morphBall", "spaceJump"],
+            type: ["morphBall", "spaceJump", "chargeBeam", "diffusionBeam"],
           },
         ],
         logic: [
@@ -335,15 +335,11 @@ export default {
         ],
         logic: [
           {
-            type: ["spinBoost"],
-            counter: 0,
-          },
-          {
             type: ["spaceJump"],
             counter: 0,
           },
           {
-            type: ["grappleBeam"],
+            type: ["crossBomb"],
             counter: 0,
           },
         ],

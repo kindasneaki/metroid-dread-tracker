@@ -407,7 +407,7 @@ export default {
         softlock: true,
         logic: [
           {
-            type: ["spinBoost", "morphBall", "chargeBeam"],
+            type: ["spinBoost", "morphBall"],
             counter: 0,
           },
         ],
