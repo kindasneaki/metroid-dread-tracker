@@ -3,7 +3,15 @@
     <div class="tracker-grid">
       <div v-for="item in minorItems" :key="item.type" class="active">
         <!-- <span :class="{ active: item.checked }" /> -->
-        <label :for="item.type" :class="[item.type, 'icon']"
+        <label
+          :for="item.type"
+          :class="[item.type, 'icon']"
+          @mouseover="
+            action = item.name;
+            mouse = $event;
+          "
+          @mouseleave="action = null"
+          @mousemove="hoverEvent($event)"
           ><input
             type="button"
             :id="item.type"
@@ -13,14 +21,19 @@
           />
         </label>
       </div>
-      <div
-        v-for="item in items"
-        :key="item.type"
-        :class="item.checked ? 'active' : 'notActive'"
-      >
+      <div v-for="item in items" :key="item.type">
         <!-- <span :class="{ active: item.checked }" /> -->
-        <label :for="item.type" :class="[item.type, 'icon']"
-          ><input
+        <label
+          :for="item.type"
+          @mouseover="
+            action = item.name;
+            mouse = $event;
+          "
+          @mouseleave="action = null"
+          :class="[item.type, 'icon', item.checked ? 'active' : 'notActive']"
+          @mousemove="hoverEvent($event)"
+        >
+          <input
             type="checkbox"
             :id="item.type"
             v-model="item.checked"
@@ -29,7 +42,20 @@
         </label>
       </div>
       <div>
-        <label :for="xDefeated.type" class="xDefeated icon"
+        <label
+          :for="xDefeated.type"
+          class="xDefeated icon"
+          @mouseover="
+            action = xDefeated.name;
+            mouse = $event;
+          "
+          :class="[
+            xDefeated.type,
+            'icon',
+            xDefeated.checked ? 'active' : 'notActive',
+          ]"
+          @mouseleave="action = null"
+          @mousemove="hoverEvent($event)"
           ><input
             type="checkbox"
             :id="xDefeated.type"
@@ -52,6 +78,16 @@
       </div>
       -->
     </div>
+    <span
+      v-if="hoverAction"
+      class="tooltip"
+      :style="{
+        left: mouse.layerX + -20 + 'px',
+        top: mouse.layerY + 30 + 'px',
+      }"
+    >
+      {{ action }}
+    </span>
   </div>
 </template>
 
@@ -59,6 +95,12 @@
 import { mapState } from "vuex";
 export default {
   name: "Tracker",
+  data() {
+    return {
+      action: null,
+      mouse: 0,
+    };
+  },
   computed: {
     ...mapState(["missiles", "energyPart", "energyFull", "powerBomb"]),
     ...mapState("items", {
@@ -66,8 +108,18 @@ export default {
       minorItems: (state) => state.minorItems,
       xDefeated: (state) => state.xDefeated,
     }),
+    hoverAction() {
+      if (this.action) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   methods: {
+    hoverEvent(event) {
+      this.mouse = event;
+    },
     rightClick(event, item) {
       event.preventDefault();
       let amount = item.amount * -1;
@@ -192,8 +244,18 @@ a {
   border-top: 1px solid;
   border-bottom: 1px solid;
 }
+/* .button:active {
+  opacity: 0;
+} */
 .smallMissiles {
   background-image: url("../assets/missiles.png");
+}
+.smallMissiles:active,
+.bigMissiles:active,
+.energyPart:active,
+.energyFull:active,
+.smallPowerBomb:active {
+  opacity: 0.5;
 }
 .bigMissiles {
   background-image: url("../assets/bigMissiles.png");
@@ -283,5 +345,18 @@ a {
 .xDefeated {
   font-size: 20px;
   text-align: center;
+}
+.tooltip {
+  height: 100%;
+  width: 100%;
+  display: inline-table;
+  background-color: black;
+  color: white;
+  position: absolute;
+  /* top: -15px; */
+  opacity: 1 !important;
+}
+div > div > .notActive > .tooltip {
+  opacity: 1 !important;
 }
 </style>

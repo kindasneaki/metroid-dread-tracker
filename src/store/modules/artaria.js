@@ -788,42 +788,24 @@ export default {
         softlock: true,
         requiredLogic: [
           {
-            type: ["gravitySuit", "morphBall"],
+            type: ["gravitySuit", "morphBall", "chargeBeam", "diffusionBeam"],
           },
           {
-            type: ["gravitySuit", "morphBall"],
+            type: ["gravitySuit", "morphBall", "waveBeam"],
           },
         ],
         logic: [
           {
-            type: [
-              "grappleBeam",
-              "spinBoost",
-              "bomb",
-              "chargeBeam",
-              "diffusionBeam",
-            ],
+            type: ["grappleBeam", "spinBoost", "bomb"],
           },
           {
-            type: [
-              "grappleBeam",
-              "spinBoost",
-              "crossBomb",
-              "chargeBeam",
-              "diffusionBeam",
-            ],
+            type: ["grappleBeam", "spinBoost", "crossBomb"],
           },
           {
-            type: [
-              "grappleBeam",
-              "spinBoost",
-              "powerBomb",
-              "chargeBeam",
-              "diffusionBeam",
-            ],
+            type: ["grappleBeam", "spinBoost", "powerBomb"],
           },
           {
-            type: ["screwAttack", "waveBeam"],
+            type: ["screwAttack"],
           },
         ],
         inLogic: false,

@@ -1,4 +1,5 @@
 <template>
+  <metainfo><template v-slot:title></template></metainfo>
   <Display />
   <div id="nav">
     <router-link to="/">Home</router-link> |
@@ -17,7 +18,21 @@
 <script>
 import Tracker from "@/components/Tracker.vue";
 import Display from "@/components/Display.vue";
-export default { name: "Home", components: { Tracker, Display } };
+import { useMeta } from "vue-meta";
+export default {
+  name: "app",
+  components: { Tracker, Display },
+  setup() {
+    useMeta({
+      title: "Metroid Dread Tracker",
+      description:
+        "This is a map tracker for metroid dread randomizer that I created for myself to test the logic to as close as I could to Randovania. This can also be used as just a item tracker for metroid dread",
+      author: "KindaSneaki",
+      game: "Metroid Dread",
+      type: "Map Tracker",
+    });
+  },
+};
 </script>
 <style>
 #app {

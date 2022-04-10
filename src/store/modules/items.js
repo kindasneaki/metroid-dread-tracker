@@ -3,29 +3,34 @@ export default {
     minorItems: [
       {
         type: "smallMissiles",
+        name: "Missiles + 2",
         amount: 2,
         total: 15,
         startAmount: 15,
       },
       {
         type: "bigMissiles",
+        name: "Missiles + 10",
         amount: 10,
         startAmount: 15,
       },
       {
         type: "energyPart",
+        name: "Energy Part",
         total: 0,
         amount: 1,
         startAmount: 0,
       },
       {
         type: "energyFull",
+        name: "Energy Full",
         total: 0,
         amount: 1,
         startAmount: 0,
       },
       {
         type: "smallPowerBomb",
+        name: "Powerbomb + 1",
         total: 0,
         amount: 1,
         startAmount: 0,
@@ -34,132 +39,157 @@ export default {
     items: [
       {
         type: "morphBall",
+        name: "Morph Ball",
         checked: false,
         logic: false,
       },
       {
         type: "slide",
+        name: "Slide",
         checked: true,
         logic: true,
       },
 
       {
         type: "bomb",
+        name: "Bomb",
         checked: false,
         logic: false,
       },
       {
         type: "crossBomb",
+        name: "Cross Bomb",
         checked: false,
         logic: false,
       },
       {
         type: "powerBomb",
+        name: "Main Power Bomb",
         checked: false,
         logic: false,
       },
       {
         type: "chargeBeam",
+        name: "Charge Beam",
         checked: false,
         logic: false,
       },
       {
         type: "diffusionBeam",
+        name: "Diffusion Beam",
         checked: false,
         logic: false,
       },
       {
         type: "variaSuit",
+        name: "Varia Suit",
         checked: false,
         logic: false,
       },
       {
         type: "gravitySuit",
+        name: "Gravity Suit",
         checked: false,
         logic: false,
       },
       {
         type: "spiderMagnet",
+        name: "Spider Magnet",
         checked: false,
         logic: false,
       },
       {
         type: "grappleBeam",
+        name: "Grapple Beam",
         checked: false,
         logic: false,
       },
       {
         type: "phantomCloak",
+        name: "Phantom Cloak",
         checked: false,
         logic: false,
       },
       {
         type: "flashShift",
+        name: "Flash Shift",
         checked: false,
         logic: false,
       },
       {
         type: "pulseRadar",
+        name: "Pulse Radar",
         checked: false,
         logic: false,
       },
       {
         type: "wideBeam",
+        name: "Wide Beam",
         checked: false,
         logic: false,
       },
       {
         type: "plasmaBeam",
+        name: "Plasma Beam",
         checked: false,
         logic: false,
       },
       {
         type: "waveBeam",
+        name: "Wave Beam",
         checked: false,
         logic: false,
       },
       {
         type: "speedBooster",
+        name: "Speed Booster",
         checked: false,
         logic: false,
       },
 
       {
         type: "superMissiles",
+        name: "Super Missiles",
         checked: false,
         logic: false,
       },
 
       {
         type: "iceMissiles",
+        name: "Ice Missiles",
         checked: false,
         logic: false,
       },
       {
         type: "stormMissiles",
+        name: "Storm Missiles",
         checked: false,
         logic: false,
       },
 
       {
         type: "spinBoost",
+        name: "Spin Boost",
         checked: false,
         logic: false,
       },
 
       {
         type: "spaceJump",
+        name: "Space Jump",
         checked: false,
         logic: false,
       },
       {
         type: "screwAttack",
+        name: "Screw Attack",
         checked: false,
         logic: false,
       },
     ],
     xDefeated: {
-      type: "theX",
+      type: "releaseTheX",
+      name: "Release The X",
       checked: false,
       logic: false,
     },
