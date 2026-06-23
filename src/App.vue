@@ -19,6 +19,8 @@
 import Tracker from "@/components/Tracker.vue";
 import Display from "@/components/Display.vue";
 import { useMeta } from "vue-meta";
+import { useStore } from "vuex";
+import { onMounted } from "vue";
 export default {
   name: "app",
   components: { Tracker, Display },
@@ -30,6 +32,13 @@ export default {
       author: "KindaSneaki",
       game: "Metroid Dread",
       type: "Map Tracker",
+    });
+    // DAT-04 / D-02: Warm the logic engine at app init.
+    // Fetches public/logic/*.json, asserts schema, builds the frozen GameModel.
+    // Non-blocking — the existing hand-authored engine keeps driving the UI (D-05).
+    const store = useStore();
+    onMounted(() => {
+      store.dispatch("logic/load");
     });
   },
 };

@@ -8,6 +8,7 @@ import ghavoran from "./modules/ghavoran";
 import elun from "./modules/elun";
 import hanubia from "./modules/hanubia";
 import items from "./modules/items";
+import logic from "./modules/logic";
 
 export default createStore({
   state: {
@@ -52,6 +53,7 @@ export default createStore({
     elun,
     hanubia,
     items,
+    logic,
   },
   getters: {},
 });
