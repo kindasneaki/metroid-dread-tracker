@@ -23,6 +23,8 @@ import {
   assertSchema,
   EXPECTED_SCHEMA_VERSION,
 } from "../src/logic/index.js";
+import { buildResourceState } from "../src/logic/ResourceState.js";
+import { defaultSettings } from "../src/logic/Settings.js";
 
 // ── Load vendored db ──────────────────────────────────────────────────────────
 
@@ -365,16 +367,82 @@ if (ENGINE_READY) {
   run("starterBaseline", () => {
     // Starter items: morphBall, slideBoots (Slide)
     const starterItems = { Power: 1, Morph: 1, Slide: 1 };
-    const defaultSettings = noTrickSettings(rdb);
+    const baseSettings = noTrickSettings(rdb);
     const state = { items: starterItems, events: new Set(), maxEnergy: 99 };
-    const { inLogicPickups } = recompute(model, state, defaultSettings);
+    const { inLogicPickups } = recompute(model, state, baseSettings);
 
     // With only Morph + Slide, at least a few items should be in logic
     // (exact count asserted in Phase 2 parity; here we just assert non-negative and deterministic)
     assert.ok(inLogicPickups.size >= 0, "starterBaseline: pickup set must be non-negative");
     // Run twice — must be deterministic
-    const { inLogicPickups: second } = recompute(model, { items: starterItems, events: new Set(), maxEnergy: 99 }, defaultSettings);
+    const { inLogicPickups: second } = recompute(model, { items: starterItems, events: new Set(), maxEnergy: 99 }, baseSettings);
     assert.strictEqual(inLogicPickups.size, second.size, "recompute must be deterministic");
+  });
+
+  // recomputeIntegration (ENG-07 / D-06 / Plan 03): exercises the exact pure path the
+  // Vuex logic/recompute action uses — buildResourceState(obtained, counters, settings, rdb)
+  // → recompute(model, resourceState, settings) — proving the items→ResourceState→recompute
+  // wiring without Vuex. Asserts:
+  //   1. Both returned values are instanceof Set.
+  //   2. A no-items obtained map yields the same minimal pickup set as the noItems case
+  //      (consistency between the raw items-map path and the ResourceState path).
+  //   3. A partial obtained map (Morph + Slide) yields >= the no-items set (monotonic).
+  run("recomputeIntegration", () => {
+    const settings = defaultSettings(db.header);
+
+    // ── no-items obtained map ──────────────────────────────────────────────────
+    // Mirrors the Vuex recompute with no abilities checked and zero counters.
+    // MainPB is driven by the powerBomb ability boolean; Power is always 1 (handled
+    // inside buildResourceState). With nothing checked and zero counters the engine
+    // should reach the same zero-pickup set as the raw noItems() path.
+    const noObtained = {};
+    const noCounters = { missiles: 0, energyPart: 0, energyFull: 0, powerBomb: 0 };
+    const rsNoItems = buildResourceState(noObtained, noCounters, settings, rdb);
+
+    const { inLogicPickups: noItemsPickups, energyRisk: noItemsRisk } = recompute(
+      model,
+      rsNoItems,
+      settings,
+    );
+
+    // Both outputs must be Sets (ENG-07)
+    assert.ok(
+      noItemsPickups instanceof Set,
+      "recomputeIntegration: inLogicPickups must be instanceof Set",
+    );
+    assert.ok(
+      noItemsRisk instanceof Set,
+      "recomputeIntegration: energyRisk must be instanceof Set",
+    );
+
+    // Consistency with the raw noItems path: same zero-pickup count
+    // (ResourceState path must not inflate reachability vs the raw items-map path)
+    const rawNoItems = noItemsState();
+    const { inLogicPickups: rawNoItemsPickups } = recompute(
+      model,
+      rawNoItems,
+      noTrickSettings(rdb),
+    );
+    assert.strictEqual(
+      noItemsPickups.size,
+      rawNoItemsPickups.size,
+      `recomputeIntegration: no-items via ResourceState (${noItemsPickups.size}) must match raw noItems path (${rawNoItemsPickups.size})`,
+    );
+
+    // ── partial obtained map — Morph + Slide obtained ────────────────────────
+    // A non-empty obtained map must yield >= the no-items set (monotonic via ResourceState).
+    const partialObtained = { morphBall: true, slide: true };
+    const rsPartial = buildResourceState(partialObtained, noCounters, settings, rdb);
+    const { inLogicPickups: partialPickups } = recompute(model, rsPartial, settings);
+
+    assert.ok(
+      partialPickups instanceof Set,
+      "recomputeIntegration: partial inLogicPickups must be instanceof Set",
+    );
+    assert.ok(
+      partialPickups.size >= noItemsPickups.size,
+      `recomputeIntegration: Morph+Slide obtained (${partialPickups.size}) must be >= no-items (${noItemsPickups.size})`,
+    );
   });
 } else {
   skip("allItems", SKIP_REASON);
@@ -387,6 +455,7 @@ if (ENGINE_READY) {
   skip("energyRisk", SKIP_REASON);
   skip("missileGate", SKIP_REASON);
   skip("starterBaseline", SKIP_REASON);
+  skip("recomputeIntegration", SKIP_REASON);
 }
 
 // ── Summary ───────────────────────────────────────────────────────────────────
