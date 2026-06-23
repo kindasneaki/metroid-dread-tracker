@@ -27,6 +27,11 @@ made configurable + persistent, scaled to all regions, and finally cut over.
 3. New namespaced `logic` Vuex module with a single `recompute` action returns the in-logic `pickup_index` set (+ energy-risk set).
 **Requirements:** ENG-01..ENG-07, DAT-01..DAT-04
 **Depends on:** Phase 0
+**Plans:** 3 plans
+Plans:
+- [ ] 01-01-PLAN.md — Vendor data snapshot + refresh script + node entrypoint contract + validation battery harness (Wave 1)
+- [ ] 01-02-PLAN.md — Port the reach engine: templates/evaluator/energy/GameModel(dock overrides)/Reachability/Settings/itemMap/ResourceState (Wave 2)
+- [ ] 01-03-PLAN.md — Namespaced `logic` Vuex module: async load gate + recompute, registered + triggered at app init (Wave 3)
 
 ### Phase 2: Artaria pilot behind a flag
 **Goal:** Drive Artaria's checkbox colors from the new engine, validated for parity, with the old path still default.
