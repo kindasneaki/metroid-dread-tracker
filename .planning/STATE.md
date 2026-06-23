@@ -20,7 +20,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-22)
 
 **Core value:** When the tracker says a location is "in logic," it matches the actual Randovania randomizer for the player's seed/preset.
-**Current focus:** Phase 1 COMPLETE ✅ (verified) — ready to plan Phase 2 (Artaria pilot)
+**Current focus:** Phase 2 PLANNED ✅ (3 plans; checker PASS after 1 revision) — ready to execute
 
 ## Status
 
