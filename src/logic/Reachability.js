@@ -104,19 +104,39 @@ const RISK_RATIO = 0.75; // flag pickup when effective damage >= 75% of maxEnerg
 export function collectEnergyRisk(reachable, state, ctx, model) {
   const { maxEnergy: computeMax } = _energyHelpers(ctx);
   const me = computeMax();
-  const risky = new Set();
 
-  // Walk every edge from every reachable node; check if any damage sub-requirement
-  // in the edge's requirement tree is both passing AND risky.
+  // Phase 1: find all nodes that are entered via a risky damage edge
+  const riskyEntryNodes = new Set();
   for (const n of reachable) {
     for (const e of model.adj[n] || []) {
-      if (!reachable.has(e.to)) continue; // only already-reachable destinations
+      if (!reachable.has(e.to)) continue; // only traversed edges
       if (!evaluate(e.req, state, ctx)) continue; // edge wasn't traversed
       if (_hasRiskyDamage(e.req, ctx, me)) {
-        // Flag the destination node's pickup_index if it's a pickup
-        const dest = model.nodes[e.to];
-        if (dest && dest.node_type === "pickup" && dest.pickup_index != null) {
-          risky.add(dest.pickup_index);
+        riskyEntryNodes.add(e.to);
+      }
+    }
+  }
+
+  // Phase 2: propagate risk transitively through the reachable subgraph.
+  // All pickups reachable FROM a risky-entry node (including the entry node itself
+  // if it's a pickup) are flagged as risky.
+  const risky = new Set();
+  for (const start of riskyEntryNodes) {
+    // BFS/DFS within the already-reachable subgraph
+    const visited = new Set([start]);
+    const stack = [start];
+    while (stack.length) {
+      const cur = stack.pop();
+      const node = model.nodes[cur];
+      if (node && node.node_type === "pickup" && node.pickup_index != null) {
+        risky.add(node.pickup_index);
+      }
+      for (const e of model.adj[cur] || []) {
+        if (!reachable.has(e.to)) continue;
+        if (visited.has(e.to)) continue;
+        if (evaluate(e.req, state, ctx)) {
+          visited.add(e.to);
+          stack.push(e.to);
         }
       }
     }
@@ -136,8 +156,11 @@ function _energyHelpers(ctx) {
     maxEnergy: () => {
       const BASE = 99;
       const PER_TANK = 100;
-      return BASE + (ctx.tanks || 0) * PER_TANK +
-        (ctx.immediateParts ? (ctx.parts || 0) * (PER_TANK / 4) : 0);
+      return (
+        BASE +
+        (ctx.tanks || 0) * PER_TANK +
+        (ctx.immediateParts ? (ctx.parts || 0) * (PER_TANK / 4) : 0)
+      );
     },
   };
 }

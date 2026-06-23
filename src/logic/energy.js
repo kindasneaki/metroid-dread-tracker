@@ -21,7 +21,11 @@ const ENERGY_PER_TANK = 100;
  * @returns {number} total max energy
  */
 export function maxEnergy(tanks, parts, immediateParts) {
-  return BASE_ENERGY + tanks * ENERGY_PER_TANK + (immediateParts ? parts * (ENERGY_PER_TANK / 4) : 0);
+  return (
+    BASE_ENERGY +
+    tanks * ENERGY_PER_TANK +
+    (immediateParts ? parts * (ENERGY_PER_TANK / 4) : 0)
+  );
 }
 
 /**

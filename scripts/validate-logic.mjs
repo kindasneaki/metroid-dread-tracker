@@ -335,13 +335,17 @@ if (ENGINE_READY) {
   // missileGate (ENG-07/D-06): missile-gated pickup only in-logic when missiles > 0
   run("missileGate", () => {
     const settings = noTrickSettings(rdb);
+    // Include Slide:1 in both states — Samus always starts with Slide in Dread, and without
+    // it the tutorial area is unreachable, making the missile-gate comparison degenerate (both
+    // states reach 0 pickups regardless of missiles). Adding Slide to both sides preserves the
+    // test intent: the DIFFERENCE in reachable pickups is caused solely by missiles.
     const withMissiles = {
-      items: { Power: 1, MissileLauncher: 1, MissileAmmo: 5 },
+      items: { Power: 1, Slide: 1, MissileLauncher: 1, MissileAmmo: 5 },
       events: new Set(),
       maxEnergy: 99,
     };
     const noMissiles = {
-      items: { Power: 1 },
+      items: { Power: 1, Slide: 1 },
       events: new Set(),
       maxEnergy: 99,
     };

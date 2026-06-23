@@ -8,16 +8,15 @@
  *   - The browser bundle (db fed via fetch → JSON)
  *   - Node assertion scripts (db fed via fs.readFileSync → JSON.parse)
  *
- * Contract (Plan 01 stubs; Plan 02 implements engine internals):
- *   createGameModel(db)                  → frozen GameModel object
- *   recompute(model, resourceState, settings)  → { inLogicPickups: Set, energyRisk: Set }
- *   assertSchema(loaded)                 → throws on schema drift
- *   EXPECTED_SCHEMA_VERSION              → 33 (DAT-03)
- *
- * Plan 02 will import helper modules (templates, Requirement, GameModel, Reachability,
- * energy, ResourceState, Settings, itemMap) here. Leave the seam comment below as the
- * insertion point.
+ * Contract:
+ *   createGameModel(db)                           → frozen GameModel object
+ *   recompute(model, resourceState, settings)     → { inLogicPickups: Set, energyRisk: Set }
+ *   assertSchema(loaded)                          → throws on schema drift
+ *   EXPECTED_SCHEMA_VERSION                       → 33 (DAT-03)
  */
+
+import { createGameModel as _buildModel } from "./GameModel.js";
+import { reach, reachablePickups, collectEnergyRisk } from "./Reachability.js";
 
 // ── DAT-03: Schema version guard ─────────────────────────────────────────────
 
@@ -41,64 +40,114 @@ export function assertSchema(loaded) {
   }
 }
 
-// ── ENGINE SEAM (Plan 02 inserts imports here) ────────────────────────────────
-//
-// import { buildGameModel } from "./GameModel.js";
-// import { runReach }       from "./Reachability.js";
-// import { makeExpander }   from "./templates.js";
-// import { evaluate }       from "./Requirement.js";
-// import { buildResourceState } from "./ResourceState.js";
-// import { defaultSettings } from "./Settings.js";
-// import { ABILITY_TO_RDV }  from "./itemMap.js";
-// import { maxEnergy }       from "./energy.js";
-
 // ── Public API ────────────────────────────────────────────────────────────────
 
 /**
  * Build an immutable GameModel from the vendored logic database.
  *
- * In Plan 01 this is a schema-guarded stub that returns a frozen sentinel object.
- * Plan 02 replaces the body with the real graph-build (buildGraph, template expansion,
- * dock-override handling) while keeping this signature and the freeze guarantee.
+ * Validates the schema version, expands all 45 templates once, builds the 1860-node
+ * graph with dock overrides honored, and returns an Object.freeze'd result (DAT-04).
  *
  * @param {{ header: object, regions: object }} db - parsed Randovania JSON
+ *   db.header — header.json (resource_database, dock_weakness_database, starting_location)
+ *   db.regions — { Artaria: {...}, ... } — one object per region name
  * @returns {Readonly<object>} frozen GameModel (immutable; DAT-04)
+ * @throws {Error} if db.header.schema_version !== EXPECTED_SCHEMA_VERSION
  */
 export function createGameModel(db) {
   // DAT-03: fail loudly on schema drift before touching any other db field
   assertSchema(db.header.schema_version);
-
-  // Plan 02 inserts the real engine build here (templates expansion, graph construction,
-  // dock-override resolution, pickup indexing). For now return a frozen sentinel so
-  // the schemaGuard and immutable validation cases pass in Wave 0.
-  return Object.freeze({
-    // Sentinel fields — Plan 02 replaces these with the real graph and indices.
-    _stub: true,
-    pickupCount: 0,
-    nodes: {},
-    adj: {},
-    start: null,
-    rdb: db.header.resource_database,
-  });
+  return _buildModel(db);
 }
 
 /**
  * Run the reachability computation and return the set of in-logic pickup indices
  * plus the set of pickups reachable only via risky damage paths.
  *
- * In Plan 01 this is a shaped stub returning empty sets. Plan 02 replaces the body
- * with the fixpoint BFS (Reachability.js) and energy-risk collection (ENG-06/D-06).
+ * resourceState can be produced by buildResourceState (full fields) or by the
+ * validate-logic.mjs battery helpers (items + events + maxEnergy only). Both forms
+ * are accepted — missing energy fields default to safe/minimal values.
  *
- * @param {Readonly<object>} model         - frozen GameModel from createGameModel
- * @param {{ items: object, events: Set, maxEnergy: number }} resourceState
- * @param {{ trickLevels: object, misc: object }} settings
+ * @param {Readonly<object>} model - frozen GameModel from createGameModel
+ * @param {object} resourceState
+ *   Required: { items: {[rdvName]: number}, events: Set<string> }
+ *   From buildResourceState also includes: suits, tanks, parts, immediateParts, strictness, damageReductions
+ *   From battery helpers may include: maxEnergy (pre-computed number)
+ * @param {object} settings
+ *   { trickLevels?: object, trickLevel?: number, misc: object }
+ *   If trickLevels is absent, all tricks are set to settings.trickLevel (default 0).
  * @returns {{ inLogicPickups: Set<number>, energyRisk: Set<number> }}
  */
-// eslint-disable-next-line no-unused-vars
 export function recompute(model, resourceState, settings) {
-  // Plan 02 inserts the real fixpoint BFS + energy-risk collection here.
+  const rdb = model.rdb;
+
+  // Build trickLevels: prefer explicit trickLevels object; fall back to flat trickLevel
+  let trickLevels = settings.trickLevels;
+  if (!trickLevels) {
+    trickLevels = {};
+    const level = settings.trickLevel !== undefined ? settings.trickLevel : 0;
+    for (const k of Object.keys(rdb.tricks || {})) {
+      trickLevels[k] = level;
+    }
+  }
+
+  // Misc: from settings
+  const misc = settings.misc || {};
+
+  // Energy ctx fields:
+  // - Prefer resourceState.suits if present (from buildResourceState)
+  // - Otherwise derive suits from items (Varia/Gravity item presence)
+  const suits =
+    resourceState.suits instanceof Set
+      ? resourceState.suits
+      : (() => {
+          const s = new Set();
+          if ((resourceState.items["Varia"] || 0) >= 1) s.add("Varia");
+          if ((resourceState.items["Gravity"] || 0) >= 1) s.add("Gravity");
+          return s;
+        })();
+
+  const tanks =
+    resourceState.tanks !== undefined
+      ? resourceState.tanks
+      : resourceState.items["ETank"] || 0;
+  const parts =
+    resourceState.parts !== undefined
+      ? resourceState.parts
+      : resourceState.items["EFragment"] || 0;
+  const immediateParts =
+    resourceState.immediateParts !== undefined
+      ? resourceState.immediateParts
+      : true;
+  const strictness =
+    resourceState.strictness !== undefined ? resourceState.strictness : 1.5;
+  const damageReductions =
+    resourceState.damageReductions || (rdb ? rdb.damage_reductions : []);
+
+  const ctx = {
+    trickLevels,
+    misc,
+    suits,
+    tanks,
+    parts,
+    immediateParts,
+    strictness,
+    damageReductions,
+  };
+
+  // Mutable per-call state (state.events is written by reach; items never mutated)
+  const state = {
+    items: resourceState.items,
+    events:
+      resourceState.events instanceof Set ? resourceState.events : new Set(),
+  };
+
+  const { reachable } = reach(state, ctx, model);
+  const pickupArray = reachablePickups(reachable, model);
+  const energyRisk = collectEnergyRisk(reachable, state, ctx, model);
+
   return {
-    inLogicPickups: new Set(),
-    energyRisk: new Set(),
+    inLogicPickups: new Set(pickupArray),
+    energyRisk,
   };
 }

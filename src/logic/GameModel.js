@@ -17,8 +17,15 @@
 import { makeExpander } from "./templates.js";
 
 const REGION_NAMES = [
-  "Artaria", "Cataris", "Dairon", "Burenia", "Ferenia",
-  "Ghavoran", "Elun", "Hanubia", "Itorash",
+  "Artaria",
+  "Cataris",
+  "Dairon",
+  "Burenia",
+  "Ferenia",
+  "Ghavoran",
+  "Elun",
+  "Hanubia",
+  "Itorash",
 ];
 
 /**
@@ -51,14 +58,22 @@ function dockRequirement(node, dockTypes, expand) {
   const w = t ? t.items[node.default_dock_weakness] : null;
 
   // Prefer node-level overrides; fall back to the weakness DB defaults
-  const open = node.override_default_open_requirement !== null && node.override_default_open_requirement !== undefined
-    ? node.override_default_open_requirement
-    : w ? w.requirement : null;
+  const open =
+    node.override_default_open_requirement !== null &&
+    node.override_default_open_requirement !== undefined
+      ? node.override_default_open_requirement
+      : w
+        ? w.requirement
+        : null;
 
   const lockW = w ? w.lock : null;
-  const lock = node.override_default_lock_requirement !== null && node.override_default_lock_requirement !== undefined
-    ? node.override_default_lock_requirement
-    : lockW ? lockW.requirement : null;
+  const lock =
+    node.override_default_lock_requirement !== null &&
+    node.override_default_lock_requirement !== undefined
+      ? node.override_default_lock_requirement
+      : lockW
+        ? lockW.requirement
+        : null;
 
   const parts = [];
   if (open) parts.push(expand(open));
@@ -93,7 +108,7 @@ export function createGameModel(db) {
   const expand = makeExpander(rdb);
 
   const nodes = {}; // nodeId -> { node_type, event_name, pickup_index, region }
-  const adj = {};   // nodeId -> [{ to: string, req: object }]
+  const adj = {}; // nodeId -> [{ to: string, req: object }]
   let pickupCount = 0;
 
   for (const regionName of REGION_NAMES) {
