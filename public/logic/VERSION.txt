@@ -1,0 +1,4 @@
+randovania_rev=bc3c47879c71e8e73d83599cc3320e2c29c64ef5
+schema_version=33
+copied_at=2026-06-23T03:13:47.787Z
+source=/Users/rjosephson/Documents/Development/randovania/randovania/games/dread/logic_database
