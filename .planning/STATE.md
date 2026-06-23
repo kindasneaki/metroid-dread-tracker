@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: unknown
 stopped_at: Phase 1 context gathered
-last_updated: "2026-06-23T02:47:35.829Z"
+last_updated: "2026-06-23T03:12:21.884Z"
 progress:
   total_phases: 6
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  completed_phases: 1
+  total_plans: 3
+  completed_plans: 3
+  percent: 17
 ---
 
 # Project State
@@ -20,19 +20,22 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-22)
 
 **Core value:** When the tracker says a location is "in logic," it matches the actual Randovania randomizer for the player's seed/preset.
-**Current focus:** Phase 1 PLANNED ✅ (3 plans, 3 waves) — ready to execute
+**Current focus:** Phase 1 COMPLETE ✅ (verified) — ready to plan Phase 2 (Artaria pilot)
 
 ## Status
 
 - Milestone: v1 — Randovania logic port
-- Phase: 0 (De-risk spikes) — ✅ DONE (see `.planning/phases/phase-0-spikes/FINDINGS.md`)
+- Phase 0 (De-risk spikes) — ✅ DONE
+- Phase 1 (Engine + data foundation) — ✅ DONE & VERIFIED (battery 14/14, lint clean, non-breaking)
 - Mode: yolo · Granularity: standard · Research+PlanCheck+Verifier: on
 - Branch: `gsd/phase-0-logic-port`
 
 ## Next Action
 
-Run `/gsd-plan-phase 1` to plan the engine + data foundation phase. Phase 0 proved
-the approach; the spike scripts under `scripts/spike/` are the reusable basis.
+Run `/gsd-plan-phase 2` to plan the Artaria pilot (wire the new engine behind the
+`useRandovaniaLogic` flag for one region, parity-diff vs the old engine). The
+engine + `logic/recompute` from Phase 1 are the basis; `scripts/spike/match-artaria.cjs`
+seeds the reconciliation mapping.
 
 ## Notes / Resolved Risks
 
