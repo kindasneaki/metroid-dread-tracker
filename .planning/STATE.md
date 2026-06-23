@@ -5,22 +5,27 @@
 See: .planning/PROJECT.md (updated 2026-06-22)
 
 **Core value:** When the tracker says a location is "in logic," it matches the actual Randovania randomizer for the player's seed/preset.
-**Current focus:** Phase 0 — De-risk spikes (reconciliation, engine core, energy)
+**Current focus:** Phase 0 complete ✅ — ready to plan Phase 1 (engine + data foundation)
 
 ## Status
 
 - Milestone: v1 — Randovania logic port
-- Phase: 0 (De-risk spikes) — not yet planned/executed
+- Phase: 0 (De-risk spikes) — ✅ DONE (see `.planning/phases/phase-0-spikes/FINDINGS.md`)
 - Mode: yolo · Granularity: standard · Research+PlanCheck+Verifier: on
+- Branch: `gsd/phase-0-logic-port`
 
 ## Next Action
 
-Run `/gsd-plan-phase 1` to plan the first execution phase, or proceed with the
-Phase 0 spikes directly (reconciliation helper + engine-core proof + energy check).
+Run `/gsd-plan-phase 1` to plan the engine + data foundation phase. Phase 0 proved
+the approach; the spike scripts under `scripts/spike/` are the reusable basis.
 
-## Notes / Open Risks
+## Notes / Resolved Risks
 
-- #1 risk: location↔`pickup_index` reconciliation (149 + Itorash vs 146/8 regions).
+- ✅ #1 risk (reconciliation): repeatable affine-fit method proven (Artaria 12px
+  worst match, full bijection). Deltas = 3 boss pickups (Z-57/141, Kraid/148,
+  Drogyga/140); Itorash has 0 pickups. Disposition: add the 3 boss locations.
+- ✅ Engine reproduces reachability (all-items⇒149+victory; monotonic).
+- ✅ Energy gate is Dread-accurate (suit reductions + max-energy threshold).
 - Randovania source of truth: `/Users/rjosephson/Documents/Development/randovania/randovania/games/dread/logic_database/`.
 - No test framework — validate via `node` assertion scripts + parity diffing.
 
