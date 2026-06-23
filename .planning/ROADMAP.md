@@ -41,6 +41,11 @@ Plans:
 3. Parity-diff harness logs old-vs-new per-location disagreements; each disagreement is explained (old logic is the approximation).
 **Requirements:** MIG-01, MIG-02, MAP-04, MAP-05, VAL-01 (Artaria scope)
 **Depends on:** Phase 1
+**Plans:** 3 plans
+Plans:
+- [ ] 02-01-PLAN.md — Wave 0: pickupMatch.js (verified map + bijection/type assertions) + parity-artaria.mjs battery (Wave 1)
+- [ ] 02-02-PLAN.md — useRandovaniaLogic flag + ?rdv=1 read + flag-guarded logic/recompute trigger (Wave 2)
+- [ ] 02-03-PLAN.md — Flag-aware Artaria.vue computed (index→pickup_index→class) + dev parity warning (Wave 3)
 
 ### Phase 3: Configurable settings + persistence
 **Goal:** Users set trick level + key settings to match their seed; settings and progress survive refresh.
