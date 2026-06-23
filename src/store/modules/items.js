@@ -261,9 +261,17 @@ export default {
     updateX({ commit }) {
       commit("SET_X");
     },
-    updateArea({ commit, dispatch }, { index, route }) {
+    // MIG-02: add rootGetters so we can fire the flag-guarded logic/recompute alongside
+    // the existing legacy checkLogic dispatch (ability-grid toggles via Tracker.vue).
+    // The legacy dispatch is kept unconditional — non-breaking.
+    updateArea({ commit, dispatch, rootGetters }, { index, route }) {
       commit("UPDATE_AREA", index);
+      // Legacy path — always runs; other regions depend on this.
       dispatch(route + "/checkLogic", index, { root: true });
+      // MIG-02: new-engine path — only when the flag is ON.
+      if (rootGetters["logic/useRandovaniaLogic"]) {
+        dispatch("logic/recompute", null, { root: true });
+      }
     },
     checkProgressive({ commit, state }) {
       let index = null;

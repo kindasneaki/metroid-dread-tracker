@@ -30,7 +30,12 @@ export default createStore({
     },
   },
   actions: {
-    updateAbility({ commit }, { amount, type }) {
+    // MIG-02: add dispatch + rootGetters to context so we can fire the flag-guarded
+    // logic/recompute when a map pickup (missile/energy/power-bomb/major) is collected.
+    // This is the chokepoint for minor-ammo collection (Artaria.vue → addAbility →
+    // dispatch("updateAbility")), which mutates the root counters the engine reads.
+    // All existing SET_ABILITY/ROTATE_ENERGY/FIX_ENERGY behaviour is untouched.
+    updateAbility({ commit, dispatch, rootGetters }, { amount, type }) {
       if (type === "energyPart") {
         let result = (this.state.energyPart + amount) / 4;
         if (result === 1) {
@@ -41,6 +46,11 @@ export default createStore({
         }
       }
       commit("SET_ABILITY", { amount, type });
+      // MIG-02: after counter mutation, trigger the new engine when the flag is ON.
+      // When OFF, this branch is skipped — byte-for-byte identical to legacy behaviour.
+      if (rootGetters["logic/useRandovaniaLogic"]) {
+        dispatch("logic/recompute", null, { root: true });
+      }
     },
   },
   modules: {
