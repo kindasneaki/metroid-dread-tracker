@@ -20,7 +20,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-22)
 
 **Core value:** When the tracker says a location is "in logic," it matches the actual Randovania randomizer for the player's seed/preset.
-**Current focus:** Phase 0 complete ✅ — ready to plan Phase 1 (engine + data foundation)
+**Current focus:** Phase 1 PLANNED ✅ (3 plans, 3 waves) — ready to execute
 
 ## Status
 
