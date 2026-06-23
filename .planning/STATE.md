@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: unknown
 stopped_at: Phase 2 UI-SPEC approved
-last_updated: "2026-06-23T04:18:57.376Z"
+last_updated: "2026-06-23T04:48:48.175Z"
 progress:
   total_phases: 6
-  completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
-  percent: 17
+  completed_phases: 2
+  total_plans: 6
+  completed_plans: 6
+  percent: 33
 ---
 
 # Project State
@@ -20,22 +20,24 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-22)
 
 **Core value:** When the tracker says a location is "in logic," it matches the actual Randovania randomizer for the player's seed/preset.
-**Current focus:** Phase 2 PLANNED ✅ (3 plans; checker PASS after 1 revision) — ready to execute
+**Current focus:** Phase 2 COMPLETE ✅ (verified) — ready to plan Phase 3 (settings + persistence)
 
 ## Status
 
 - Milestone: v1 — Randovania logic port
 - Phase 0 (De-risk spikes) — ✅ DONE
-- Phase 1 (Engine + data foundation) — ✅ DONE & VERIFIED (battery 14/14, lint clean, non-breaking)
+- Phase 1 (Engine + data foundation) — ✅ DONE & VERIFIED (battery 14/14)
+- Phase 2 (Artaria pilot behind a flag) — ✅ DONE & VERIFIED (parity 7/7; 13 disagreements confirmed = old-logic over-permissiveness, not engine bugs)
 - Mode: yolo · Granularity: standard · Research+PlanCheck+Verifier: on
 - Branch: `gsd/phase-0-logic-port`
+- ⏳ Pending manual (browser): `?rdv=1` live color switch, console parity warnings, other 7 regions unchanged
 
 ## Next Action
 
-Run `/gsd-plan-phase 2` to plan the Artaria pilot (wire the new engine behind the
-`useRandovaniaLogic` flag for one region, parity-diff vs the old engine). The
-engine + `logic/recompute` from Phase 1 are the basis; `scripts/spike/match-artaria.cjs`
-seeds the reconciliation mapping.
+Run `/gsd-plan-phase 3` to plan settings + persistence (SettingsPanel.vue exposing
+trick level + key settings; localStorage for settings AND progress). The engine
+already consumes a settings object (`Settings.defaultSettings`); Phase 3 makes it
+user-driven and persistent.
 
 ## Notes / Resolved Risks
 
