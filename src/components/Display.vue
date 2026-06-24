@@ -1,23 +1,15 @@
 <template>
   <div class="hudDisplay">
     <div class="missilesIcon"></div>
-    <div class="missiles">{{ minorItems[0].total }}</div>
+    <div class="missiles">{{ missileTotal }}</div>
     <div class="powerBombIcon"></div>
-    <div class="powerBomb">{{ minorItems[4].total }}</div>
+    <div class="powerBomb">{{ powerBombTotal }}</div>
     <div class="energyPartIcon">
-      <span
-        class="energyGrid"
-        v-for="ep in minorItems[2].total"
-        :key="ep"
-      ></span>
+      <span class="energyGrid" v-for="ep in energyPart" :key="ep"></span>
     </div>
     <br />
     <br />
-    <div
-      class="energy"
-      v-for="energy in minorItems[3].total"
-      :key="energy"
-    ></div>
+    <div class="energy" v-for="energy in energyFull" :key="energy"></div>
   </div>
 </template>
 <script>
@@ -25,9 +17,29 @@ import { mapState } from "vuex";
 export default {
   name: "Display",
   computed: {
-    ...mapState("items", {
-      minorItems: (state) => state.minorItems,
+    // Single source of truth: the root-store counters (also read by the logic
+    // engine and persisted to localStorage). missiles/powerBomb are collected
+    // deltas; the preset's starting ammo is added back for display.
+    ...mapState(["missiles", "energyPart", "energyFull", "powerBomb"]),
+    ...mapState("logic", {
+      settings: (state) => state.settings,
     }),
+    missileTotal() {
+      const start =
+        (this.settings &&
+          this.settings.startingItems &&
+          this.settings.startingItems.MissileAmmo) ||
+        0;
+      return start + this.missiles;
+    },
+    powerBombTotal() {
+      const start =
+        (this.settings &&
+          this.settings.startingItems &&
+          this.settings.startingItems.PBAmmo) ||
+        0;
+      return start + this.powerBomb;
+    },
   },
 };
 </script>

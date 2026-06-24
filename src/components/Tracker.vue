@@ -172,7 +172,20 @@ export default {
       this.$store.dispatch("logic/recompute");
     },
     toggleMinor(index, amount) {
-      this.$store.dispatch("items/updateMinor", { index, amount });
+      // Route minor-item clicks to the root counters — the single source of
+      // truth the logic engine reads and that persistence saves. minorItems is
+      // kept only as the static button definitions (type/name/icon/amount).
+      const minorToCounter = {
+        smallMissiles: "missiles",
+        bigMissiles: "missiles",
+        energyPart: "energyPart",
+        energyFull: "energyFull",
+        smallPowerBomb: "powerBomb",
+      };
+      const minor = this.minorItems[index];
+      const type = minor && minorToCounter[minor.type];
+      if (!type) return;
+      this.$store.dispatch("updateAbility", { amount, type });
     },
   },
 };
