@@ -112,6 +112,24 @@ export default {
     UPDATE_LOGIC(state, payload) {
       state.locations[payload.index].inLogic = payload.logic;
     },
+    /**
+     * Set locations[i].checked = true for each index in the indices array.
+     * ABSOLUTE-SET semantics for restore (PER-01). Does NOT touch inLogic/softlock.
+     */
+    SET_LOCATIONS(state, indices) {
+      for (let i = 0; i < state.locations.length; i++) {
+        state.locations[i].checked =
+          Array.isArray(indices) && indices.includes(i);
+      }
+    },
+    /**
+     * Reset all locations to unchecked (for resetProgress).
+     */
+    RESET_LOCATIONS(state) {
+      for (const loc of state.locations) {
+        loc.checked = false;
+      }
+    },
   },
   actions: {
     checkLogic({ commit, state, rootGetters }) {

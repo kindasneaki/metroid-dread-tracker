@@ -230,6 +230,39 @@ export default {
     UPDATE_AREA(state, index) {
       state.items[index].logic = !state.items[index].logic;
     },
+    /**
+     * Set-by-value hydration for restore (PER-01/PER-02).
+     * Accepts a checkedItems map { [type]: boolean } and xDefeated boolean.
+     * ABSOLUTE-SET semantics — does NOT toggle; safe to call from restoreState.
+     * Also resets items[].logic to false (recompute will re-derive logic state).
+     */
+    HYDRATE_ITEMS(state, { checkedItems, xDefeated }) {
+      const map = checkedItems || {};
+      for (const item of state.items) {
+        if (Object.prototype.hasOwnProperty.call(map, item.type)) {
+          item.checked = map[item.type] === true;
+        } else {
+          item.checked = false;
+        }
+        item.logic = false;
+      }
+      if (typeof xDefeated === "boolean") {
+        state.xDefeated.logic = xDefeated;
+        state.xDefeated.checked = xDefeated;
+      }
+    },
+    /**
+     * Reset all items to unchecked/unlogic state (for resetProgress).
+     * Retains static display data (name/type). slide starts true (default).
+     */
+    RESET_ITEMS(state) {
+      for (const item of state.items) {
+        item.checked = item.type === "slide";
+        item.logic = item.type === "slide";
+      }
+      state.xDefeated.logic = false;
+      state.xDefeated.checked = false;
+    },
     UPDATE_PROGRESSIVE(state, index) {
       if (index) {
         state.progressiveLogic[index] = true;
