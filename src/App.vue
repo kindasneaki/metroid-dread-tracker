@@ -1,6 +1,7 @@
 <template>
   <metainfo><template v-slot:title></template></metainfo>
   <Display />
+  <SettingsPanel />
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/artaria">Artaria</router-link> |
@@ -18,12 +19,13 @@
 <script>
 import Tracker from "@/components/Tracker.vue";
 import Display from "@/components/Display.vue";
+import SettingsPanel from "@/components/SettingsPanel.vue";
 import { useMeta } from "vue-meta";
 import { useStore } from "vuex";
 import { onMounted } from "vue";
 export default {
   name: "app",
-  components: { Tracker, Display },
+  components: { Tracker, Display, SettingsPanel },
   setup() {
     useMeta({
       title: "Metroid Dread Tracker",
