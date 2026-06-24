@@ -42,6 +42,7 @@ function rdvType(node) {
   if (/Morph Ball/.test(node)) return "major:morphBall";
   if (/Diffusion Beam/.test(node)) return "major:diffusionBeam";
   if (/Wide Beam/.test(node)) return "major:wideBeam";
+  if (/Cross Bomb/.test(node)) return "major:crossBomb";  // must precede /Bomb/
   if (/Bomb/.test(node)) return "major:bomb";
   if (/Speed Booster/.test(node)) return "major:speedBooster";
   if (/Gravity Suit/.test(node)) return "major:gravitySuit";
@@ -50,7 +51,6 @@ function rdvType(node) {
   if (/Storm Missile/.test(node)) return "major:stormMissiles";
   if (/Wave Beam/.test(node)) return "major:waveBeam";
   if (/Super Missile/.test(node)) return "major:superMissiles";
-  if (/Cross Bomb/.test(node)) return "major:crossBomb";
   if (/Spin Boost/.test(node)) return "major:spinBoost";
   if (/Pulse Radar/.test(node)) return "major:pulseRadar";
   if (/Plasma Beam/.test(node)) return "major:plasmaBeam";
