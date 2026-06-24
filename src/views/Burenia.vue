@@ -48,10 +48,7 @@ export default {
     ...mapState("burenia", {
       locations: (state) => state.locations,
     }),
-    ...mapGetters("logic", [
-      "inLogicPickups",
-      "energyRisk",
-    ]),
+    ...mapGetters("logic", ["inLogicPickups", "energyRisk"]),
     locationStates() {
       return this.locations.map((location, i) => {
         const pi = pickupIndexFor("burenia", i);
