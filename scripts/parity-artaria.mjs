@@ -291,6 +291,9 @@ const BATTERY_KITS = [
 console.log("\n=== parity-artaria.mjs ===\n");
 
 // ─── mapImmutable (MAP-04) ────────────────────────────────────────────────────
+// Updated in Phase 4 Plan 02: LOCATION_PICKUP_MAP now has 8 region keys.
+// This check validates that artaria's 35 entries are unchanged (regression guard)
+// and that all 8 expected region keys are present with correct lengths.
 run("mapImmutable", () => {
   const arr = LOCATION_PICKUP_MAP.artaria;
   assert.strictEqual(
@@ -299,19 +302,40 @@ run("mapImmutable", () => {
     `LOCATION_PICKUP_MAP.artaria must have exactly 35 entries; got ${arr.length}`,
   );
 
-  const regionKeys = Object.keys(LOCATION_PICKUP_MAP);
-  assert.strictEqual(
-    regionKeys.length,
-    1,
-    `LOCATION_PICKUP_MAP must have exactly 1 region key (artaria); ` +
-      `got ${regionKeys.length}: [${regionKeys.join(", ")}]`,
-  );
-
+  const regionKeys = Object.keys(LOCATION_PICKUP_MAP).sort();
+  const expectedKeys = [
+    "artaria",
+    "burenia",
+    "cataris",
+    "dairon",
+    "elun",
+    "ferenia",
+    "ghavoran",
+    "hanubia",
+  ];
   assert.deepEqual(
     regionKeys,
-    ["artaria"],
-    `LOCATION_PICKUP_MAP must only contain the "artaria" key at this phase`,
+    expectedKeys,
+    `LOCATION_PICKUP_MAP must have exactly 8 region keys; got: [${regionKeys.join(", ")}]`,
   );
+
+  const expectedLengths = {
+    artaria: 35,
+    cataris: 25,
+    dairon: 23,
+    burenia: 20,
+    ferenia: 17,
+    ghavoran: 20,
+    elun: 5,
+    hanubia: 4,
+  };
+  for (const [region, expectedLen] of Object.entries(expectedLengths)) {
+    assert.strictEqual(
+      LOCATION_PICKUP_MAP[region].length,
+      expectedLen,
+      `LOCATION_PICKUP_MAP.${region} must have ${expectedLen} entries; got ${LOCATION_PICKUP_MAP[region].length}`,
+    );
+  }
 });
 
 // ─── bijection (MAP-04) ───────────────────────────────────────────────────────
