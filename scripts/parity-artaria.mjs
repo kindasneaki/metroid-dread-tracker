@@ -368,7 +368,6 @@ run("typeConsistency", () => {
 // ─── pilotParity (VAL-01) ────────────────────────────────────────────────────
 run("pilotParity", () => {
   const settings = noTrickSettings();
-  const artariaMap = LOCATION_PICKUP_MAP.artaria;
   let totalDisagreements = 0;
   const allDisagreements = [];
 
@@ -503,7 +502,6 @@ run("flagOnSwitch", () => {
 
 run("recomputeTrigger", () => {
   const settings = noTrickSettings();
-  const artariaMap = LOCATION_PICKUP_MAP.artaria;
 
   // ── (a) ABILITY delta ────────────────────────────────────────────────────────
   // Set A: slide only (baseline)
