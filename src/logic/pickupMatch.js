@@ -218,7 +218,12 @@ export function assertArtariaBijection(rdvArtariaJson) {
  * @param {Set<number>} [acceptedMismatches] - pickup_index values allowed to mismatch (documented anomalies)
  * @throws {Error} with message "pickupMatch type mismatch at index {i}: ..." on first un-accepted mismatch
  */
-export function assertTypeConsistency(region, rdvJson, trackerLocations, acceptedMismatches = new Set()) {
+export function assertTypeConsistency(
+  region,
+  rdvJson,
+  trackerLocations,
+  acceptedMismatches = new Set(),
+) {
   // Build a lookup: pickup_index → node name
   const piToNode = new Map();
   for (const area of Object.values(rdvJson.areas)) {
