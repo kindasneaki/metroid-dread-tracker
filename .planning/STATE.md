@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: unknown
 stopped_at: Phase 2 UI-SPEC approved
-last_updated: "2026-06-23T04:48:48.175Z"
+last_updated: "2026-06-24T01:54:16.012Z"
 progress:
   total_phases: 6
-  completed_phases: 2
-  total_plans: 6
-  completed_plans: 6
-  percent: 33
+  completed_phases: 3
+  total_plans: 9
+  completed_plans: 9
+  percent: 50
 ---
 
 # Project State
@@ -20,7 +20,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-22)
 
 **Core value:** When the tracker says a location is "in logic," it matches the actual Randovania randomizer for the player's seed/preset.
-**Current focus:** Phase 3 PLANNED & checker-revised ✅ (3 plans, blockers fixed) — ready to EXECUTE; Phases 4 & 5 still to plan/execute
+**Current focus:** Phase 3 DONE (automated) ✅ — pending browser-manual checks; ready to plan/execute Phase 4
 
 ## Status
 
@@ -34,11 +34,7 @@ See: .planning/PROJECT.md (updated 2026-06-22)
 
 ## Next Action
 
-Resume the autonomous run: `/gsd-autonomous --from 3`. Phase 3 is fully planned
-(03-01/02/03) and the plan-checker REVISE was resolved (SET_MODEL no-clobber,
-subscriber/set-by-value restore, dropped the dead energyPerTank control). Next step
-is EXECUTE Phase 3, then plan+execute Phases 4 (remaining regions) and 5 (cutover).
-Paused mid-autonomous-run for context budget — no code changes pending, plans committed.
+Resume: `/gsd-autonomous --from 4` (best in a FRESH session for context). Phase 3 done (automated 7/7; browser-manual checks pending). Remaining: Phase 4 (wire the other 7 regions: pickupMatch maps + bijection/type asserts + parity per region; add the 3 boss pickups Z-57/141, Kraid/148, Drogyga/140) and Phase 5 (flip flag default on, delete legacy logic/requiredLogic/checkLogic, update CLAUDE.md).
 
 ## Notes / Resolved Risks
 
