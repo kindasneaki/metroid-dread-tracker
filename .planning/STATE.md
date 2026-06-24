@@ -4,12 +4,12 @@ milestone: v1.0
 milestone_name: milestone
 status: unknown
 stopped_at: Phase 2 UI-SPEC approved
-last_updated: "2026-06-24T01:54:16.012Z"
+last_updated: "2026-06-24T03:01:14.500Z"
 progress:
   total_phases: 6
   completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
+  total_plans: 13
+  completed_plans: 10
   percent: 50
 ---
 
@@ -20,7 +20,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-22)
 
 **Core value:** When the tracker says a location is "in logic," it matches the actual Randovania randomizer for the player's seed/preset.
-**Current focus:** Phase 3 DONE (automated) ✅ — pending browser-manual checks; ready to plan/execute Phase 4
+**Current focus:** Phase 04 — remaining-regions
 
 ## Status
 
@@ -52,6 +52,6 @@ Resume: `/gsd-autonomous --from 4` (best in a FRESH session for context). Phase 
 
 ## Session
 
-**Last session:** 2026-06-23T04:18:57.371Z
+**Last session:** 2026-06-24T03:01:14.495Z
 **Stopped at:** Phase 2 UI-SPEC approved
 **Resume file:** .planning/phases/02-artaria-pilot-behind-a-flag/02-UI-SPEC.md
