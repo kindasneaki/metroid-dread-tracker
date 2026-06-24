@@ -106,13 +106,13 @@ Plans:
 
 **Requirements:** MIG-03, VAL-02
 **Depends on:** Phase 4
-**Plans:** 3/5 plans executed
+**Plans:** 4/5 plans executed
 Plans:
 
 - [x] 05-01-PLAN.md — Remove useRandovaniaLogic flag + ?rdv reader; make every recompute dispatch unconditional (Wave 1)
 - [x] 05-02-PLAN.md — Delete checkLogic/UPDATE_LOGIC + per-location logic fields in artaria/cataris/dairon/burenia (Wave 1)
 - [x] 05-03-PLAN.md — Delete checkLogic/UPDATE_LOGIC + per-location logic fields in ferenia/ghavoran/elun/hanubia (Wave 1)
-- [ ] 05-04-PLAN.md — Simplify all 8 region views to engine-only locationStates; drop parityWarnings/watch/mounted (Wave 2)
+- [x] 05-04-PLAN.md — Simplify all 8 region views to engine-only locationStates; drop parityWarnings/watch/mounted (Wave 2)
 - [ ] 05-05-PLAN.md — Strip legacy parity-script cases + rewrite CLAUDE.md + phase grep/full-suite gate (Wave 2)
 
 ---
