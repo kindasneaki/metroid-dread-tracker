@@ -13,11 +13,19 @@
  *   - immediate energy parts on
  *   - X not started released
  *   - damage_strictness 1.5
+ *   - starting inventory: the preset's "must_start" pickups — Missile launcher (+15
+ *     missiles), Pulse Radar, and Slide (Randovania starter_preset.rdvpreset:
+ *     standard_pickup_configuration.pickups_state.{Missiles,Pulse Radar,Slide}
+ *     num_included_in_starting_pickups = 1). The Missiles pickup has
+ *     starting_condition "must_start" — you ALWAYS begin with the launcher + 15 ammo.
  *
  * Phase 3 will drive these values from UI/localStorage. Settings are a plain object.
  *
  * IMPORTANT: ZERO Node built-in imports. ZERO Vue/Vuex imports.
  */
+
+// Base missile capacity granted by the Missile launcher in Metroid Dread.
+export const STARTING_MISSILES = 15;
 
 /**
  * Return the D-04 starter-preset default settings.
@@ -50,5 +58,14 @@ export function defaultSettings(header) {
     strictness: 1.5,
     startingLocation: header.starting_location,
     victory: "Ship",
+    // Preset "must_start" starting inventory (Randovania short-names → quantity).
+    // MissileAmmo is additive with collected missile tanks; the others are presence
+    // flags. Power Beam is granted unconditionally by buildResourceState.
+    startingItems: {
+      MissileLauncher: 1,
+      MissileAmmo: STARTING_MISSILES,
+      Pulse: 1,
+      Slide: 1,
+    },
   };
 }

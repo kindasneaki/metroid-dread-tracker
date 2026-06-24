@@ -57,10 +57,13 @@ import { ABILITY_TO_RDV } from "../src/logic/itemMap.js";
 //   CLASS C — old=true, new=false with speedBooster: area "1m" missile+ requires
 //   speedBooster in the legacy logic; the new engine gates it differently.
 //
-// Budget = 13 disagreements across 4 kits × 35 locations (140 comparisons).
+// Budget = 11 disagreements across 4 kits × 35 locations (140 comparisons).
 // Set to the OBSERVED count. DO NOT widen silently — investigate first.
+// (Was 13 before the starting-inventory fix; modeling the preset's "must_start"
+// Missile launcher + 15 missiles resolved 2 false new=false disagreements, since
+// the engine was wrongly treating the player as starting with 0 missiles.)
 
-const DISAGREEMENT_BUDGET = 13;
+const DISAGREEMENT_BUDGET = 11;
 
 // ── Load vendored db ──────────────────────────────────────────────────────────
 
@@ -154,16 +157,28 @@ function noTrickSettings() {
 }
 
 // ── Helper: build rdv items from ability set + counters ───────────────────────
+//
+// Models exactly what the live app feeds the engine (buildResourceState): the
+// preset "must_start" starting inventory (Missile launcher + 15 missiles, Pulse
+// Radar, Slide) PLUS the kit's collected abilities/ammo. Single-sourced from
+// defaultSettings().startingItems so it tracks the real default. `missiles` here is
+// the COLLECTED count layered on top of the 15 starting missiles.
+const START_INVENTORY = defaultSettings(db.header).startingItems || {};
 
 function makeNewEngineState(abilityIds, { missiles = 0, maxEnergy = 99 } = {}) {
   const items = { Power: 1 };
+  for (const [name, qty] of Object.entries(START_INVENTORY)) {
+    if (name === "MissileAmmo" || name === "PBAmmo") continue; // additive, below
+    items[name] = qty;
+  }
   for (const id of abilityIds) {
     const rdvName = ABILITY_TO_RDV[id];
     if (rdvName) items[rdvName] = 1;
   }
-  if (missiles > 0) {
+  const totalMissiles = (START_INVENTORY.MissileAmmo || 0) + missiles;
+  if (totalMissiles > 0) {
     items["MissileLauncher"] = 1;
-    items["MissileAmmo"] = missiles;
+    items["MissileAmmo"] = totalMissiles;
   }
   return { items, events: new Set(), maxEnergy };
 }
@@ -493,19 +508,23 @@ run("recomputeTrigger", () => {
   const MISSILE_GATED_IDX = 15; // tracker array index
   const MISSILE_GATED_PI = pickupIndexFor("artaria", MISSILE_GATED_IDX); // pickup_index 31
 
-  // Obtain the default settings via the loaded header
+  // Isolate the COUNTER mechanic: use a BARE start (no starting inventory) so
+  // missiles=0 truly means zero missiles. With the real default start (15 missiles)
+  // this location would already be in-logic at counters.missiles=0 — that's a
+  // separate (correct) behavior; here we are proving the root counter feeds the engine.
   const fullSettings = defaultSettings(db.header);
+  const bareSettings = { ...fullSettings, startingItems: {} };
 
   // Simulate root counters with missiles=0 (before collecting ammo on the map)
   const obtained = { slide: true };
   const countersZero = { missiles: 0, energyPart: 0, energyFull: 0, powerBomb: 0 };
   const countersTen = { missiles: 10, energyPart: 0, energyFull: 0, powerBomb: 0 };
 
-  const rs0 = buildResourceState(obtained, countersZero, fullSettings, rdb);
-  const rs10 = buildResourceState(obtained, countersTen, fullSettings, rdb);
+  const rs0 = buildResourceState(obtained, countersZero, bareSettings, rdb);
+  const rs10 = buildResourceState(obtained, countersTen, bareSettings, rdb);
 
-  const { inLogicPickups: pickups0 } = recompute(model, rs0, fullSettings);
-  const { inLogicPickups: pickups10 } = recompute(model, rs10, fullSettings);
+  const { inLogicPickups: pickups0 } = recompute(model, rs0, bareSettings);
+  const { inLogicPickups: pickups10 } = recompute(model, rs10, bareSettings);
 
   assert.ok(
     !pickups0.has(MISSILE_GATED_PI),

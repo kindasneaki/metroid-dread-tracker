@@ -415,8 +415,12 @@ if (ENGINE_READY) {
       "recomputeIntegration: energyRisk must be instanceof Set",
     );
 
-    // Consistency with the raw noItems path: same zero-pickup count
-    // (ResourceState path must not inflate reachability vs the raw items-map path)
+    // The ResourceState path must add NOTHING beyond the configured starting
+    // inventory. Prove it with a BARE start (startingItems:{}): it must match the
+    // raw bare-engine noItems path (both 0).
+    const bareSettings = { ...settings, startingItems: {} };
+    const rsBare = buildResourceState(noObtained, noCounters, bareSettings, rdb);
+    const { inLogicPickups: barePickups } = recompute(model, rsBare, bareSettings);
     const rawNoItems = noItemsState();
     const { inLogicPickups: rawNoItemsPickups } = recompute(
       model,
@@ -424,9 +428,17 @@ if (ENGINE_READY) {
       noTrickSettings(rdb),
     );
     assert.strictEqual(
-      noItemsPickups.size,
+      barePickups.size,
       rawNoItemsPickups.size,
-      `recomputeIntegration: no-items via ResourceState (${noItemsPickups.size}) must match raw noItems path (${rawNoItemsPickups.size})`,
+      `recomputeIntegration: bare-start ResourceState (${barePickups.size}) must match raw noItems path (${rawNoItemsPickups.size}) — wiring adds nothing beyond startingItems`,
+    );
+
+    // And the DEFAULT start (preset "must_start": launcher + 15 missiles, Pulse,
+    // Slide) must grant reachability the bare engine lacks — guards the
+    // starting-inventory model ("you always start with 15 missiles").
+    assert.ok(
+      noItemsPickups.size > barePickups.size,
+      `recomputeIntegration: default start (${noItemsPickups.size}) must exceed bare start (${barePickups.size}) — starting inventory must grant reachability`,
     );
 
     // ── partial obtained map — Morph + Slide obtained ────────────────────────

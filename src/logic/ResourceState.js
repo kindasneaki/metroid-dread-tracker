@@ -55,6 +55,17 @@ import { maxEnergy } from "./energy.js";
 export function buildResourceState(obtained, counters, settings, rdb) {
   const items = {};
 
+  // Preset "must_start" starting inventory (e.g. Dread starter: Missile launcher +
+  // 15 ammo, Pulse Radar, Slide). Ammo names are additive with collected counters
+  // (handled below); every other starting item is a presence flag seeded here.
+  const startingItems = (settings && settings.startingItems) || {};
+  const startMissileAmmo = startingItems.MissileAmmo || 0;
+  const startPbAmmo = startingItems.PBAmmo || 0;
+  for (const [name, qty] of Object.entries(startingItems)) {
+    if (name === "MissileAmmo" || name === "PBAmmo") continue; // additive, below
+    items[name] = Math.max(items[name] || 0, qty);
+  }
+
   // 1:1 major abilities from the tracker ability map
   for (const [abilityId, rdvName] of Object.entries(ABILITY_TO_RDV)) {
     if (obtained[abilityId]) {
@@ -62,22 +73,22 @@ export function buildResourceState(obtained, counters, settings, rdb) {
     }
   }
 
-  // Derived / implicit items
-  const missileAmmo = counters.missiles || 0;
-  const pbAmmo = counters.powerBomb || 0;
+  // Derived / implicit items — collected counters ADD to the starting baseline.
+  const missileAmmo = startMissileAmmo + (counters.missiles || 0);
+  const pbAmmo = startPbAmmo + (counters.powerBomb || 0);
   const tanks = counters.energyFull || 0;
   const parts = counters.energyPart || 0;
 
   // Power: always held (base weapon)
   items["Power"] = 1;
 
-  // MissileAmmo: root-store missile running counter
+  // MissileAmmo: starting baseline + root-store missile running counter
   if (missileAmmo > 0) items["MissileAmmo"] = missileAmmo;
 
-  // MissileLauncher: implicitly held when the player has any missiles
+  // MissileLauncher: implicitly held when any missiles are available (starting or collected)
   if (missileAmmo > 0) items["MissileLauncher"] = 1;
 
-  // PBAmmo: root-store power-bomb ammo counter (DISTINCT from MainPB ability above)
+  // PBAmmo: starting baseline + root-store power-bomb ammo counter (DISTINCT from MainPB ability)
   if (pbAmmo > 0) items["PBAmmo"] = pbAmmo;
 
   // ETank / EFragment: from root-store energy counters
