@@ -11,10 +11,12 @@
  * This module runs in BOTH the browser bundle (via Vue app) and Node assertion scripts.
  *
  * Exports:
- *   LOCATION_PICKUP_MAP       — { artaria: number[35] } (other regions absent — Phase 4)
- *   pickupIndexFor(region, i) — lookup helper; throws on unknown region or out-of-range i
- *   assertArtariaBijection    — MAP-04 dev/load + node guard
- *   assertArtariaTypeConsistency — MAP-05 guard
+ *   LOCATION_PICKUP_MAP          — { artaria: number[35] } (other regions added in Phase 4 Plan 02)
+ *   pickupIndexFor(region, i)    — lookup helper; throws on unknown region or out-of-range i
+ *   assertBijection(region, rdvJson)                                       — MAP-04 (generalized)
+ *   assertTypeConsistency(region, rdvJson, locs, acceptedMismatches)       — MAP-05 (generalized)
+ *   assertArtariaBijection(rdvJson)        — backward-compat wrapper for assertBijection("artaria")
+ *   assertArtariaTypeConsistency(rdvJson, locs) — backward-compat wrapper for assertTypeConsistency("artaria")
  */
 
 // ── Verified Artaria map (tracker array order → pickup_index) ────────────────
@@ -81,6 +83,23 @@ function rdvTypeKeyword(nodeName) {
   if (/Power Bomb/.test(nodeName)) return "pb";
   if (/Missile\+ Tank/.test(nodeName)) return "missile+";
   if (/Missile Tank/.test(nodeName)) return "missile";
+  // New-region major ability types (Phase 4). Tracker uses plural form for missile variants.
+  if (/Morph Ball/.test(nodeName)) return "major:morphBall";
+  if (/Diffusion Beam/.test(nodeName)) return "major:diffusionBeam";
+  if (/Wide Beam/.test(nodeName)) return "major:wideBeam";
+  if (/Bomb/.test(nodeName)) return "major:bomb";
+  if (/Speed Booster/.test(nodeName)) return "major:speedBooster";
+  if (/Gravity Suit/.test(nodeName)) return "major:gravitySuit";
+  if (/Flash Shift/.test(nodeName)) return "major:flashShift";
+  if (/Space Jump/.test(nodeName)) return "major:spaceJump";
+  if (/Storm Missile/.test(nodeName)) return "major:stormMissiles";
+  if (/Wave Beam/.test(nodeName)) return "major:waveBeam";
+  if (/Super Missile/.test(nodeName)) return "major:superMissiles";
+  if (/Cross Bomb/.test(nodeName)) return "major:crossBomb";
+  if (/Spin Boost/.test(nodeName)) return "major:spinBoost";
+  if (/Pulse Radar/.test(nodeName)) return "major:pulseRadar";
+  if (/Plasma Beam/.test(nodeName)) return "major:plasmaBeam";
+  if (/Ice Missile/.test(nodeName)) return "major:iceMissiles";
   return "?";
 }
 
@@ -106,36 +125,34 @@ function trkTypeKeyword(t, amount) {
   return "major:" + t;
 }
 
-// ── assertArtariaBijection (MAP-04) ──────────────────────────────────────────
+// ── assertBijection (MAP-04) ─────────────────────────────────────────────────
 
 /**
- * Assert that LOCATION_PICKUP_MAP.artaria forms a valid bijection over the
- * Artaria pickup indices present in the Randovania region JSON.
+ * Assert that LOCATION_PICKUP_MAP[region] forms a valid bijection over the
+ * pickup indices present in the Randovania region JSON.
  *
  * Checks:
- *   (a) artaria array has exactly 35 entries
- *   (b) every mapped index is a member of the valid pickup_index set in rdvArtariaJson
- *   (c) no index is reused (Set.size === 35)
- *   (d) reports — but does NOT fail on — any Artaria pickup_index uncovered by the map
- *       (the 3 boss/surplus indices are deferred to Phase 4)
+ *   (b) every mapped index is a member of the valid pickup_index set in rdvJson
+ *   (c) no index is reused (Set.size === map.length)
+ *   (d) reports — but does NOT fail on — any pickup_index uncovered by the map
+ *       (boss pickups not yet in tracker are deferred, not failures)
  *
- * @param {object} rdvArtariaJson - parsed public/logic/Artaria.json
- * @returns {{ uncoveredIndices: number[] }} report of deferred uncovered indices
- * @throws {Error} starting with "pickupMatch Artaria bijection violation" on any failure
+ * ASVS V5: validates region key and array contents before use; throws clearly on violation.
+ *
+ * @param {string} region   - lower-case region name, e.g. "artaria"
+ * @param {object} rdvJson  - parsed public/logic/<Region>.json
+ * @returns {{ uncoveredIndices: number[] }} report of uncovered indices (not a failure)
+ * @throws {Error} if region unknown or bijection is violated
  */
-export function assertArtariaBijection(rdvArtariaJson) {
-  const map = LOCATION_PICKUP_MAP.artaria;
-
-  // (a) length check
-  if (map.length !== 35) {
-    throw new Error(
-      `pickupMatch Artaria bijection violation: expected 35 entries, got ${map.length}.`,
-    );
+export function assertBijection(region, rdvJson) {
+  const map = LOCATION_PICKUP_MAP[region];
+  if (!map) {
+    throw new Error(`assertBijection: unknown region "${region}".`);
   }
 
   // Collect valid pickup_index values from the rdv region JSON
   const validSet = new Set();
-  for (const area of Object.values(rdvArtariaJson.areas)) {
+  for (const area of Object.values(rdvJson.areas)) {
     for (const node of Object.values(area.nodes)) {
       if (node.node_type === "pickup") {
         validSet.add(node.pickup_index);
@@ -147,13 +164,13 @@ export function assertArtariaBijection(rdvArtariaJson) {
   const invalidEntries = map.filter((pi) => !validSet.has(pi));
   if (invalidEntries.length > 0) {
     throw new Error(
-      `pickupMatch Artaria bijection violation: mapped indices not found in rdv data: [${invalidEntries.join(", ")}].`,
+      `pickupMatch ${region} bijection violation: mapped indices not found in rdv data: [${invalidEntries.join(", ")}].`,
     );
   }
 
   // (c) no index reused
   const mappedSet = new Set(map);
-  if (mappedSet.size !== 35) {
+  if (mappedSet.size !== map.length) {
     const seen = new Set();
     const dupes = map.filter((pi) => {
       if (seen.has(pi)) return true;
@@ -161,17 +178,25 @@ export function assertArtariaBijection(rdvArtariaJson) {
       return false;
     });
     throw new Error(
-      `pickupMatch Artaria bijection violation: duplicate pickup indices found: [${dupes.join(", ")}].`,
+      `pickupMatch ${region} bijection violation: duplicate pickup indices found: [${dupes.join(", ")}].`,
     );
   }
 
-  // (d) uncovered indices — deferred, listed but not a failure
+  // (d) uncovered indices — listed but not a failure
   const uncoveredIndices = [...validSet].filter((pi) => !mappedSet.has(pi));
 
   return { uncoveredIndices };
 }
 
-// ── assertArtariaTypeConsistency (MAP-05) ─────────────────────────────────────
+/**
+ * Backward-compat wrapper. Keeps scripts/parity-artaria.mjs working unmodified.
+ * @param {object} rdvArtariaJson - parsed public/logic/Artaria.json
+ */
+export function assertArtariaBijection(rdvArtariaJson) {
+  return assertBijection("artaria", rdvArtariaJson);
+}
+
+// ── assertTypeConsistency (MAP-05) ─────────────────────────────────────────────
 
 /**
  * Assert that each mapped pickup's Randovania node-name keyword matches the
@@ -179,17 +204,24 @@ export function assertArtariaBijection(rdvArtariaJson) {
  *
  * For each tracker location index i:
  *   - trkKw = derived from location.type + location.amount (via trkTypeKeyword)
- *   - rdvKw = derived from the node name of the node whose pickup_index === pickupIndexFor("artaria", i)
- *   - assert trkKw === rdvKw
+ *   - rdvKw = derived from the node name whose pickup_index === pickupIndexFor(region, i)
+ *   - assert trkKw === rdvKw (unless pi is in acceptedMismatches)
  *
- * @param {object} rdvArtariaJson - parsed public/logic/Artaria.json
- * @param {Array}  trackerLocations - artaria.js state.locations array
- * @throws {Error} with message "pickupMatch type mismatch at index {i}: tracker={type}, rdv={rdvType}" on first mismatch
+ * Known accepted mismatches (pass as acceptedMismatches Set):
+ *   - cataris pi=144: tracker uses "flashShift" (vanilla Green EMMI location label)
+ *     but RDV places "Morph Ball" at Central Unit Access. The bijection is correct;
+ *     only the vanilla item label differs from the RDV node name.
+ *
+ * @param {string}     region              - lower-case region name, e.g. "cataris"
+ * @param {object}     rdvJson             - parsed public/logic/<Region>.json
+ * @param {Array}      trackerLocations    - region module's state.locations array
+ * @param {Set<number>} [acceptedMismatches] - pickup_index values allowed to mismatch (documented anomalies)
+ * @throws {Error} with message "pickupMatch type mismatch at index {i}: ..." on first un-accepted mismatch
  */
-export function assertArtariaTypeConsistency(rdvArtariaJson, trackerLocations) {
+export function assertTypeConsistency(region, rdvJson, trackerLocations, acceptedMismatches = new Set()) {
   // Build a lookup: pickup_index → node name
   const piToNode = new Map();
-  for (const area of Object.values(rdvArtariaJson.areas)) {
+  for (const area of Object.values(rdvJson.areas)) {
     for (const [nodeName, node] of Object.entries(area.nodes)) {
       if (node.node_type === "pickup") {
         piToNode.set(node.pickup_index, nodeName);
@@ -199,7 +231,15 @@ export function assertArtariaTypeConsistency(rdvArtariaJson, trackerLocations) {
 
   for (let i = 0; i < trackerLocations.length; i++) {
     const loc = trackerLocations[i];
-    const pi = pickupIndexFor("artaria", i);
+    const pi = pickupIndexFor(region, i);
+
+    if (acceptedMismatches.has(pi)) {
+      console.info(
+        `assertTypeConsistency: accepted mismatch at ${region} index ${i} (pi=${pi}) — documented anomaly`,
+      );
+      continue;
+    }
+
     const nodeName = piToNode.get(pi);
 
     if (!nodeName) {
@@ -217,4 +257,13 @@ export function assertArtariaTypeConsistency(rdvArtariaJson, trackerLocations) {
       );
     }
   }
+}
+
+/**
+ * Backward-compat wrapper. Keeps scripts/parity-artaria.mjs working unmodified.
+ * @param {object} rdvArtariaJson    - parsed public/logic/Artaria.json
+ * @param {Array}  trackerLocations  - artaria.js state.locations array
+ */
+export function assertArtariaTypeConsistency(rdvArtariaJson, trackerLocations) {
+  return assertTypeConsistency("artaria", rdvArtariaJson, trackerLocations);
 }
