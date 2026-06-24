@@ -11,7 +11,7 @@
  * This module runs in BOTH the browser bundle (via Vue app) and Node assertion scripts.
  *
  * Exports:
- *   LOCATION_PICKUP_MAP          — { artaria: number[35] } (other regions added in Phase 4 Plan 02)
+ *   LOCATION_PICKUP_MAP          — { artaria, cataris, dairon, burenia, ferenia, ghavoran, elun, hanubia }
  *   pickupIndexFor(region, i)    — lookup helper; throws on unknown region or out-of-range i
  *   assertBijection(region, rdvJson)                                       — MAP-04 (generalized)
  *   assertTypeConsistency(region, rdvJson, locs, acceptedMismatches)       — MAP-05 (generalized)
