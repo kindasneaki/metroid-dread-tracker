@@ -69,6 +69,12 @@ Plans:
 3. Parity diffing reviewed per region.
 **Requirements:** MAP-01..MAP-05 (all regions)
 **Depends on:** Phase 3
+**Plans:** 4 plans
+Plans:
+- [ ] 04-01-PLAN.md — Wave 1: generalize match-artaria→match-region.cjs + region-parametric assertBijection/assertTypeConsistency + rdvTypeKeyword extensions (Artaria regression-safe)
+- [ ] 04-02-PLAN.md — Wave 2: commit 7 region arrays into LOCATION_PICKUP_MAP + add 3 boss pickups (Z-57/141, Kraid/148, Drogyga/140) + fix powerbomb typo
+- [ ] 04-03-PLAN.md — Wave 3: wire flag-aware locationStates computed into all 7 region views (default OFF)
+- [ ] 04-04-PLAN.md — Wave 3: scripts/parity-regions.mjs — bijection/typeConsistency/mapCoverage/parity battery across 7 regions + Artaria regression
 
 ### Phase 5: Cut over & cleanup
 **Goal:** Make the new engine the only engine; remove the hand-authored logic.
