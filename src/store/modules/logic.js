@@ -148,7 +148,6 @@ export default {
       state.inLogicPickups = inLogicPickups;
       state.energyRisk = energyRisk;
     },
-
   },
 
   actions: {
@@ -257,6 +256,5 @@ export default {
 
     /** Set<number> of pickup indices reachable only via a risky damage path. */
     energyRisk: (state) => state.energyRisk,
-
   },
 };
