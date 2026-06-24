@@ -172,7 +172,7 @@ export default {
     },
     checkX() {
       this.$store.dispatch("items/updateX");
-      this.$store.dispatch("ghavoran/checkLogic");
+      this.$store.dispatch("logic/recompute");
     },
     toggleMinor(index, amount) {
       this.$store.dispatch("items/updateMinor", { index, amount });
