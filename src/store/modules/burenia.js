@@ -435,9 +435,6 @@ export default {
     ],
   },
   mutations: {
-    UPDATE_LOGIC(state, payload) {
-      state.locations[payload.index].inLogic = payload.logic;
-    },
     /**
      * Set locations[i].checked = true for each index in the indices array.
      * ABSOLUTE-SET semantics for restore (PER-01). Does NOT touch inLogic/softlock.
@@ -454,91 +451,6 @@ export default {
     RESET_LOCATIONS(state) {
       for (const loc of state.locations) {
         loc.checked = false;
-      }
-    },
-  },
-  actions: {
-    checkLogic({ commit, state, rootGetters }) {
-      let data = rootGetters["items/inLogic"];
-      //3m location
-      if (
-        data[8].logic ||
-        (data[12].logic && data[9].logic) ||
-        (data[12].logic && data[10].logic)
-      ) {
-        state.locations[10].softlock = false;
-      } else {
-        state.locations[10].softlock = true;
-      }
-      //flashshift
-      if (data[12].logic) {
-        state.locations[17].softlock = false;
-      } else {
-        state.locations[17].softlock = true;
-      }
-      //gravity
-      if (data[8].logic) {
-        state.locations[18].softlock = false;
-      } else {
-        state.locations[18].softlock = true;
-      }
-      for (let i = 0; i < state.locations.length; i++) {
-        // for (let k = 0; k < state.locations[i].logic.length; k++) {
-        let originalLength = state.locations[i].logic.length;
-        let inLogic = false;
-        let requiredLogic = false;
-        if (state.locations[i].requiredLogic) {
-          state.locations[i].requiredLogic.forEach((element) => {
-            let counter = 0;
-            let logicLength = element.type.length;
-            for (let k = 0; k < element.type.length; k++) {
-              data.find((value) => {
-                if (value.type === element.type[k]) {
-                  if (value.logic) {
-                    counter++;
-                    if (logicLength === counter) {
-                      requiredLogic = true;
-                      return true;
-                    }
-                  }
-                }
-              });
-            }
-            for (let k = 0; k < element.type.length; k++) {
-              element.counter = 0;
-            }
-          });
-        } else {
-          requiredLogic = true;
-        }
-        state.locations[i].logic.forEach((element) => {
-          let counter = 0;
-          let logicLength = element.type.length;
-          for (let k = 0; k < element.type.length; k++) {
-            data.find((value) => {
-              if (value.type === element.type[k]) {
-                if (value.logic) {
-                  counter++;
-                  if (logicLength === counter && requiredLogic) {
-                    inLogic = true;
-                    return true;
-                  }
-                }
-              }
-            });
-          }
-          for (let k = 0; k < element.type.length; k++) {
-            element.counter = 0;
-          }
-        });
-
-        if (originalLength === 0) {
-          inLogic = true;
-        }
-        // inLogic = true;
-        const payload = { index: i, logic: inLogic };
-        commit("UPDATE_LOGIC", payload);
-        // }
       }
     },
   },
