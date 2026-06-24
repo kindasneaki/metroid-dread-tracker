@@ -55,6 +55,11 @@ Plans:
 3. Settings and progress (checked items + locations) persist to localStorage and restore on load.
 **Requirements:** SET-01..SET-05, PER-01, PER-02
 **Depends on:** Phase 2
+**Plans:** 3 plans
+Plans:
+- [ ] 03-01-PLAN.md — Wave 0: pure persistence.js (serialize/deserialize) + validate-settings.mjs battery (Wave 1)
+- [ ] 03-02-PLAN.md — logic/setSettings + debounced localStorage plugin + restore-before-mount + reset (Wave 2)
+- [ ] 03-03-PLAN.md — SettingsPanel.vue (trick level/misc/starting inventory/energy params) + mount + Reset progress (Wave 3)
 
 ### Phase 4: Remaining regions
 **Goal:** All 8 tracker regions driven by the new engine, each reconciled and asserted.
