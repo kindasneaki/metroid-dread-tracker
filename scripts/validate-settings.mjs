@@ -318,6 +318,70 @@ run("persistRoundTrip", () => {
   assert.strictEqual(deserializeState(""), null, "persistRoundTrip: empty string must return null");
 });
 
+// ─── setModelNoClob (BLOCKER) ─────────────────────────────────────────────────
+// Proves SET_MODEL does NOT clobber settings restored before mount.
+// The pure persistRoundTrip test cannot catch this Vuex-level invariant.
+// This test exercises the exact SET_MODEL + SET_SETTINGS mutation logic inline
+// (logic.js uses @/ webpack aliases that do not resolve under node — we exercise
+// the merge contract directly using the same code path from the module source).
+run("setModelNoClob", () => {
+  // Inline the mutation logic from logic.js (mirrors src/store/modules/logic.js exactly)
+  // so this test works under plain node without webpack alias resolution.
+  function setModelMutation(state, { header }) {
+    state.settings = state.settings
+      ? { ...defaultSettings(header), ...state.settings }
+      : defaultSettings(header);
+  }
+
+  function setSettingsMutation(state, patch) {
+    const base = state.settings || {};
+    const incoming = patch || {};
+    state.settings = {
+      ...base,
+      ...incoming,
+      misc:
+        incoming.misc !== undefined
+          ? { ...(base.misc || {}), ...incoming.misc }
+          : base.misc,
+      startingItems:
+        incoming.startingItems !== undefined
+          ? { ...(base.startingItems || {}), ...incoming.startingItems }
+          : base.startingItems,
+    };
+  }
+
+  // Simulate: fresh boot (settings null)
+  const state = { settings: null };
+
+  // Step 1: restore settings before mount (simulates main.js restoreState)
+  setSettingsMutation(state, { trickLevel: 5 });
+  assert.strictEqual(state.settings.trickLevel, 5, "setModelNoClob: trickLevel must be 5 after SET_SETTINGS");
+
+  // Step 2: simulate model load (onMounted) — SET_MODEL must NOT clobber trickLevel
+  setModelMutation(state, { header: db.header });
+
+  assert.strictEqual(
+    state.settings.trickLevel,
+    5,
+    `setModelNoClob: SET_MODEL must NOT clobber trickLevel restored before mount (got ${state.settings.trickLevel})`,
+  );
+
+  // Step 3: startingLocation from header should be filled in (header provides it)
+  assert.ok(
+    state.settings.startingLocation !== undefined,
+    "setModelNoClob: startingLocation must be filled from header even when settings were restored",
+  );
+
+  // Step 4: fresh boot (settings null) should take full defaults
+  const freshState = { settings: null };
+  setModelMutation(freshState, { header: db.header });
+  assert.strictEqual(
+    freshState.settings.trickLevel,
+    0,
+    "setModelNoClob: fresh boot must take default trickLevel 0",
+  );
+});
+
 // ─── engineRegression ─────────────────────────────────────────────────────────
 // Sanity guard: with all items the engine returns a non-empty pickup set.
 // Fails loudly if the engine is broken, preventing false positives above.

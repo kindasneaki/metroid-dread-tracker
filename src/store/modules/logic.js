@@ -96,12 +96,44 @@ export default {
     /**
      * Store the frozen GameModel and derive the starter-preset settings from the
      * loaded header. Sets ready = true (the load gate).
+     *
+     * D-04 BLOCKER FIX: Do NOT clobber already-restored settings.
+     * If state.settings is already set (restored from localStorage before mount),
+     * we merge: header-derived defaults provide the base, restored fields win.
+     * This means startingLocation/victory from the header are always present,
+     * but any user-overridden fields (trickLevel, misc, startingItems, etc.) survive.
+     * If state.settings is null (fresh boot), take full defaults as before.
      */
     SET_MODEL(state, { model, header }) {
       state.gameModel = model;
-      state.settings = defaultSettings(header);
+      state.settings = state.settings
+        ? { ...defaultSettings(header), ...state.settings }
+        : defaultSettings(header);
       state.ready = true;
       state.error = null;
+    },
+
+    /**
+     * Shallow-merge a settings patch onto state.settings (SET-04).
+     * Nested objects `misc` and `startingItems` are merged so a single-field
+     * change does not drop sibling keys. Handles the null-settings case by
+     * merging onto an empty base (safe before model load — value is not lost).
+     */
+    SET_SETTINGS(state, patch) {
+      const base = state.settings || {};
+      const incoming = patch || {};
+      state.settings = {
+        ...base,
+        ...incoming,
+        misc:
+          incoming.misc !== undefined
+            ? { ...(base.misc || {}), ...incoming.misc }
+            : base.misc,
+        startingItems:
+          incoming.startingItems !== undefined
+            ? { ...(base.startingItems || {}), ...incoming.startingItems }
+            : base.startingItems,
+      };
     },
 
     /**
@@ -130,6 +162,20 @@ export default {
   },
 
   actions: {
+    /**
+     * Apply a settings patch and re-run the BFS (SET-04).
+     * Commits SET_SETTINGS (shallow-merge with nested misc/startingItems preserved),
+     * then dispatches recompute so the in-logic set reflects the new settings.
+     * recompute reuses the cached state.gameModel — NO GameModel rebuild occurs.
+     * Safe before model load: SET_SETTINGS stores the patch; recompute no-ops until ready.
+     *
+     * @param {object} patch - partial settings object (any subset of the settings shape)
+     */
+    setSettings({ commit, dispatch }, patch) {
+      commit("SET_SETTINGS", patch);
+      dispatch("recompute");
+    },
+
     /**
      * MIG-01: Set the useRandovaniaLogic flag. Commits SET_FLAG to coerce to boolean.
      * If turning ON and the model is already ready, immediately recomputes so the first
