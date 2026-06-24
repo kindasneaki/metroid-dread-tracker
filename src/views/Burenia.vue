@@ -17,11 +17,7 @@
           v-model="location.checked"
           v-on:click="checked(location.checked, location.type, location.amount)"
         />
-        <span
-          class="toggle_switch"
-          v-if="!locationStates[index].softlock"
-        ></span>
-        <span class="toggle_switch_softlock" v-else></span>
+        <span class="toggle_switch"></span>
       </label>
       <label
         :for="location.area"
@@ -48,13 +44,12 @@ export default {
     ...mapState("burenia", {
       locations: (state) => state.locations,
     }),
-    ...mapGetters("logic", ["inLogicPickups", "energyRisk"]),
+    ...mapGetters("logic", ["inLogicPickups"]),
     locationStates() {
       return this.locations.map((location, i) => {
         const pi = pickupIndexFor("burenia", i);
-        const softlock = this.energyRisk.has(pi);
-        const shown = softlock || this.inLogicPickups.has(pi);
-        return { shown, softlock };
+        const shown = this.inLogicPickups.has(pi);
+        return { shown };
       });
     },
   },

@@ -70,10 +70,6 @@ input[type="checkbox"]:checked + .toggle_switch {
   background: #1deb38;
   color: #fff; /* background-image: url("checked.png"); */
 }
-input[type="checkbox"]:checked + .toggle_switch_softlock {
-  background: #1deb38;
-  color: #fff; /* background-image: url("checked.png"); */
-}
 input[type="checkbox"]:checked + .toggle_switch_noLogic {
   background: #1deb38;
   color: #fff; /* background-image: url("checked.png"); */
@@ -86,14 +82,6 @@ input[type="checkbox"]:checked + .toggle_switch_noLogic {
   height: 10px;
   width: 10px; /* background: url("unchecked.png") no-repeat left center; */ /*
 padding-left: 15px; */
-}
-.toggle_switch_softlock {
-  border: 1px solid #000;
-  display: inline-block;
-  padding: 3px;
-  background: yellow;
-  height: 10px;
-  width: 10px;
 }
 .toggle_switch_noLogic {
   border: 1px solid #000;

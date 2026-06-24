@@ -319,21 +319,6 @@ if (ENGINE_READY) {
       "Having Varia+Gravity suits should yield >= in-logic pickups vs no suits");
   });
 
-  // energyRisk (ENG-06/D-06): energyRisk set non-empty for low energy + known damage room
-  run("energyRisk", () => {
-    const rdbItems = rdb.items;
-    const minItems = { Power: 1 };
-    for (const [k, v] of Object.entries(rdbItems)) {
-      if (k !== "ETank" && k !== "EFragment") minItems[k] = v.max_capacity || 1;
-    }
-    const settings = maxTrickSettings(rdb);
-    const lowEnergyState = { items: minItems, events: new Set(), maxEnergy: 99 };
-
-    const { energyRisk } = recompute(model, lowEnergyState, settings);
-    assert.ok(energyRisk.size > 0,
-      "energyRisk must be non-empty for low-energy (no tanks) + known heat/lava rooms");
-  });
-
   // missileGate (ENG-07/D-06): missile-gated pickup only in-logic when missiles > 0
   run("missileGate", () => {
     const settings = noTrickSettings(rdb);
@@ -399,20 +384,16 @@ if (ENGINE_READY) {
     const noCounters = { missiles: 0, energyPart: 0, energyFull: 0, powerBomb: 0 };
     const rsNoItems = buildResourceState(noObtained, noCounters, settings, rdb);
 
-    const { inLogicPickups: noItemsPickups, energyRisk: noItemsRisk } = recompute(
+    const { inLogicPickups: noItemsPickups } = recompute(
       model,
       rsNoItems,
       settings,
     );
 
-    // Both outputs must be Sets (ENG-07)
+    // Output must be a Set (ENG-07)
     assert.ok(
       noItemsPickups instanceof Set,
       "recomputeIntegration: inLogicPickups must be instanceof Set",
-    );
-    assert.ok(
-      noItemsRisk instanceof Set,
-      "recomputeIntegration: energyRisk must be instanceof Set",
     );
 
     // The ResourceState path must add NOTHING beyond the configured starting
@@ -464,7 +445,6 @@ if (ENGINE_READY) {
   skip("trickLevel", SKIP_REASON);
   skip("miscNegate", SKIP_REASON);
   skip("energy", SKIP_REASON);
-  skip("energyRisk", SKIP_REASON);
   skip("missileGate", SKIP_REASON);
   skip("starterBaseline", SKIP_REASON);
   skip("recomputeIntegration", SKIP_REASON);

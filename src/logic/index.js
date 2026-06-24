@@ -10,13 +10,13 @@
  *
  * Contract:
  *   createGameModel(db)                           → frozen GameModel object
- *   recompute(model, resourceState, settings)     → { inLogicPickups: Set, energyRisk: Set }
+ *   recompute(model, resourceState, settings)     → { inLogicPickups: Set }
  *   assertSchema(loaded)                          → throws on schema drift
  *   EXPECTED_SCHEMA_VERSION                       → 33 (DAT-03)
  */
 
 import { createGameModel as _buildModel } from "./GameModel.js";
-import { reach, reachablePickups, collectEnergyRisk } from "./Reachability.js";
+import { reach, reachablePickups } from "./Reachability.js";
 
 // ── DAT-03: Schema version guard ─────────────────────────────────────────────
 
@@ -61,8 +61,9 @@ export function createGameModel(db) {
 }
 
 /**
- * Run the reachability computation and return the set of in-logic pickup indices
- * plus the set of pickups reachable only via risky damage paths.
+ * Run the reachability computation and return the set of in-logic pickup indices.
+ * Energy/damage gates reachability directly (an unsurvivable damage edge is not
+ * traversed), so there is no separate energy-risk set.
  *
  * resourceState can be produced by buildResourceState (full fields) or by the
  * validate-logic.mjs battery helpers (items + events + maxEnergy only). Both forms
@@ -76,7 +77,7 @@ export function createGameModel(db) {
  * @param {object} settings
  *   { trickLevels?: object, trickLevel?: number, misc: object }
  *   If trickLevels is absent, all tricks are set to settings.trickLevel (default 0).
- * @returns {{ inLogicPickups: Set<number>, energyRisk: Set<number> }}
+ * @returns {{ inLogicPickups: Set<number> }}
  */
 export function recompute(model, resourceState, settings) {
   const rdb = model.rdb;
@@ -144,10 +145,8 @@ export function recompute(model, resourceState, settings) {
 
   const { reachable } = reach(state, ctx, model);
   const pickupArray = reachablePickups(reachable, model);
-  const energyRisk = collectEnergyRisk(reachable, state, ctx, model);
 
   return {
     inLogicPickups: new Set(pickupArray),
-    energyRisk,
   };
 }

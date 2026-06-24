@@ -9,7 +9,6 @@
  *   error          — string if the load or schema guard fails (fail loudly, T-01-07)
  *   gameModel      — frozen GameModel from createGameModel (DAT-04)
  *   inLogicPickups — Set<number> of pickup_index values reachable with current state (ENG-07)
- *   energyRisk     — Set<number> pickup_index values reachable only via risky damage path (D-06)
  *   settings       — starter-preset settings (D-04; Phase 3 will replace from UI/localStorage)
  *
  * Actions:
@@ -20,8 +19,9 @@
  *
  * SOLE REACHABILITY SOURCE (Phase 5 cutover): the old hand-authored per-location
  * reachability path and its feature flag were removed. Ability/counter changes
- * dispatch recompute unconditionally; region views read inLogicPickups /
- * energyRisk to drive their checkbox colors.
+ * dispatch recompute unconditionally; region views read inLogicPickups to
+ * drive their checkbox colors (in-logic vs not). Energy gates reachability
+ * inside the engine, so there is no separate risk state.
  */
 
 import {
@@ -84,7 +84,6 @@ export default {
     ready: false,
     error: null,
     inLogicPickups: new Set(),
-    energyRisk: new Set(),
     // settings is initialised with a placeholder; SET_MODEL replaces it with the
     // real header-derived defaults once the database loads.
     settings: null,
@@ -145,9 +144,8 @@ export default {
     /**
      * Store the result of a recompute pass.
      */
-    SET_RESULT(state, { inLogicPickups, energyRisk }) {
+    SET_RESULT(state, { inLogicPickups }) {
       state.inLogicPickups = inLogicPickups;
-      state.energyRisk = energyRisk;
     },
   },
 
@@ -254,8 +252,5 @@ export default {
 
     /** Set<number> of in-logic pickup indices (empty until first recompute). */
     inLogicPickups: (state) => state.inLogicPickups,
-
-    /** Set<number> of pickup indices reachable only via a risky damage path. */
-    energyRisk: (state) => state.energyRisk,
   },
 };
