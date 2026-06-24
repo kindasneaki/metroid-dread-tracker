@@ -546,8 +546,8 @@ export default {
         checked: false,
         type: "diffusionBeam",
         amount: 1,
-        top: "margin-top: 418px",
-        left: "left: 236px",
+        top: "margin-top:418px",
+        left: "left:236px",
         softlock: true,
         logic: [
           {
