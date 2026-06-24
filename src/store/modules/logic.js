@@ -87,9 +87,6 @@ export default {
     // settings is initialised with a placeholder; SET_MODEL replaces it with the
     // real header-derived defaults once the database loads.
     settings: null,
-    // MIG-01: feature flag — default OFF. Flipped via ?rdv=1 at bootstrap (main.js).
-    // When ON, the new Randovania engine drives Artaria reachability (Plan 03 wires the view).
-    useRandovaniaLogic: false,
   }),
 
   mutations: {
@@ -152,13 +149,6 @@ export default {
       state.energyRisk = energyRisk;
     },
 
-    /**
-     * MIG-01: Flip the useRandovaniaLogic feature flag.
-     * Accepts any truthy/falsy value; coerces to boolean.
-     */
-    SET_FLAG(state, value) {
-      state.useRandovaniaLogic = Boolean(value);
-    },
   },
 
   actions: {
@@ -174,20 +164,6 @@ export default {
     setSettings({ commit, dispatch }, patch) {
       commit("SET_SETTINGS", patch);
       dispatch("recompute");
-    },
-
-    /**
-     * MIG-01: Set the useRandovaniaLogic flag. Commits SET_FLAG to coerce to boolean.
-     * If turning ON and the model is already ready, immediately recomputes so the first
-     * paint reflects the new engine without requiring an ability toggle.
-     *
-     * @param {boolean} value - true to enable the new Randovania engine
-     */
-    setFlag({ commit, state, dispatch }, value) {
-      commit("SET_FLAG", value);
-      if (value && state.ready) {
-        dispatch("recompute");
-      }
     },
 
     /**
@@ -208,8 +184,7 @@ export default {
         assertSchema(db.header.schema_version);
         const model = createGameModel(db);
         commit("SET_MODEL", { model, header: db.header });
-        // D-03: initial recompute after the model is ready (no-op when flag OFF because
-        // the engine will return empty sets; Plan 03 wires the view to read them only when ON).
+        // D-03: initial recompute after the model is ready.
         dispatch("recompute");
       } catch (e) {
         commit("SET_ERROR", String(e));
@@ -283,10 +258,5 @@ export default {
     /** Set<number> of pickup indices reachable only via a risky damage path. */
     energyRisk: (state) => state.energyRisk,
 
-    /**
-     * MIG-01: Whether the Randovania engine drives Artaria reachability.
-     * Default false (OFF). Flipped to true via ?rdv=1 at app bootstrap.
-     */
-    useRandovaniaLogic: (state) => state.useRandovaniaLogic,
   },
 };
