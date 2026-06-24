@@ -47,7 +47,7 @@
 
 - [ ] **MIG-01**: New engine ships behind a `useRandovaniaLogic` flag; region views read in-logic via a getter that switches old vs new path
 - [ ] **MIG-02**: Artaria is piloted and validated first; parity diffing logs old-vs-new per-location disagreements
-- [ ] **MIG-03**: After all regions validate, the flag default flips and hand-authored `logic`/`requiredLogic`/per-index softlock hacks + per-region `checkLogic` are deleted (presentation data kept)
+- [x] **MIG-03**: After all regions validate, the flag default flips and hand-authored `logic`/`requiredLogic`/per-index softlock hacks + per-region `checkLogic` are deleted (presentation data kept)
 - [ ] **VAL-01**: `node` assertion scripts cover "no items ⇒ minimal set," "all items + max tricks ⇒ all pickups + victory (Ship)," and hand-checked item-subset → expected-pickup cases
 - [ ] **VAL-02**: `CLAUDE.md` architecture section is updated to describe the new engine
 
