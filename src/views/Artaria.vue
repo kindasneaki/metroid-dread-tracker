@@ -109,9 +109,6 @@ export default {
         this.addAbility(-amount, type);
       }
     },
-    clickLocation() {
-      console.log("test");
-    },
   },
 };
 </script>
