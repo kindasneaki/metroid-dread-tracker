@@ -134,9 +134,6 @@ export default {
       });
       this.$store.dispatch("items/checkProgressive", type);
     },
-    toggleLogic(route, type) {
-      this.$store.dispatch(route + "/updateArea", type);
-    },
     // toggleAbility(logic) {
     // this.$store.dispatch("updateAbility", { logic });
     // },

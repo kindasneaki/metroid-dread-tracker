@@ -281,12 +281,10 @@ export default {
       state.minorItems[2].total = 0;
     },
     FIX_ENERGY(state) {
-      console.log("adf");
       state.minorItems[2].total += 3;
       // state.minorItems[3].total -= 1;
     },
     PREVENT_NEGATIVE(state, index) {
-      console.log(index);
       state.minorItems[index].total = state.minorItems[index].startAmount;
     },
   },

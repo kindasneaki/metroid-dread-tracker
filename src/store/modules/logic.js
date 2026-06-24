@@ -18,9 +18,10 @@
  *   recompute — no-op until ready; reads rootGetters['items/inLogic'] + rootState minor
  *               counters to build ResourceState (D-06), runs the engine, stores result.
  *
- * D-05 NON-BREAKING: this module does NOT import Tracker.vue, does NOT dispatch
- * items/updateArea, and does NOT modify any region view. The existing hand-authored
- * engine continues to drive the UI. Phase 2 will wire the UI behind a flag.
+ * SOLE REACHABILITY SOURCE (Phase 5 cutover): the old hand-authored per-location
+ * reachability path and its feature flag were removed. Ability/counter changes
+ * dispatch recompute unconditionally; region views read inLogicPickups /
+ * energyRisk to drive their checkbox colors.
  */
 
 import {
@@ -173,8 +174,8 @@ export default {
      * so the app can surface the problem (T-01-07, D-02).
      *
      * D-03: After a successful load, dispatch recompute once so the initial paint
-     * reflects the new engine immediately (the ready gate inside recompute is now
-     * satisfied). Non-breaking: recompute is a no-op when flag is OFF.
+     * reflects the engine immediately (the ready gate inside recompute is now
+     * satisfied).
      */
     async load({ commit, dispatch }) {
       try {
