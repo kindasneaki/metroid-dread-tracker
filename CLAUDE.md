@@ -70,13 +70,20 @@ This is the heart of the app and spans several files:
    unconditionally dispatches `logic/recompute`.
 3. `logic/recompute` builds a `ResourceState` from `rootGetters['items/inLogic']`
    and root counters, runs the Randovania BFS engine, and commits the resulting
-   `inLogicPickups` and `energyRisk` Sets to logic module state.
+   `inLogicPickups` Set to logic module state.
 4. Region views re-render: `locationStates` computed maps each location to its
-   `pickup_index` via `pickupIndexFor()`, reads `inLogicPickups.has(pi)` for shown
-   and `energyRisk.has(pi)` for softlock styling.
+   `pickup_index` via `pickupIndexFor()` and reads `inLogicPickups.has(pi)` to
+   decide in-logic vs. out-of-logic. Energy/damage gates reachability inside the
+   engine (an unsurvivable connection is never traversed) — there is no separate
+   "risk" state.
 
 The `inLogic` getter in `items.js` is the single source of truth for "which
 abilities count as obtained."
+
+> **Full reference:** [`docs/LOGIC-ENGINE.md`](docs/LOGIC-ENGINE.md) — detailed
+> guide to how reachability is computed (engine internals, state flow, the
+> `checked` vs `logic` distinction, the energy/damage model, persistence, colors,
+> and known limitations).
 
 ### UI layout
 
