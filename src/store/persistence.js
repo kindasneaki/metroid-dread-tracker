@@ -40,7 +40,13 @@ export const STORAGE_KEY = "mdt:v1";
  *
  * @returns {object} versioned JSON-safe blob (plain object, ready for JSON.stringify)
  */
-export function serializeState({ settings, items, xDefeated, counters, regions }) {
+export function serializeState({
+  settings,
+  items,
+  xDefeated,
+  counters,
+  regions,
+}) {
   // Persist only the minimal checked-type map for items to avoid bloating the blob.
   // inLogic / logic fields are computed; only `checked` (user input) matters.
   const checkedItems = {};
@@ -57,10 +63,18 @@ export function serializeState({ settings, items, xDefeated, counters, regions }
 
   // Counters: plain copy, coerce to numbers
   const countersCopy = {
-    missiles: Number(counters && counters.missiles != null ? counters.missiles : 0),
-    energyPart: Number(counters && counters.energyPart != null ? counters.energyPart : 0),
-    energyFull: Number(counters && counters.energyFull != null ? counters.energyFull : 0),
-    powerBomb: Number(counters && counters.powerBomb != null ? counters.powerBomb : 0),
+    missiles: Number(
+      counters && counters.missiles != null ? counters.missiles : 0,
+    ),
+    energyPart: Number(
+      counters && counters.energyPart != null ? counters.energyPart : 0,
+    ),
+    energyFull: Number(
+      counters && counters.energyFull != null ? counters.energyFull : 0,
+    ),
+    powerBomb: Number(
+      counters && counters.powerBomb != null ? counters.powerBomb : 0,
+    ),
   };
 
   // Regions: deep-clone the arrays to prevent later mutations from corrupting the blob
@@ -115,7 +129,12 @@ export function deserializeState(rawString) {
     settings: parsed.settings || {},
     checkedItems: parsed.checkedItems || {},
     xDefeated: parsed.xDefeated === true,
-    counters: parsed.counters || { missiles: 0, energyPart: 0, energyFull: 0, powerBomb: 0 },
+    counters: parsed.counters || {
+      missiles: 0,
+      energyPart: 0,
+      energyFull: 0,
+      powerBomb: 0,
+    },
     regions: parsed.regions || {},
   };
 }
