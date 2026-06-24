@@ -234,7 +234,8 @@ export default {
      * Set-by-value hydration for restore (PER-01/PER-02).
      * Accepts a checkedItems map { [type]: boolean } and xDefeated boolean.
      * ABSOLUTE-SET semantics — does NOT toggle; safe to call from restoreState.
-     * Also resets items[].logic to false (recompute will re-derive logic state).
+     * Mirrors logic ← checked so the engine (which reads items[].logic) sees the
+     * restored inventory; recompute does NOT re-derive logic from checked.
      */
     HYDRATE_ITEMS(state, { checkedItems, xDefeated }) {
       const map = checkedItems || {};
@@ -244,7 +245,7 @@ export default {
         } else {
           item.checked = false;
         }
-        item.logic = false;
+        item.logic = item.checked;
       }
       if (typeof xDefeated === "boolean") {
         state.xDefeated.logic = xDefeated;
