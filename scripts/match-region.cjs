@@ -152,9 +152,13 @@ function solve3(M, b) {
 }
 
 let PL, PT;
-if (anchors.length >= 1) {
+if (anchors.length >= 3) {
   PL = solveAffine(anchors.map(a=>({x:a.r.x,y:a.r.y, t:a.t.left})), (s)=>s.t);
   PT = solveAffine(anchors.map(a=>({x:a.r.x,y:a.r.y, t:a.t.top})), (s)=>s.t);
+} else if (anchors.length >= 1) {
+  console.warn(`  WARNING: only ${anchors.length} anchor(s) available; need ≥3 for a unique affine fit. Results will be inaccurate (zero-coefficient fallback).`);
+  PL = [0, 0, 0];
+  PT = [0, 0, 0];
 } else {
   PL = [0, 0, 0];
   PT = [0, 0, 0];
