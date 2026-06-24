@@ -8,26 +8,6 @@ export default {
         amount: 2,
         top: "margin-top:191px",
         left: "left:342px",
-        requiredLogic: [
-          {
-            type: ["morphBall", "grappleBeam", "gravitySuit"],
-          },
-        ],
-        logic: [
-          {
-            type: ["waveBeam"],
-            counter: 0,
-          },
-          {
-            type: ["chargeBeam", "spiderMagnet"],
-            counter: 0,
-          },
-          {
-            type: ["chargeBeam", "spaceJump"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "2",
@@ -36,13 +16,6 @@ export default {
         amount: 2,
         top: "margin-top:240px",
         left: "left:298px",
-        logic: [
-          {
-            type: ["morphBall"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "3",
@@ -51,30 +24,6 @@ export default {
         amount: 2,
         top: "margin-top:339px",
         left: "left:273px",
-        requiredLogic: [
-          {
-            type: ["morphBall"],
-          },
-        ],
-        logic: [
-          {
-            type: ["spinBoost"],
-            counter: 0,
-          },
-          {
-            type: ["spiderMagnet"],
-            counter: 0,
-          },
-          {
-            type: ["spaceJump"],
-            counter: 0,
-          },
-          {
-            type: ["grappleBeam"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "4",
@@ -83,23 +32,7 @@ export default {
         amount: 2,
         top: "margin-top:457px",
         left: "left:372px",
-        requiredLogic: [
-          {
-            type: ["morphBall"],
-          },
-        ],
-        logic: [
-          {
-            type: ["grappleBeam"],
-            counter: 0,
-          },
-          {
-            type: ["gravitySuit"],
-            counter: 0,
-          },
-        ],
         trick: [{ type: ["movefastbeforewater"] }],
-        inLogic: false,
       },
       {
         area: "5",
@@ -108,13 +41,6 @@ export default {
         amount: 2,
         top: "margin-top:509px",
         left: "left:388px",
-        logic: [
-          {
-            type: ["morphBall", "spaceJump", "screwAttack"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "6",
@@ -123,13 +49,6 @@ export default {
         amount: 2,
         top: "margin-top:528px",
         left: "left:226px",
-        logic: [
-          {
-            type: ["morphBall", "gravitySuit", "speedBooster"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "7",
@@ -138,34 +57,6 @@ export default {
         amount: 2,
         top: "margin-top:591px",
         left: "left:155px",
-        requiredLogic: [
-          {
-            type: ["morphBall", "gravitySuit"],
-          },
-        ],
-        logic: [
-          {
-            type: ["spinBoost", "plasmaBeam", "spiderMagnet"],
-            counter: 0,
-          },
-          {
-            type: ["spaceJump", "plasmaBeam", "spiderMagnet"],
-            counter: 0,
-          },
-          {
-            type: ["spinBoost", "waveBeam", "spiderMagnet"],
-            counter: 0,
-          },
-          {
-            type: ["spaceJump", "waveBeam", "spiderMagnet"],
-            counter: 0,
-          },
-          {
-            type: ["spaceJump", "speedBooster", "phantomCloak", "screwAttack"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "8",
@@ -174,13 +65,6 @@ export default {
         amount: 2,
         top: "margin-top:639px",
         left: "left:669px",
-        logic: [
-          {
-            type: ["morphBall", "screwAttack"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "1m",
@@ -189,22 +73,6 @@ export default {
         amount: 10,
         top: "margin-top:196px",
         left: "left:108px",
-        requiredLogic: [
-          {
-            type: ["morphBall"],
-          },
-        ],
-        logic: [
-          {
-            type: ["flashShift"],
-            counter: 0,
-          },
-          {
-            type: ["spaceJump"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "2m",
@@ -213,22 +81,6 @@ export default {
         amount: 10,
         top: "margin-top:669px",
         left: "left:424px",
-        requiredLogic: [
-          {
-            type: ["morphBall", "speedBooster"],
-          },
-        ],
-        logic: [
-          {
-            type: ["powerBomb"],
-            counter: 0,
-          },
-          {
-            type: ["iceMissiles"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "3m",
@@ -238,23 +90,6 @@ export default {
         top: "margin-top:586px",
         left: "left:195px",
         //flashshift or gravitysuit
-        softlock: true,
-        requiredLogic: [
-          {
-            type: ["morphBall"],
-          },
-        ],
-        logic: [
-          {
-            type: ["grappleBeam"],
-            counter: 0,
-          },
-          {
-            type: ["spiderMagnet"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "4m",
@@ -263,13 +98,6 @@ export default {
         amount: 10,
         top: "margin-top:643px",
         left: "left:514px",
-        logic: [
-          {
-            type: ["morphBall", "gravitySuit", "screwAttack"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "1ep",
@@ -278,14 +106,6 @@ export default {
         amount: 1,
         top: "margin-top:316px",
         left: "left:410px",
-        logic: [
-          {
-            type: ["speedBooster"],
-            trick: ["crossBomb"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "2ep",
@@ -294,22 +114,6 @@ export default {
         amount: 1,
         top: "margin-top:575px",
         left: "left:426px",
-        requiredLogic: [
-          {
-            type: ["morphBall"],
-          },
-        ],
-        logic: [
-          {
-            type: ["powerBomb"],
-            counter: 0,
-          },
-          {
-            type: ["iceMissiles"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "1ef",
@@ -318,30 +122,6 @@ export default {
         amount: 1,
         top: "margin-top:417px",
         left: "left:272px",
-        requiredLogic: [
-          {
-            type: ["morphBall"],
-          },
-        ],
-        logic: [
-          {
-            type: ["spinBoost"],
-            counter: 0,
-          },
-          {
-            type: ["flashShift"],
-            counter: 0,
-          },
-          {
-            type: ["spaceJump"],
-            counter: 0,
-          },
-          {
-            type: ["spiderMagnet", "grappleBeam"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "2ef",
@@ -350,13 +130,6 @@ export default {
         amount: 1,
         top: "margin-top:706px",
         left: "left:303px",
-        logic: [
-          {
-            type: ["morphBall", "gravitySuit", "grappleBeam"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "1pb",
@@ -365,19 +138,6 @@ export default {
         amount: 1,
         top: "margin-top:778px",
         left: "left:434px",
-        logic: [
-          {
-            type: [
-              "morphBall",
-              "gravitySuit",
-              "speedBooster",
-              "grappleBeam",
-              "powerBomb",
-            ],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "flash",
@@ -387,14 +147,6 @@ export default {
         top: "margin-top:476px",
         left: "left:326px",
         //flashshift or bombtrick
-        softlock: true,
-        logic: [
-          {
-            type: ["morphBall"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "gravity",
@@ -404,23 +156,6 @@ export default {
         top: "margin-top:745px",
         left: "left:415px",
         //gravitySuit
-        softlock: true,
-        requiredLogic: [
-          {
-            type: ["morphBall", "grappleBeam"],
-          },
-        ],
-        logic: [
-          {
-            type: ["waveBeam"],
-            counter: 0,
-          },
-          {
-            type: ["chargeBeam", "diffusionBeam"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "drogyga",
@@ -429,15 +164,13 @@ export default {
         amount: 2,
         top: "margin-top:510px",
         left: "left:101px",
-        logic: [],
-        inLogic: false,
       },
     ],
   },
   mutations: {
     /**
      * Set locations[i].checked = true for each index in the indices array.
-     * ABSOLUTE-SET semantics for restore (PER-01). Does NOT touch inLogic/softlock.
+     * ABSOLUTE-SET semantics for restore (PER-01).
      */
     SET_LOCATIONS(state, indices) {
       for (let i = 0; i < state.locations.length; i++) {
