@@ -114,9 +114,12 @@ function rdvTypeKeyword(nodeName) {
   if (/Missile\+ Tank/.test(nodeName)) return "missile+";
   if (/Missile Tank/.test(nodeName)) return "missile";
   // New-region major ability types (Phase 4). Tracker uses plural form for missile variants.
+  // NOTE: More-specific patterns must come before less-specific ones that share substrings.
+  // "Cross Bomb" must precede "Bomb" (otherwise /Bomb/ matches "Cross Bomb" first).
   if (/Morph Ball/.test(nodeName)) return "major:morphBall";
   if (/Diffusion Beam/.test(nodeName)) return "major:diffusionBeam";
   if (/Wide Beam/.test(nodeName)) return "major:wideBeam";
+  if (/Cross Bomb/.test(nodeName)) return "major:crossBomb";
   if (/Bomb/.test(nodeName)) return "major:bomb";
   if (/Speed Booster/.test(nodeName)) return "major:speedBooster";
   if (/Gravity Suit/.test(nodeName)) return "major:gravitySuit";
@@ -125,7 +128,6 @@ function rdvTypeKeyword(nodeName) {
   if (/Storm Missile/.test(nodeName)) return "major:stormMissiles";
   if (/Wave Beam/.test(nodeName)) return "major:waveBeam";
   if (/Super Missile/.test(nodeName)) return "major:superMissiles";
-  if (/Cross Bomb/.test(nodeName)) return "major:crossBomb";
   if (/Spin Boost/.test(nodeName)) return "major:spinBoost";
   if (/Pulse Radar/.test(nodeName)) return "major:pulseRadar";
   if (/Plasma Beam/.test(nodeName)) return "major:plasmaBeam";
