@@ -24,11 +24,11 @@
 
 ### Mapping (reconciliation)
 
-- [ ] **MAP-01**: An explicit `LOCATION_PICKUP_MAP` binds every tracker location to a Randovania `pickup_index` (per-region, array order)
-- [ ] **MAP-02**: A read-only helper script lists, per region, Randovania pickups (`pickup_index | area | node_name | type | coords`) beside tracker locations to author/verify the map
-- [ ] **MAP-03**: The 149-vs-146 + Itorash deltas are each resolved (added with map coords, or explicitly excluded with a documented reason)
-- [ ] **MAP-04**: A dev/load assertion enforces a bijection (every location → a unique valid `pickup_index`; report uncovered indices)
-- [ ] **MAP-05**: A node-name↔location-`type` consistency assertion flags suspicious pairings for review
+- [x] **MAP-01**: An explicit `LOCATION_PICKUP_MAP` binds every tracker location to a Randovania `pickup_index` (per-region, array order)
+- [x] **MAP-02**: A read-only helper script lists, per region, Randovania pickups (`pickup_index | area | node_name | type | coords`) beside tracker locations to author/verify the map
+- [x] **MAP-03**: The 149-vs-146 + Itorash deltas are each resolved (added with map coords, or explicitly excluded with a documented reason)
+- [x] **MAP-04**: A dev/load assertion enforces a bijection (every location → a unique valid `pickup_index`; report uncovered indices)
+- [x] **MAP-05**: A node-name↔location-`type` consistency assertion flags suspicious pairings for review
 
 ### Settings
 
@@ -83,6 +83,7 @@ Which phases cover which requirements. Filled during roadmap creation.
 | MIG-03, VAL-02 | Phase 5 | Pending |
 
 **Coverage:**
+
 - v1 requirements: 28 total
 - Mapped to phases: 28
 - Unmapped: 0 ✓
