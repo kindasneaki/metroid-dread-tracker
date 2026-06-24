@@ -66,28 +66,31 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+/* Collected (checkbox checked) — blue, regardless of logic state */
 input[type="checkbox"]:checked + .toggle_switch {
-  background: #1deb38;
+  background: #2f80ed;
   color: #fff; /* background-image: url("checked.png"); */
 }
 input[type="checkbox"]:checked + .toggle_switch_noLogic {
-  background: #1deb38;
+  background: #2f80ed;
   color: #fff; /* background-image: url("checked.png"); */
 }
+/* In logic / available, not yet collected — green */
 .toggle_switch {
   border: 1px solid #000;
   display: inline-block;
   padding: 3px;
-  background: #f00;
+  background: #1deb38;
   height: 10px;
   width: 10px; /* background: url("unchecked.png") no-repeat left center; */ /*
 padding-left: 15px; */
 }
+/* Out of logic, not yet collected — gray */
 .toggle_switch_noLogic {
   border: 1px solid #000;
   display: inline-block;
   padding: 3px;
-  background: #4a7491;
+  background: #888888;
   height: 10px;
   width: 10px;
 }
