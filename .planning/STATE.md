@@ -20,7 +20,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-22)
 
 **Core value:** When the tracker says a location is "in logic," it matches the actual Randovania randomizer for the player's seed/preset.
-**Current focus:** Phase 2 COMPLETE ✅ (verified) — ready to plan Phase 3 (settings + persistence)
+**Current focus:** Phase 3 PLANNED & checker-revised ✅ (3 plans, blockers fixed) — ready to EXECUTE; Phases 4 & 5 still to plan/execute
 
 ## Status
 
@@ -34,10 +34,11 @@ See: .planning/PROJECT.md (updated 2026-06-22)
 
 ## Next Action
 
-Run `/gsd-plan-phase 3` to plan settings + persistence (SettingsPanel.vue exposing
-trick level + key settings; localStorage for settings AND progress). The engine
-already consumes a settings object (`Settings.defaultSettings`); Phase 3 makes it
-user-driven and persistent.
+Resume the autonomous run: `/gsd-autonomous --from 3`. Phase 3 is fully planned
+(03-01/02/03) and the plan-checker REVISE was resolved (SET_MODEL no-clobber,
+subscriber/set-by-value restore, dropped the dead energyPerTank control). Next step
+is EXECUTE Phase 3, then plan+execute Phases 4 (remaining regions) and 5 (cutover).
+Paused mid-autonomous-run for context budget — no code changes pending, plans committed.
 
 ## Notes / Resolved Risks
 
