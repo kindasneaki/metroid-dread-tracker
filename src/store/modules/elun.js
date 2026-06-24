@@ -8,19 +8,6 @@ export default {
         amount: 2,
         top: "margin-top:73px",
         left: "left:921px",
-        logic: [
-          {
-            type: [
-              "morphBall",
-              "speedBooster",
-              "grappleBeam",
-              "powerBomb",
-              "spiderMagnet",
-            ],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "2",
@@ -29,22 +16,6 @@ export default {
         amount: 2,
         top: "margin-top:216px",
         left: "left:897px",
-        requiredLogic: [
-          {
-            type: ["morphBall", "speedBooster", "grappleBeam", "spiderMagnet"],
-          },
-        ],
-        logic: [
-          {
-            type: ["bomb"],
-            counter: 0,
-          },
-          {
-            type: ["crossBomb"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "1ef",
@@ -53,22 +24,6 @@ export default {
         amount: 1,
         top: "margin-top:126px",
         left: "left:773px",
-        requiredLogic: [
-          {
-            type: ["morphBall", "speedBooster", "grappleBeam", "spiderMagnet"],
-          },
-        ],
-        logic: [
-          {
-            type: ["bomb"],
-            counter: 0,
-          },
-          {
-            type: ["crossBomb"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "1pb",
@@ -77,22 +32,6 @@ export default {
         amount: 1,
         top: "margin-top:147px",
         left: "left:982px",
-        requiredLogic: [
-          {
-            type: ["morphBall", "speedBooster", "grappleBeam", "spiderMagnet"],
-          },
-        ],
-        logic: [
-          {
-            type: ["bomb"],
-            counter: 0,
-          },
-          {
-            type: ["crossBomb"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "plasma",
@@ -101,23 +40,6 @@ export default {
         amount: 1,
         top: "margin-top:229px",
         left: "left:863px",
-        softlock: true,
-        requiredLogic: [
-          {
-            type: ["morphBall", "speedBooster", "grappleBeam", "spiderMagnet"],
-          },
-        ],
-        logic: [
-          {
-            type: ["bomb"],
-            counter: 0,
-          },
-          {
-            type: ["crossBomb"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
     ],
   },

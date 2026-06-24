@@ -8,22 +8,6 @@ export default {
         amount: 2,
         top: "margin-top:155px",
         left: "left:647px",
-        requiredLogic: [
-          {
-            type: ["morphBall", "powerBomb", "grappleBeam", "waveBeam"],
-          },
-        ],
-        logic: [
-          {
-            type: ["speedBooster"],
-            counter: 0,
-          },
-          {
-            type: ["spaceJump"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "2",
@@ -32,26 +16,6 @@ export default {
         amount: 2,
         top: "margin-top:269px",
         left: "left:573px",
-        requiredLogic: [
-          {
-            type: ["morphBall", "grappleBeam", "screwAttack"],
-          },
-        ],
-        logic: [
-          {
-            type: ["bomb"],
-            counter: 0,
-          },
-          {
-            type: ["crossBomb"],
-            counter: 0,
-          },
-          {
-            type: ["powerBomb"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "1pb",
@@ -60,22 +24,6 @@ export default {
         amount: 1,
         top: "margin-top:216px",
         left: "left:667px",
-        requiredLogic: [
-          {
-            type: ["morphBall", "speedBooster", "screwAttack", "waveBeam"],
-          },
-        ],
-        logic: [
-          {
-            type: ["bomb"],
-            counter: 0,
-          },
-          {
-            type: ["crossBomb"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
       {
         area: "power",
@@ -84,27 +32,6 @@ export default {
         amount: 1,
         top: "margin-top:282px",
         left: "left:829px",
-        softlock: true,
-        requiredLogic: [
-          {
-            type: ["morphBall", "speedBooster", "screwAttack"],
-          },
-        ],
-        logic: [
-          {
-            type: ["bomb"],
-            counter: 0,
-          },
-          {
-            type: ["crossBomb"],
-            counter: 0,
-          },
-          {
-            type: ["powerBomb"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
     ],
   },
