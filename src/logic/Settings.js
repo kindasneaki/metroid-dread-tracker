@@ -46,8 +46,12 @@ export function defaultSettings(header) {
   return {
     trickLevel: 0,
     misc: {
-      SeparateBeams: 0,
-      SeparateMissiles: 0,
+      // Starter preset shuffles beams/missiles as SEPARATE items (not progressive),
+      // so the logic must model in-game stacking: a higher beam opens a lower beam's
+      // door (Wave→Wide/Plasma), and a higher missile opens a lower missile's door.
+      // These flags gate the stacking branches of the Shoot * templates.
+      SeparateBeams: 1,
+      SeparateMissiles: 1,
       DoorLocks: 0,
       HighDanger: 0,
       Teleporters: 0,
