@@ -67,9 +67,13 @@ function persistencePlugin(store) {
         regions[name] = [];
       }
     }
+    // Fold DNA into the items array so their checked states land in checkedItems
+    // map under their own type keys — no schema bump needed; HYDRATE_ITEMS ignores
+    // unknown keys, HYDRATE_DNA reads exactly the DNA keys.
+    const dnaItems = (s.items && s.items.metroidDna) || [];
     const snapshot = {
       settings: s.logic && s.logic.settings,
-      items: s.items && s.items.items,
+      items: [...((s.items && s.items.items) || []), ...dnaItems],
       xDefeated: s.items && s.items.xDefeated,
       counters: {
         missiles: s.missiles || 0,
@@ -145,6 +149,10 @@ export default createStore({
         },
         { root: true },
       );
+
+      // Restore Metroid DNA toggles from same checkedItems map (DNA keys are folded
+      // in during persist(); HYDRATE_ITEMS ignores the DNA keys safely).
+      commit("items/HYDRATE_DNA", blob.checkedItems || {}, { root: true });
 
       // Restore root counters (absolute-set, not additive)
       const c = blob.counters || {};
