@@ -5,6 +5,7 @@
       :key="location.area"
       class="toggle_box"
       :style="[location.top, location.left]"
+      :title="locationLabel(location)"
     >
       <label
         :for="location.area"
@@ -60,6 +61,10 @@ export default {
       // inventory (item placement is randomized). Recompute keeps colors fresh
       // and triggers the persistence snapshot of the checked locations.
       this.$store.dispatch("logic/recompute");
+    },
+    locationLabel(location) {
+      const amount = location.amount ? ` \xd7${location.amount}` : "";
+      return `Artaria — Location ${location.area} (${location.type}${amount})`;
     },
   },
 };
