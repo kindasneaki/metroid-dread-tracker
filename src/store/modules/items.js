@@ -193,6 +193,11 @@ export default {
       checked: false,
       logic: false,
     },
+    metroidDna: [
+      { type: "metroidDna1", name: "Metroid DNA 1", checked: false },
+      { type: "metroidDna2", name: "Metroid DNA 2", checked: false },
+      { type: "metroidDna3", name: "Metroid DNA 3", checked: false },
+    ],
 
     progressiveLogic: [
       {
@@ -255,6 +260,7 @@ export default {
     /**
      * Reset all items to unchecked/unlogic state (for resetProgress).
      * Retains static display data (name/type). slide starts true (default).
+     * Also clears all 3 Metroid DNA toggles.
      */
     RESET_ITEMS(state) {
       for (const item of state.items) {
@@ -263,6 +269,30 @@ export default {
       }
       state.xDefeated.logic = false;
       state.xDefeated.checked = false;
+      for (const entry of state.metroidDna) {
+        entry.checked = false;
+      }
+    },
+    /**
+     * Flip checked state of one DNA entry (display-only — no logic/engine side-effect).
+     * @param {string} type - "metroidDna1" | "metroidDna2" | "metroidDna3"
+     */
+    TOGGLE_DNA(state, type) {
+      const entry = state.metroidDna.find((e) => e.type === type);
+      if (entry) {
+        entry.checked = !entry.checked;
+      }
+    },
+    /**
+     * Absolute-set hydration for DNA from the shared checkedItems persistence map.
+     * Absent keys default to false. Mirror of HYDRATE_ITEMS semantics.
+     * @param {object} checkedItems - { [type]: boolean } map from blob
+     */
+    HYDRATE_DNA(state, checkedItems) {
+      const map = checkedItems || {};
+      for (const entry of state.metroidDna) {
+        entry.checked = map[entry.type] === true;
+      }
     },
     UPDATE_PROGRESSIVE(state, index) {
       if (index) {
@@ -292,6 +322,14 @@ export default {
   actions: {
     updateX({ commit }) {
       commit("SET_X");
+    },
+    /**
+     * Toggle a Metroid DNA tracker checkbox (display-only — no recompute).
+     * DNA is a goal item, not a movement ability; the BFS engine ignores it.
+     * @param {{ type: string }} payload - e.g. { type: "metroidDna1" }
+     */
+    toggleDna({ commit }, { type }) {
+      commit("TOGGLE_DNA", type);
     },
     updateArea({ commit, dispatch }, { index }) {
       commit("UPDATE_AREA", index);
@@ -346,6 +384,9 @@ export default {
     },
     checkX(state) {
       return state.xDefeated.logic;
+    },
+    metroidDna(state) {
+      return state.metroidDna;
     },
   },
   namespaced: true,
