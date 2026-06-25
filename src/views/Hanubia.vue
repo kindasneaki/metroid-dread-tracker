@@ -63,7 +63,7 @@ export default {
       this.$store.dispatch("logic/recompute");
     },
     locationLabel(index) {
-      return `Hanubia -- ${locationNameFor("hanubia", index)}`;
+      return `Hanubia — ${locationNameFor("hanubia", index)}`;
     },
   },
 };

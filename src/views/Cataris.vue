@@ -66,7 +66,7 @@ export default {
       this.$store.dispatch("logic/recompute");
     },
     locationLabel(index) {
-      return `Cataris -- ${locationNameFor("cataris", index)}`;
+      return `Cataris — ${locationNameFor("cataris", index)}`;
     },
   },
 };

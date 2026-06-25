@@ -64,7 +64,7 @@ export default {
       this.$store.dispatch("logic/recompute");
     },
     locationLabel(index) {
-      return `Artaria -- ${locationNameFor("artaria", index)}`;
+      return `Artaria — ${locationNameFor("artaria", index)}`;
     },
   },
 };

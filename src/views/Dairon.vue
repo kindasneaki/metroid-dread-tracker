@@ -68,7 +68,7 @@ export default {
       this.$store.dispatch("logic/recompute");
     },
     locationLabel(index) {
-      return `Dairon -- ${locationNameFor("dairon", index)}`;
+      return `Dairon — ${locationNameFor("dairon", index)}`;
     },
   },
 };

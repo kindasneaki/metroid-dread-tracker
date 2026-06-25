@@ -63,7 +63,7 @@ export default {
       this.$store.dispatch("logic/recompute");
     },
     locationLabel(index) {
-      return `Ferenia -- ${locationNameFor("ferenia", index)}`;
+      return `Ferenia — ${locationNameFor("ferenia", index)}`;
     },
   },
 };

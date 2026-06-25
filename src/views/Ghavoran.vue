@@ -66,7 +66,7 @@ export default {
       this.$store.dispatch("logic/recompute");
     },
     locationLabel(index) {
-      return `Ghavoran -- ${locationNameFor("ghavoran", index)}`;
+      return `Ghavoran — ${locationNameFor("ghavoran", index)}`;
     },
   },
 };

@@ -63,7 +63,7 @@ export default {
       this.$store.dispatch("logic/recompute");
     },
     locationLabel(index) {
-      return `Burenia -- ${locationNameFor("burenia", index)}`;
+      return `Burenia — ${locationNameFor("burenia", index)}`;
     },
   },
 };

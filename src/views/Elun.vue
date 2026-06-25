@@ -63,7 +63,7 @@ export default {
       this.$store.dispatch("logic/recompute");
     },
     locationLabel(index) {
-      return `Elun -- ${locationNameFor("elun", index)}`;
+      return `Elun — ${locationNameFor("elun", index)}`;
     },
   },
 };
