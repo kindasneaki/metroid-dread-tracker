@@ -130,11 +130,12 @@ chains. The restore path keeps them in sync (see §9.2).
 ```
                     ┌─────────────────────── you interact ───────────────────────┐
                     │                          │                       │          │
-      ability grid (Tracker.vue)   map location checkbox     +/- ammo widget   Settings
+      ability grid (Tracker.vue)   +/- ammo widget          map checkbox      Settings
                     │                          │                       │          │
-          items/updateArea            root updateAbility       root updateAbility  logic/setSettings
-        (toggles item.logic)     (counter += amount, e.g.   (same path — unified   (merges settings)
-                    │             missiles/energyFull/…)      in the follow-up fix) │
+          items/updateArea            root updateAbility    logic/recompute   logic/setSettings
+        (toggles item.logic)     (counter += amount;       only — marks the   (merges settings)
+                    │             recompute + persist)      location done; no    │
+                    │                          │            inventory change     │
                     └──────────────┬───────────┴───────────────────────┴──────────┘
                                    ▼
                         dispatch  logic/recompute   ← also runs once after load + restore
@@ -152,9 +153,13 @@ chains. The restore path keeps them in sync (see §9.2).
 
 Every interaction that can change reachability dispatches `logic/recompute`
 unconditionally — there is no flag guard. Trigger sites: ability-grid toggles
-(`items/updateArea`), counter/ammo changes and map pickups (root `updateAbility`),
-the X-released toggle (`Tracker.checkX`), settings changes (`logic/setSettings`),
-the initial `App.vue` → `logic/load`, and `restoreState`.
+(`items/updateArea`), ammo changes via the +/- widget (root `updateAbility`), the
+X-released toggle (`Tracker.checkX`), settings changes (`logic/setSettings`), the
+initial `App.vue` → `logic/load`, and `restoreState`. Map location checkboxes are
+**completion markers only** — they mark the location done and dispatch a recompute
+(which refreshes colors and triggers the persistence snapshot) but do **not** add
+any item to your inventory, because in a randomizer the item at each location is
+shuffled. You control your inventory via the ability grid + the +/- ammo widget.
 
 ---
 
@@ -272,11 +277,20 @@ widget didn't save or count; collecting via the map didn't update the HUD.
   path → updates the counter, **recomputes**, and **persists**.
 - The HUD (`Display.vue`) reads the root counters and shows **starting ammo +
   collected** (`missileTotal` / `powerBombTotal`, plus energy parts/tanks).
-- Map checkboxes already used this path, so all collection methods now agree.
 
 `items.minorItems` is now only the static button definitions for the widget; its
 old `total` fields and the dead `updateMinor`/`SET_MISSILES` mutations remain
 in place but unused (flagged for a later cleanup pass).
+
+### 9.4 Fix — location checkboxes no longer add the vanilla item
+
+Checking a map location used to dispatch `updateAbility` with the location's
+**vanilla** `type`/`amount`, so ticking a missile location did `missiles += 2`.
+That's wrong for a randomizer (the item there is shuffled) and became visible once
+the HUD read the root counters. **Fix:** the region-view `checked()` handler now
+only dispatches `logic/recompute` — it marks the location done (`v-model` on
+`location.checked`) and persists, but makes **no inventory change**. Inventory is
+tracked solely through the ability grid (majors) and the +/- ammo widget (minors).
 
 ---
 
@@ -306,11 +320,11 @@ Tracked in `.planning/BACKLOG.md`:
   `xDefeated.logic` and triggers recompute, but `recompute` builds its obtained set
   from `items/inLogic`, which returns only `state.items` and excludes `xDefeated`.
   So the flag currently has no effect on reachability.
-- **Map-collected major abilities:** clicking a *major-ability location* on a map
-  dispatches `updateAbility` with that ability's type, which only updates a root
-  counter — it does **not** set the ability's `items[].logic`. Major abilities are
-  registered through the **ability grid**, not the map. (Minor items on the map
-  work fine — they map to real counters.)
+- **Map checkboxes don't register items (by design):** map location checkboxes are
+  completion markers only (see §9.4). Your inventory is tracked via the ability
+  grid (majors) and the +/- ammo widget (minors). This is correct for a randomizer,
+  but note there is no automatic "I found item X at location Y" inference — that
+  would require importing the seed's placement (a future-milestone item, HOOK-01).
 - **Dead `minorItems` counter code:** see §9.3.
 - **Legacy counter bugs:** `FIX_ENERGY` adds 3 parts (not 4); `UPDATE_PROGRESSIVE`
   is partly broken/dead.
