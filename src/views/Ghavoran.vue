@@ -15,7 +15,7 @@
           type="checkbox"
           :id="location.area"
           v-model="location.checked"
-          v-on:click="checked(location.checked, location.type, location.amount)"
+          v-on:click="checked()"
         />
         <span class="toggle_switch"></span>
       </label>
@@ -28,7 +28,7 @@
           type="checkbox"
           :id="location.area"
           v-model="location.checked"
-          v-on:click="checked(location.checked, location.type, location.amount)"
+          v-on:click="checked()"
         />
         <span class="toggle_switch_noLogic"></span>
       </label>
@@ -57,15 +57,11 @@ export default {
     },
   },
   methods: {
-    addAbility(amount, type) {
-      this.$store.dispatch("updateAbility", { amount, type });
-    },
-    checked(check, type, amount) {
-      if (!check) {
-        this.addAbility(amount, type);
-      } else {
-        this.addAbility(-amount, type);
-      }
+    checked() {
+      // Location checkboxes are completion markers only — they do NOT change
+      // inventory (item placement is randomized). Recompute keeps colors fresh
+      // and triggers the persistence snapshot of the checked locations.
+      this.$store.dispatch("logic/recompute");
     },
   },
 };
