@@ -55,8 +55,8 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "margin-top:591px",
-        left: "left:155px",
+        top: "margin-top:586px",
+        left: "left:195px",
       },
       {
         area: "8",
@@ -87,8 +87,8 @@ export default {
         checked: false,
         type: "missiles",
         amount: 10,
-        top: "margin-top:586px",
-        left: "left:195px",
+        top: "margin-top:591px",
+        left: "left:155px",
         //flashshift or gravitysuit
       },
       {
@@ -162,8 +162,8 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "margin-top:510px",
-        left: "left:101px",
+        top: "margin-top:140px",
+        left: "left:302px",
       },
     ],
   },
