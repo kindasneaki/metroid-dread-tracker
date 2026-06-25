@@ -47,8 +47,15 @@ Resume: `/gsd-autonomous --from 4` (best in a FRESH session for context). Phase 
 - Randovania source of truth: `/Users/rjosephson/Documents/Development/randovania/randovania/games/dread/logic_database/`.
 - No test framework — validate via `node` assertion scripts + parity diffing.
 
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260624-t9k | Add 3 Metroid DNA tracker sections (DNA 1, 2, 3) to the item tracker, and show location name on hover | 2026-06-25 | fa1753b | [260624-t9k-add-3-metroid-dna-tracker-sections-dna-1](./quick/260624-t9k-add-3-metroid-dna-tracker-sections-dna-1/) |
+
 ---
 *Last updated: 2026-06-22 after initialization*
+Last activity: 2026-06-25 - Completed quick task 260624-t9k: Add 3 Metroid DNA tracker sections + location hover names
 
 ## Session
 
