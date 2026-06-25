@@ -5,7 +5,7 @@
       :key="location.area"
       class="toggle_box"
       :style="[location.top, location.left]"
-      :title="locationLabel(location)"
+      :title="locationLabel(index)"
     >
       <label
         :for="location.area"
@@ -40,6 +40,7 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import { pickupIndexFor } from "@/logic/pickupMatch.js";
+import { locationNameFor } from "@/logic/locationNames.js";
 export default {
   computed: {
     ...mapState("hanubia", {
@@ -61,9 +62,8 @@ export default {
       // and triggers the persistence snapshot of the checked locations.
       this.$store.dispatch("logic/recompute");
     },
-    locationLabel(location) {
-      const amount = location.amount ? ` \xd7${location.amount}` : "";
-      return `Hanubia — Location ${location.area} (${location.type}${amount})`;
+    locationLabel(index) {
+      return `Hanubia -- ${locationNameFor("hanubia", index)}`;
     },
   },
 };
