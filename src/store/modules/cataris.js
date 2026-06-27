@@ -182,8 +182,8 @@ export default {
         checked: false,
         type: "flashShift",
         amount: 1,
-        top: "margin-top:129px",
-        left: "left:373px",
+        top: "margin-top:139px",
+        left: "left:322px",
       },
       {
         area: "z57",
