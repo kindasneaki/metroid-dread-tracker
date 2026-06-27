@@ -53,11 +53,11 @@ Resume: `/gsd-autonomous --from 4` (best in a FRESH session for context). Phase 
 |---|-------------|------|--------|-----------|
 | 260624-t9k | Add 3 Metroid DNA tracker sections (DNA 1, 2, 3) to the item tracker, and show location name on hover | 2026-06-25 | fa1753b | [260624-t9k-add-3-metroid-dna-tracker-sections-dna-1](./quick/260624-t9k-add-3-metroid-dna-tracker-sections-dna-1/) |
 | 260624-vqg | Add real Randovania room-name tooltips to all 8 region location markers (room name only), and fix mispositioned Burenia markers (Drogyga reposition + swap 6/10) | 2026-06-25 | 423b8aa | [260624-vqg-add-randovania-room-name-tooltips-to-all](./quick/260624-vqg-add-randovania-room-name-tooltips-to-all/) |
-| 260626-s1f | Fix incorrectly placed item locations on the Burenia map — corrected 11 misplaced markers via affine game-coordinate→map-pixel transform (incl. Gravity Suit Tower / Main Hub Tower Middle swap) | 2026-06-27 | ac56bcb | [260626-s1f-fix-incorrectly-placed-item-locations-on](./quick/260626-s1f-fix-incorrectly-placed-item-locations-on/) |
+| 260626-s1f | Fix incorrectly placed item locations on the Burenia map — corrected 11 misplaced markers via affine game-coordinate→map-pixel transform (incl. Gravity Suit Tower / Main Hub Tower Middle swap), then audited all 8 regions: fixed Ferenia missile swap + major-item (boss/Central-Unit/EMMI) markers across Artaria/Cataris/Dairon/Ghavoran/Ferenia + all 4 Hanubia markers | 2026-06-27 | ac56bcb, 597c668, cd3f6ac | [260626-s1f-fix-incorrectly-placed-item-locations-on](./quick/260626-s1f-fix-incorrectly-placed-item-locations-on/) |
 
 ---
 *Last updated: 2026-06-27 after quick task 260626-s1f*
-Last activity: 2026-06-27 - Completed quick task 260626-s1f: corrected 11 misplaced Burenia map markers (coordinate-derived positions)
+Last activity: 2026-06-27 - Completed quick task 260626-s1f: corrected Burenia markers, then audited all 8 regions (Ferenia swap + major-item/boss markers + Hanubia)
 
 ## Session
 
