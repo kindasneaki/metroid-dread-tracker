@@ -247,8 +247,8 @@ export default {
         checked: false,
         type: "spiderMagnet",
         amount: 1,
-        top: "margin-top: 314px",
-        left: "left: 619px",
+        top: "margin-top: 293px",
+        left: "left: 643px",
       },
       {
         area: "corpius",
@@ -256,7 +256,7 @@ export default {
         type: "phantomCloak",
         amount: 1,
         top: "margin-top: 225px",
-        left: "left: 840px",
+        left: "left: 817px",
       },
       {
         area: "screw",
