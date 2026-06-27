@@ -1,0 +1,6 @@
+# Vendored Randovania logic snapshots — generated data, not hand-edited.
+# Regenerate with scripts/refresh-logic-db.mjs (see public/logic/VERSION.txt).
+# Mark as generated so GitHub collapses them in PR diffs, and suppress the
+# textual diff so they don't bloat reviews (~143k lines across 11 files).
+public/logic/*.json linguist-generated=true -diff
+public/logic/VERSION.txt linguist-generated=true
