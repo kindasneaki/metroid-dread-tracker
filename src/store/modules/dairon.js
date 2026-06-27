@@ -183,8 +183,8 @@ export default {
         checked: false,
         type: "speedBooster",
         amount: 1,
-        top: "margin-top:245px",
-        left: "left:329px",
+        top: "margin-top:238px",
+        left: "left:293px",
         //speedBooster
       },
     ],
