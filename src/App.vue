@@ -1,6 +1,7 @@
 <template>
   <metainfo><template v-slot:title></template></metainfo>
   <Display />
+  <SettingsPanel />
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/artaria">Artaria</router-link> |
@@ -18,10 +19,13 @@
 <script>
 import Tracker from "@/components/Tracker.vue";
 import Display from "@/components/Display.vue";
+import SettingsPanel from "@/components/SettingsPanel.vue";
 import { useMeta } from "vue-meta";
+import { useStore } from "vuex";
+import { onMounted } from "vue";
 export default {
   name: "app",
-  components: { Tracker, Display },
+  components: { Tracker, Display, SettingsPanel },
   setup() {
     useMeta({
       title: "Metroid Dread Tracker",
@@ -30,6 +34,13 @@ export default {
       author: "KindaSneaki",
       game: "Metroid Dread",
       type: "Map Tracker",
+    });
+    // DAT-04 / D-02: Warm the logic engine at app init.
+    // Fetches public/logic/*.json, asserts schema, builds the frozen GameModel.
+    // Non-blocking — the existing hand-authored engine keeps driving the UI (D-05).
+    const store = useStore();
+    onMounted(() => {
+      store.dispatch("logic/load");
     });
   },
 };
@@ -55,40 +66,31 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+/* Collected (checkbox checked) — blue, regardless of logic state */
 input[type="checkbox"]:checked + .toggle_switch {
-  background: #1deb38;
-  color: #fff; /* background-image: url("checked.png"); */
-}
-input[type="checkbox"]:checked + .toggle_switch_softlock {
-  background: #1deb38;
+  background: #2f80ed;
   color: #fff; /* background-image: url("checked.png"); */
 }
 input[type="checkbox"]:checked + .toggle_switch_noLogic {
-  background: #1deb38;
+  background: #2f80ed;
   color: #fff; /* background-image: url("checked.png"); */
 }
+/* In logic / available, not yet collected — green */
 .toggle_switch {
   border: 1px solid #000;
   display: inline-block;
   padding: 3px;
-  background: #f00;
+  background: #1deb38;
   height: 10px;
   width: 10px; /* background: url("unchecked.png") no-repeat left center; */ /*
 padding-left: 15px; */
 }
-.toggle_switch_softlock {
-  border: 1px solid #000;
-  display: inline-block;
-  padding: 3px;
-  background: yellow;
-  height: 10px;
-  width: 10px;
-}
+/* Out of logic, not yet collected — gray */
 .toggle_switch_noLogic {
   border: 1px solid #000;
   display: inline-block;
   padding: 3px;
-  background: #4a7491;
+  background: #888888;
   height: 10px;
   width: 10px;
 }

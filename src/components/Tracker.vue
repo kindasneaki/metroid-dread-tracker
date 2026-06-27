@@ -66,6 +66,27 @@
         </label>
       </div>
 
+      <div v-for="item in metroidDna" :key="item.type">
+        <label
+          :for="item.type"
+          class="metroidDna icon"
+          :class="[item.type, 'icon', item.checked ? 'active' : 'notActive']"
+          @mouseover="
+            action = item.name;
+            mouse = $event;
+          "
+          @mouseleave="action = null"
+          @mousemove="hoverEvent($event)"
+          ><input
+            type="checkbox"
+            :id="item.type"
+            v-model="item.checked"
+            v-on:click="dnaChecked(item.type)"
+          />
+          DNA {{ item.name.slice(-1) }}
+        </label>
+      </div>
+
       <!-- <div>
         <button class="icon" v-on:click="addMissiles(smallMissiles)">
           missile tank 2
@@ -107,6 +128,7 @@ export default {
       items: (state) => state.items,
       minorItems: (state) => state.minorItems,
       xDefeated: (state) => state.xDefeated,
+      metroidDna: (state) => state.metroidDna,
     }),
     hoverAction() {
       if (this.action) {
@@ -133,9 +155,6 @@ export default {
         route,
       });
       this.$store.dispatch("items/checkProgressive", type);
-    },
-    toggleLogic(route, type) {
-      this.$store.dispatch(route + "/updateArea", type);
     },
     // toggleAbility(logic) {
     // this.$store.dispatch("updateAbility", { logic });
@@ -172,10 +191,30 @@ export default {
     },
     checkX() {
       this.$store.dispatch("items/updateX");
-      this.$store.dispatch("ghavoran/checkLogic");
+      this.$store.dispatch("logic/recompute");
+    },
+    /**
+     * Toggle a Metroid DNA tracker checkbox. DNA is display-only; no recompute.
+     * @param {string} type - "metroidDna1" | "metroidDna2" | "metroidDna3"
+     */
+    dnaChecked(type) {
+      this.$store.dispatch("items/toggleDna", { type });
     },
     toggleMinor(index, amount) {
-      this.$store.dispatch("items/updateMinor", { index, amount });
+      // Route minor-item clicks to the root counters — the single source of
+      // truth the logic engine reads and that persistence saves. minorItems is
+      // kept only as the static button definitions (type/name/icon/amount).
+      const minorToCounter = {
+        smallMissiles: "missiles",
+        bigMissiles: "missiles",
+        energyPart: "energyPart",
+        energyFull: "energyFull",
+        smallPowerBomb: "powerBomb",
+      };
+      const minor = this.minorItems[index];
+      const type = minor && minorToCounter[minor.type];
+      if (!type) return;
+      this.$store.dispatch("updateAbility", { amount, type });
     },
   },
 };
@@ -344,6 +383,10 @@ a {
 }
 .xDefeated {
   font-size: 20px;
+  text-align: center;
+}
+.metroidDna {
+  font-size: 11px;
   text-align: center;
 }
 .tooltip {

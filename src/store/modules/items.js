@@ -193,6 +193,11 @@ export default {
       checked: false,
       logic: false,
     },
+    metroidDna: [
+      { type: "metroidDna1", name: "Metroid DNA 1", checked: false },
+      { type: "metroidDna2", name: "Metroid DNA 2", checked: false },
+      { type: "metroidDna3", name: "Metroid DNA 3", checked: false },
+    ],
 
     progressiveLogic: [
       {
@@ -230,6 +235,65 @@ export default {
     UPDATE_AREA(state, index) {
       state.items[index].logic = !state.items[index].logic;
     },
+    /**
+     * Set-by-value hydration for restore (PER-01/PER-02).
+     * Accepts a checkedItems map { [type]: boolean } and xDefeated boolean.
+     * ABSOLUTE-SET semantics — does NOT toggle; safe to call from restoreState.
+     * Mirrors logic ← checked so the engine (which reads items[].logic) sees the
+     * restored inventory; recompute does NOT re-derive logic from checked.
+     */
+    HYDRATE_ITEMS(state, { checkedItems, xDefeated }) {
+      const map = checkedItems || {};
+      for (const item of state.items) {
+        if (Object.prototype.hasOwnProperty.call(map, item.type)) {
+          item.checked = map[item.type] === true;
+        } else {
+          item.checked = false;
+        }
+        item.logic = item.checked;
+      }
+      if (typeof xDefeated === "boolean") {
+        state.xDefeated.logic = xDefeated;
+        state.xDefeated.checked = xDefeated;
+      }
+    },
+    /**
+     * Reset all items to unchecked/unlogic state (for resetProgress).
+     * Retains static display data (name/type). slide starts true (default).
+     * Also clears all 3 Metroid DNA toggles.
+     */
+    RESET_ITEMS(state) {
+      for (const item of state.items) {
+        item.checked = item.type === "slide";
+        item.logic = item.type === "slide";
+      }
+      state.xDefeated.logic = false;
+      state.xDefeated.checked = false;
+      for (const entry of state.metroidDna) {
+        entry.checked = false;
+      }
+    },
+    /**
+     * Flip checked state of one DNA entry (display-only — no logic/engine side-effect).
+     * @param {string} type - "metroidDna1" | "metroidDna2" | "metroidDna3"
+     */
+    TOGGLE_DNA(state, type) {
+      const entry = state.metroidDna.find((e) => e.type === type);
+      if (entry) {
+        entry.checked = !entry.checked;
+      }
+    },
+    /**
+     * Absolute-set hydration for DNA from the shared checkedItems persistence map.
+     * Absent keys default to false. Mirror of HYDRATE_ITEMS semantics.
+     * @param {object} checkedItems - { [type]: boolean } map from blob
+     */
+    HYDRATE_DNA(state, checkedItems) {
+      const map = checkedItems || {};
+      for (const entry of state.metroidDna) {
+        entry.checked = map[entry.type] === true;
+      }
+    },
     UPDATE_PROGRESSIVE(state, index) {
       if (index) {
         state.progressiveLogic[index] = true;
@@ -248,12 +312,10 @@ export default {
       state.minorItems[2].total = 0;
     },
     FIX_ENERGY(state) {
-      console.log("adf");
       state.minorItems[2].total += 3;
       // state.minorItems[3].total -= 1;
     },
     PREVENT_NEGATIVE(state, index) {
-      console.log(index);
       state.minorItems[index].total = state.minorItems[index].startAmount;
     },
   },
@@ -261,9 +323,17 @@ export default {
     updateX({ commit }) {
       commit("SET_X");
     },
-    updateArea({ commit, dispatch }, { index, route }) {
+    /**
+     * Toggle a Metroid DNA tracker checkbox (display-only — no recompute).
+     * DNA is a goal item, not a movement ability; the BFS engine ignores it.
+     * @param {{ type: string }} payload - e.g. { type: "metroidDna1" }
+     */
+    toggleDna({ commit }, { type }) {
+      commit("TOGGLE_DNA", type);
+    },
+    updateArea({ commit, dispatch }, { index }) {
       commit("UPDATE_AREA", index);
-      dispatch(route + "/checkLogic", index, { root: true });
+      dispatch("logic/recompute", null, { root: true });
     },
     checkProgressive({ commit, state }) {
       let index = null;
@@ -314,6 +384,9 @@ export default {
     },
     checkX(state) {
       return state.xDefeated.logic;
+    },
+    metroidDna(state) {
+      return state.metroidDna;
     },
   },
   namespaced: true,

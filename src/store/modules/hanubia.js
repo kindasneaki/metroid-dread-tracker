@@ -6,76 +6,24 @@ export default {
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "margin-top:155px",
-        left: "left:647px",
-        requiredLogic: [
-          {
-            type: ["morphBall", "powerBomb", "grappleBeam", "waveBeam"],
-          },
-        ],
-        logic: [
-          {
-            type: ["speedBooster"],
-            counter: 0,
-          },
-          {
-            type: ["spaceJump"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
+        top: "margin-top:280px",
+        left: "left:569px",
       },
       {
         area: "2",
         checked: false,
         type: "missiles",
         amount: 2,
-        top: "margin-top:269px",
-        left: "left:573px",
-        requiredLogic: [
-          {
-            type: ["morphBall", "grappleBeam", "screwAttack"],
-          },
-        ],
-        logic: [
-          {
-            type: ["bomb"],
-            counter: 0,
-          },
-          {
-            type: ["crossBomb"],
-            counter: 0,
-          },
-          {
-            type: ["powerBomb"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
+        top: "margin-top:165px",
+        left: "left:648px",
       },
       {
         area: "1pb",
         checked: false,
         type: "powerBomb",
         amount: 1,
-        top: "margin-top:216px",
-        left: "left:667px",
-        requiredLogic: [
-          {
-            type: ["morphBall", "speedBooster", "screwAttack", "waveBeam"],
-          },
-        ],
-        logic: [
-          {
-            type: ["bomb"],
-            counter: 0,
-          },
-          {
-            type: ["crossBomb"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
+        top: "margin-top:226px",
+        left: "left:668px",
       },
       {
         area: "power",
@@ -84,95 +32,26 @@ export default {
         amount: 1,
         top: "margin-top:282px",
         left: "left:829px",
-        softlock: true,
-        requiredLogic: [
-          {
-            type: ["morphBall", "speedBooster", "screwAttack"],
-          },
-        ],
-        logic: [
-          {
-            type: ["bomb"],
-            counter: 0,
-          },
-          {
-            type: ["crossBomb"],
-            counter: 0,
-          },
-          {
-            type: ["powerBomb"],
-            counter: 0,
-          },
-        ],
-        inLogic: false,
       },
     ],
   },
   mutations: {
-    UPDATE_LOGIC(state, payload) {
-      state.locations[payload.index].inLogic = payload.logic;
-    },
-  },
-  actions: {
-    checkLogic({ commit, state, rootGetters }) {
-      let data = rootGetters["items/inLogic"];
+    /**
+     * Set locations[i].checked = true for each index in the indices array.
+     * ABSOLUTE-SET semantics for restore (PER-01).
+     */
+    SET_LOCATIONS(state, indices) {
       for (let i = 0; i < state.locations.length; i++) {
-        // for (let k = 0; k < state.locations[i].logic.length; k++) {
-        let originalLength = state.locations[i].logic.length;
-        let inLogic = false;
-        let requiredLogic = false;
-        if (state.locations[i].requiredLogic) {
-          state.locations[i].requiredLogic.forEach((element) => {
-            let counter = 0;
-            let logicLength = element.type.length;
-            for (let k = 0; k < element.type.length; k++) {
-              data.find((value) => {
-                if (value.type === element.type[k]) {
-                  if (value.logic) {
-                    counter++;
-                    if (logicLength === counter) {
-                      requiredLogic = true;
-                      return true;
-                    }
-                  }
-                }
-              });
-            }
-            for (let k = 0; k < element.type.length; k++) {
-              element.counter = 0;
-            }
-          });
-        } else {
-          requiredLogic = true;
-        }
-        state.locations[i].logic.forEach((element) => {
-          let counter = 0;
-          let logicLength = element.type.length;
-          for (let k = 0; k < element.type.length; k++) {
-            data.find((value) => {
-              if (value.type === element.type[k]) {
-                if (value.logic) {
-                  counter++;
-                  if (logicLength === counter && requiredLogic) {
-                    inLogic = true;
-                    return true;
-                  }
-                }
-              }
-            });
-          }
-          for (let k = 0; k < element.type.length; k++) {
-            element.counter = 0;
-          }
-        });
-
-        if (originalLength === 0) {
-          inLogic = true;
-        }
-        // inLogic = true;
-        const payload = { index: i, logic: inLogic };
-        commit("UPDATE_LOGIC", payload);
-        // }
+        state.locations[i].checked =
+          Array.isArray(indices) && indices.includes(i);
+      }
+    },
+    /**
+     * Reset all locations to unchecked (for resetProgress).
+     */
+    RESET_LOCATIONS(state) {
+      for (const loc of state.locations) {
+        loc.checked = false;
       }
     },
   },
